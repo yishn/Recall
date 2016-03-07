@@ -17,6 +17,10 @@ class Vocabulary extends Model {
         return $orm->where_lt('level', 0)->order_by_asc('id');
     }
 
+    public static function level($orm, $min, $max) {
+        return $orm->where_gte('level', $min)->where_lte('level', $max);
+    }
+
     public static function due($orm) {
         return $orm->filter('active')->where_lte('due', date('Y-m-d H:i:s'))->order_by_asc('id');
     }
