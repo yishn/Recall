@@ -6,7 +6,7 @@ class Setting {
         'intervals': [4, 8, 24, 3*24, 7*24, 14*24, 30*24, 120*24]
     ];
 
-    public get($key) {
+    public static function get($key) {
         return self::$data[$key];
     }
 }
