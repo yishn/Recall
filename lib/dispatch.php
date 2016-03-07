@@ -31,7 +31,17 @@ function dispatch(...$args) {
 # creates an action and puts it into the routes stack
 function route($verb, $path, callable $func) {
   $context = &context();
-  array_push($context, action($verb, '/'.trim(BASE_PATH.$path, '/'), $func));
+  array_push($context, action($verb, join_paths(BASE_PATH, $path), $func));
+}
+
+function join_paths() {
+  $paths = array();
+
+  foreach (func_get_args() as $arg) {
+    if ($arg !== '') { $paths[] = $arg; }
+  }
+
+  return '/'.trim(preg_replace('#/+#','/',join('/', $paths)), '/');
 }
 
 # creates a route handler
