@@ -1,7 +1,7 @@
 <?php
 
 class Set extends Model {
-    public function vocabularies() {
+    public function get_vocabularies() {
         return $this->has_many('Vocabulary');
     }
 }
