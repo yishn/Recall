@@ -2,9 +2,7 @@
 
 require_once('includes.php');
 
-route('GET', '/', page('view/dashboard', [
-    'title' => 'Dashboard'
-]));
+route('GET', '/', page('view/dashboard'));
 
 dispatch();
 
