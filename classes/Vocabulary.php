@@ -25,6 +25,11 @@ class Vocabulary extends Model {
         return $orm->filter('active')->where_lte('due', date('Y-m-d H:i:s'))->order_by_asc('id');
     }
 
+    public static function due_tomorrow($orm) {
+        $datetime = new DateTime('tomorrow');
+        return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'))->order_by_asc('id');
+    }
+
     public static function learned_today($orm) {
         return $orm->filter('active')->where('init_date', date('Y-m-d'));
     }
