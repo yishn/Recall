@@ -2,9 +2,9 @@
 
 require_once('includes.php');
 
-route('GET', '/', function() {
-    return response('Hello World!');
-});
+route('GET', '/', page('view/dashboard', [
+    'title' => 'Dashboard'
+]));
 
 dispatch();
 
