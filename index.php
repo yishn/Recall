@@ -1,9 +1,12 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once('includes.php');
+
+route('GET', '/', function() {
+    return response('Hello World!');
+});
+
+dispatch();
 
 if (!ORM::get_config('logging')) return;
 

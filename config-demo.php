@@ -11,6 +11,9 @@ define('DB_PASS', '');
 define('DB_NAME', '');
 define('DB_PREFIX', '');
 
+// Base path with trailing '/'
+define('BASE_PATH', '/');
+
 /**
  * Ok, stop editing now!
  */
