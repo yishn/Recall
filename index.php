@@ -2,7 +2,9 @@
 
 require_once('includes.php');
 
-route('GET', '/', page('view/dashboard'));
+route('GET', '/', page('view/dashboard', [
+    'sets' => Set::order_by_asc('name')->find_many()
+]));
 
 dispatch();
 

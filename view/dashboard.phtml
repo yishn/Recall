@@ -5,6 +5,17 @@ include 'header.phtml';
 
 ?>
 
-Hello World
+<h2>Dashboard</h2>
+
+<ul>
+    <?php foreach ($sets as $set): ?>
+        <li>
+            <a href="<?php echo $set->get_permalink(); ?>">
+                <?php echo $set->name; ?>
+            </a>
+            <?php echo $set->get_due_count(); ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
 
 <?php include 'footer.phtml'; ?>
