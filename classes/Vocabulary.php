@@ -10,7 +10,7 @@ class Vocabulary extends Model {
      */
 
     public static function active($orm) {
-        return $orm->where_gte('level', 0)->order_by_asc('id');
+        return $orm->where_gte('level', 0)->order_by_asc('due');
     }
 
     public static function inactive($orm) {
@@ -22,12 +22,12 @@ class Vocabulary extends Model {
     }
 
     public static function due($orm) {
-        return $orm->filter('active')->where_lte('due', date('Y-m-d H:i:s'))->order_by_asc('id');
+        return $orm->filter('active')->where_lte('due', date('Y-m-d H:i:s'));
     }
 
     public static function due_tomorrow($orm) {
         $datetime = new DateTime('tomorrow');
-        return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'))->order_by_asc('id');
+        return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'));
     }
 
     public static function learned_today($orm) {
