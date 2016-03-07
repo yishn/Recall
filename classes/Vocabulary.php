@@ -10,11 +10,11 @@ class Vocabulary extends Model {
      */
 
     public static function active($orm) {
-        return $orm->where_gte('category', 1)->order_by_asc('id');
+        return $orm->where_gte('level', 0)->order_by_asc('id');
     }
 
     public static function inactive($orm) {
-        return $orm->where_lte('category', 0)->order_by_asc('id');
+        return $orm->where_lt('level', 0)->order_by_asc('id');
     }
 
     public static function due($orm) {
