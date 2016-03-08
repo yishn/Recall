@@ -3,10 +3,13 @@
 <h2>Set: <?php echo $set->name; ?></h2>
 
 <ul class="tasks">
-    <?php if (count($newvocabs) != 0): ?>
-        <li><a href="<?php echo $set->get_learn_link(); ?>">Learn</a> <?php echo count($newvocabs); ?></li>
+    <?php if (count($new_vocabs) != 0): ?>
+        <li><a href="<?php echo $set->get_learn_link(); ?>">Learn</a> <?php echo count($new_vocabs); ?></li>
     <?php endif; ?>
-    <li><a href="<?php echo $set->get_permalink(); ?>/add">Add Vocabulary</a></li>
+    <?php if (count($due_vocabs) != 0): ?>
+        <li><a href="<?php echo $set->get_review_link(); ?>">Review</a> <?php echo count($due_vocabs); ?></li>
+    <?php endif; ?>
+    <li><a href="<?php echo $set->get_add_link(); ?>">Add Vocabulary</a></li>
 </ul>
 
 <?php if (count($vocabularies) != 0): ?>

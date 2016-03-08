@@ -15,9 +15,17 @@ class Set extends Model {
         return Set::get_vocabularies()->filter('inactive')->limit($limit)->find_many();
     }
 
+    public function get_due_vocabularies() {
+        return $this->get_vocabularies()->filter('due')->find_many();
+    }
+
     public function get_due_count() {
         return $this->get_vocabularies()->filter('due')->count();
     }
+
+    /**
+     * Links
+     */
 
     public function get_permalink() {
         return BASE_PATH . 'set/' . $this->id;
@@ -25,5 +33,9 @@ class Set extends Model {
 
     public function get_learn_link() {
         return BASE_PATH . 'learn/' . $this->id;
+    }
+
+    public function get_add_link() {
+        return BASE_PATH . 'add-to/' . $this->id;
     }
 }

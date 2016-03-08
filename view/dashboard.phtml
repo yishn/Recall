@@ -8,9 +8,8 @@
     <li>
         Next review:
         <?php
-            $vocab = Vocabulary::filter('in_set', $set)->filter('active')->find_one();
-            if (!$vocab) echo 'None';
-            else echo $vocab->get_human_due_date();
+            if (!$next_review_vocab) echo 'None';
+            else echo $next_review_vocab->get_human_due_date();
         ?>
     </li>
     <li>
@@ -48,22 +47,18 @@
     </li>
 </ol>
 
-<?php if (isset($sets)): ?>
-
 <h3>Sets</h3>
 
 <ul>
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
             <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
-            <?php echo count($set->get_new_vocabularies()); ?>
+            <?php echo count($set->get_new_vocabularies()) + count($set->get_due_vocabularies()); ?>
         </li>
     <?php endforeach; ?>
     <li>
         <a href="#">Create Set</a>
     </li>
 </ul>
-
-<?php endif; ?>
 
 <?php include 'footer.phtml'; ?>

@@ -6,7 +6,8 @@ function serveDashboard() {
     return response(phtml('view/dashboard', [
         'title' => 'Dashboard',
         'sets' => Set::order_by_asc('name')->find_many(),
-        'set' => null
+        'set' => null,
+        'next_review_vocab' => Vocabulary::filter('in_set', $set)->filter('active')->find_one()
     ]));
 }
 
@@ -24,7 +25,8 @@ function serveSetPage($args) {
             ->limit($count)
             ->offset(($args['page'] - 1) * $count)
             ->find_many(),
-        'newvocabs' => $set->get_new_vocabularies()
+        'new_vocabs' => $set->get_new_vocabularies(),
+        'due_vocabs' => $set->get_due_vocabularies()
     ]));
 }
 
@@ -48,6 +50,8 @@ route('GET', '/set/:id/:page', serveSetPage);
 route('GET', '/vocab/:id', serveVocabPage);
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
+route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
+route('GET', '/:x/:y', function() { return redirect(BASE_PATH . 'error'); });
 
 dispatch();
 
