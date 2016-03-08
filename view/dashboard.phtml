@@ -5,17 +5,74 @@ include 'header.phtml';
 
 ?>
 
+<?php if ($set): ?>
+<h2>Set: <?php echo $set->name; ?></h2>
+<?php else: ?>
 <h2>Dashboard</h2>
+<?php endif; ?>
+
+<h3>Statistics</h3>
 
 <ul>
-    <?php foreach ($sets as $set): ?>
-        <li>
-            <a href="<?php echo $set->get_permalink(); ?>">
-                <?php echo $set->name; ?>
-            </a>
-            <?php echo $set->get_due_count(); ?>
+    <li>
+        Next review:
+        <?php
+            $vocab = Vocabulary::filter('in_set', $set)->filter('active')->find_one();
+            if (!$vocab) echo 'None';
+            else echo $vocab->get_human_due_date();
+        ?>
+    </li>
+    <li>
+        Due tomorrow:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?>
+    </li>
+</ul>
+
+<h3>Levels</h3>
+
+<ol>
+    <li>
+        Inactive:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('inactive')->count(); ?>
+    </li>
+    <li>
+        Apprentice:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 2)->count(); ?>
+    </li>
+    <li>
+        Guru:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 3, 4)->count(); ?>
+    </li>
+    <li>
+        Master:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 5, 5)->count(); ?>
+    </li>
+    <li>
+        Enlightened:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?>
+    </li>
+    <li>
+        Burned:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?>
+    </li>
+</ol>
+
+<?php if (isset($sets)): ?>
+
+<h3>Sets</h3>
+
+<ul>
+    <?php foreach ($sets as $s): ?>
+        <li<?php if ($s->id == $set->id): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $s->get_permalink(); ?>"><?php echo $s->name; ?></a>
+            <?php echo count($s->get_new_vocabularies()) + $s->get_due_count(); ?>
         </li>
     <?php endforeach; ?>
+    <li>
+        <a href="#">Create Set</a>
+    </li>
 </ul>
+
+<?php endif; ?>
 
 <?php include 'footer.phtml'; ?>

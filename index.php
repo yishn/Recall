@@ -2,9 +2,23 @@
 
 require_once('includes.php');
 
-route('GET', '/', page('view/dashboard', [
-    'sets' => Set::order_by_asc('name')->find_many()
-]));
+route('GET', '/', function() {
+    return response(phtml('view/dashboard', [
+        'sets' => Set::order_by_asc('name')->find_many(),
+        'set' => null
+    ]));
+});
+
+route('GET', '/set/:id', function($args) {
+    $set = Set::find_one($args['id']);
+
+    if (!$set) return response(phtml('view/error'));
+
+    return response(phtml('view/dashboard', [
+        'sets' => Set::order_by_asc('name')->find_many(),
+        'set' => $set
+    ]));
+});
 
 dispatch();
 
