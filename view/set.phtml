@@ -1,0 +1,13 @@
+<?php include 'header.phtml'; ?>
+
+<h2>Set: <?php echo $set->name; ?></h2>
+
+<ol>
+    <?php foreach ($vocabularies as $vocab): ?>
+        <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
+            <a href="#"><?php echo $vocab->front; ?></a>
+        </li>
+    <?php endforeach; ?>
+</ol>
+
+<?php include 'footer.phtml'; ?>

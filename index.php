@@ -10,17 +10,19 @@ route('GET', '/', function() {
     ]));
 });
 
-route('GET', '/error', page('view/error', ['title' => 'Error']));
-
 route('GET', '/set/:id', function($args) {
     $set = Set::find_one($args['id']);
 
     if (!$set) return redirect(BASE_PATH . 'error');
 
     return response(phtml('view/set', [
-        'set' => $set
+        'title' => 'Set: ' . $set->name,
+        'set' => $set,
+        'vocabularies' => $set->get_vocabularies()->find_many()
     ]));
 });
+
+route('GET', '/error', page('view/error', ['title' => 'Error']));
 
 dispatch();
 
