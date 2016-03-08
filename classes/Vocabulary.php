@@ -67,7 +67,8 @@ class Vocabulary extends Model {
     }
 
     public static function due_tomorrow($orm) {
-        $datetime = new DateTime('tomorrow');
+        $datetime = new DateTime();
+        $datetime->add(new DateInterval('P1D'));
         return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'));
     }
 
