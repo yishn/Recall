@@ -23,7 +23,8 @@ function serveSetPage($args) {
         'vocabularies' => $set->get_vocabularies()
             ->limit($count)
             ->offset(($args['page'] - 1) * $count)
-            ->find_many()
+            ->find_many(),
+        'newvocabs' => $set->get_new_vocabularies()
     ]));
 }
 
@@ -35,7 +36,7 @@ function serveVocabPage($args) {
     return response(phtml('view/vocab', [
         'title' => $vocab->front,
         'vocab' => $vocab,
-        'set' => $vocab->get_set()
+        'set' => $vocab->get_set()->find_one()
     ]));
 }
 

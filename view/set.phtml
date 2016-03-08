@@ -2,6 +2,13 @@
 
 <h2>Set: <?php echo $set->name; ?></h2>
 
+<ul class="tasks">
+    <?php if (count($newvocabs) != 0): ?>
+        <li><a href="#">Learn</a> <?php echo count($newvocabs); ?></li>
+    <?php endif; ?>
+    <li><a href="#">Add Vocabulary</a></li>
+</ul>
+
 <ol>
     <?php foreach ($vocabularies as $vocab): ?>
         <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
