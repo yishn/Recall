@@ -1,0 +1,51 @@
+<?php include 'header.phtml'; ?>
+
+<h2><?php echo $title; ?></h2>
+
+<?php if (count($vocabularies) == 0): ?>
+
+<p>There&rsquo;s nothing to study.</p>
+
+<?php else: ?>
+
+<form action="<?php echo $action; ?>" method="post">
+    <ol id="study">
+        <?php foreach ($vocabularies as $vocab): ?>
+
+        <li>
+            <h3><?php echo $vocab->front; ?></h3>
+
+            <?php if ($vocab->is_active()): ?>
+            <p class="meta">
+                Level <?php echo $vocab->get_human_level(); ?>
+            </p>
+            <?php endif; ?>
+
+            <section class="back">
+                <?php echo $vocab->get_back(); ?>
+            </section>
+
+            <section class="notes">
+                <?php echo $vocab->get_notes(); ?>
+            </section>
+
+            <p>
+                <label>
+                    <input type="checkbox" name="correct-<?php echo $vocab->id; ?>" />
+                    Correct
+                </label>
+            </p>
+        </li>
+
+        <?php endforeach; ?>
+    </ol>
+
+    <p>
+        <input type="hidden" name="ids" value="<?php echo $ids; ?>">
+        <button type="submit">Submit</button>
+    </p>
+</form>
+
+<?php endif; ?>
+
+<?php include 'footer.phtml'; ?>

@@ -42,12 +42,34 @@ function serveVocabPage($args) {
     ]));
 }
 
+function serveStudyPage($args, $mode) {
+    $set = Set::find_one($args['id']);
+    $vocabularies = [];
+
+    if (!$set) return redirect(BASE_PATH . 'error');
+    if ($mode == 'learn') $vocabularies = $set->get_new_vocabularies()->find_many();
+    else if ($mode == 'review') $vocabularies = $set->get_due_vocabularies()->find_many();
+    shuffle($vocabularies);
+
+    return response(phtml('view/study', [
+        'title' => ucfirst($mode) . ': ' . $set->name,
+        'action' => BASE_PATH . $mode . '/' . $args['id'],
+        'mode' => $mode,
+        'set' => $set,
+        'vocabularies' => $vocabularies,
+        'ids' => join(',', array_map(function($v) { return $v->id; }, $vocabularies))
+    ]));
+}
+
 route('GET', '/', serveDashboard);
 
 route('GET', '/set/:id', serveSetPage);
 route('GET', '/set/:id/:page', serveSetPage);
 
 route('GET', '/vocab/:id', serveVocabPage);
+
+route('GET', '/learn/:id', function($args) { return serveStudyPage($args, 'learn'); });
+route('GET', '/review/:id', function($args) { return serveStudyPage($args, 'review'); });
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
