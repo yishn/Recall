@@ -14,6 +14,15 @@ class Vocabulary extends Model {
         return $this->due;
     }
 
+    public function get_human_level() {
+        if ($this->level < 0) return 'Inactive';
+        if ($this->level <= 2) return 'Apprentice';
+        if ($this->level <= 4) return 'Guru';
+        if ($this->level <= 5) return 'Master';
+        if ($this->level <= 6) return 'Enlightened';
+        return 'Burned';
+    }
+
     public function get_permalink() {
         return BASE_PATH . 'vocab/' . $this->id;
     }
