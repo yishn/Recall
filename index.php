@@ -2,6 +2,14 @@
 
 require_once('includes.php');
 
+function serveDashboard() {
+    return response(phtml('view/dashboard', [
+        'title' => 'Dashboard',
+        'sets' => Set::order_by_asc('name')->find_many(),
+        'set' => null
+    ]));
+}
+
 function serveSetPage($args) {
     $set = Set::find_one($args['id']);
     $count = Setting::get('vocabs_per_page');
@@ -19,13 +27,7 @@ function serveSetPage($args) {
     ]));
 }
 
-route('GET', '/', function() {
-    return response(phtml('view/dashboard', [
-        'title' => 'Dashboard',
-        'sets' => Set::order_by_asc('name')->find_many(),
-        'set' => null
-    ]));
-});
+route('GET', '/', serveDashboard);
 
 route('GET', '/set/:id', serveSetPage);
 route('GET', '/set/:id/:page', serveSetPage);
