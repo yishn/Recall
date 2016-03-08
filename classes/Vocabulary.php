@@ -10,6 +10,10 @@ class Vocabulary extends Model {
         return $this->due;
     }
 
+    public function is_active() {
+        return $this->level >= 0;
+    }
+
     /**
      * Filters
      */
