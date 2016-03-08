@@ -1,19 +1,19 @@
 <?php
 
-function pluralise($count, $single, $plural = null) {
-    if ($count == 1 || $count == -1)  {
-        return $single;
-    }
-    if ($plural == null) {
-        $plural = $single . 's';
-    }
-    return $plural;
-}
-
 function humanize_datetime($then) {
     $now = new DateTime('now');
     $timespan = $now->diff($then);
     $message = array();
+
+	function pluralise($count, $single, $plural = null) {
+	    if ($count == 1 || $count == -1)  {
+	        return $single;
+	    }
+	    if ($plural == null) {
+	        $plural = $single . 's';
+	    }
+	    return $plural;
+	}
 
     if ($timespan->y)
         $message[] = $timespan->y.' '.pluralise($timespan->y, 'year');
