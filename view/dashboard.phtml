@@ -1,15 +1,6 @@
-<?php
+<?php include 'header.phtml'; ?>
 
-$title = 'Dashboard';
-include 'header.phtml';
-
-?>
-
-<?php if ($set): ?>
-<h2>Set: <?php echo $set->name; ?></h2>
-<?php else: ?>
 <h2>Dashboard</h2>
-<?php endif; ?>
 
 <h3>Statistics</h3>
 
@@ -62,10 +53,10 @@ include 'header.phtml';
 <h3>Sets</h3>
 
 <ul>
-    <?php foreach ($sets as $s): ?>
-        <li<?php if ($s->id == $set->id): ?> class="active"<?php endif; ?>>
-            <a href="<?php echo $s->get_permalink(); ?>"><?php echo $s->name; ?></a>
-            <?php echo count($s->get_new_vocabularies()) + $s->get_due_count(); ?>
+    <?php foreach ($sets as $set): ?>
+        <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
+            <?php echo count($set->get_new_vocabularies()); ?>
         </li>
     <?php endforeach; ?>
     <li>
