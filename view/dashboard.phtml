@@ -53,7 +53,7 @@
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
             <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
-            <?php echo count($set->get_new_vocabularies()) + count($set->get_due_vocabularies()); ?>
+            <?php echo $set->get_new_vocabularies()->count() + $set->get_due_vocabularies()->count(); ?>
         </li>
     <?php endforeach; ?>
     <li>

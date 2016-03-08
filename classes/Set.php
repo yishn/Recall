@@ -9,18 +9,15 @@ class Set extends Model {
         $max = Setting::get('new_vocabs_per_day') - Vocabulary::filter('learned_today')->count();
         $sets = Vocabulary::filter('inactive')->select('set_id')->limit($max)->distinct()->find_many();
 
-        if (count($sets) == 0 || !in_array($this->id, array_map(function($x) { return $x->set_id; }, $sets))) return [];
+        if (count($sets) == 0 || !in_array($this->id, array_map(function($x) { return $x->set_id; }, $sets)))
+            return Vocabulary::where_id_is(-1);
 
         $limit = round($max / count($sets));
-        return Set::get_vocabularies()->filter('inactive')->limit($limit)->find_many();
+        return Set::get_vocabularies()->filter('inactive')->limit($limit);
     }
 
     public function get_due_vocabularies() {
-        return $this->get_vocabularies()->filter('due')->find_many();
-    }
-
-    public function get_due_count() {
-        return $this->get_vocabularies()->filter('due')->count();
+        return $this->get_vocabularies()->filter('due');
     }
 
     /**
