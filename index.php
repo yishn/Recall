@@ -2,6 +2,23 @@
 
 require_once('includes.php');
 
+function serveSetPage($args) {
+    $set = Set::find_one($args['id']);
+    $count = Setting::get('vocabs_per_page');
+
+    if (!$set) return redirect(BASE_PATH . 'error');
+    if (!$args['page']) $args['page'] = 1;
+
+    return response(phtml('view/set', [
+        'title' => 'Set: ' . $set->name,
+        'set' => $set,
+        'vocabularies' => $set->get_vocabularies()
+            ->limit($count)
+            ->offset(($args['page'] - 1) * $count)
+            ->find_many()
+    ]));
+}
+
 route('GET', '/', function() {
     return response(phtml('view/dashboard', [
         'title' => 'Dashboard',
@@ -10,17 +27,8 @@ route('GET', '/', function() {
     ]));
 });
 
-route('GET', '/set/:id', function($args) {
-    $set = Set::find_one($args['id']);
-
-    if (!$set) return redirect(BASE_PATH . 'error');
-
-    return response(phtml('view/set', [
-        'title' => 'Set: ' . $set->name,
-        'set' => $set,
-        'vocabularies' => $set->get_vocabularies()->find_many()
-    ]));
-});
+route('GET', '/set/:id', serveSetPage);
+route('GET', '/set/:id/:page', serveSetPage);
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 
