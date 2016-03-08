@@ -22,4 +22,8 @@ class Set extends Model {
     public function get_permalink() {
         return BASE_PATH . 'set/' . $this->id;
     }
+
+    public function get_learn_link() {
+        return BASE_PATH . 'learn/' . $this->id;
+    }
 }

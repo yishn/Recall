@@ -4,14 +4,14 @@
 
 <ul class="tasks">
     <?php if (count($newvocabs) != 0): ?>
-        <li><a href="#">Learn</a> <?php echo count($newvocabs); ?></li>
+        <li><a href="<?php echo $set->get_learn_link(); ?>">Learn</a> <?php echo count($newvocabs); ?></li>
     <?php endif; ?>
-    <li><a href="#">Add Vocabulary</a></li>
+    <li><a href="<?php echo $set->get_permalink(); ?>/add">Add Vocabulary</a></li>
 </ul>
 
 <?php if (count($vocabularies) != 0): ?>
 
-<ol>
+<ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
         <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
             <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a>
