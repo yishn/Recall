@@ -20,10 +20,10 @@ class Vocabulary extends Model {
 
     public function get_human_level() {
         if ($this->level < 0) return 'Inactive';
-        if ($this->level <= 2) return 'Apprentice';
-        if ($this->level <= 4) return 'Guru';
-        if ($this->level <= 5) return 'Master';
-        if ($this->level <= 6) return 'Enlightened';
+        if ($this->level <= 3) return 'Apprentice';
+        if ($this->level <= 5) return 'Guru';
+        if ($this->level <= 6) return 'Master';
+        if ($this->level <= 7) return 'Enlightened';
         return 'Burned';
     }
 

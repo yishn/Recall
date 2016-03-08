@@ -76,9 +76,10 @@ function actionStudy() {
         if (!$correct) $vocab->level = -1;
         $vocab->level++;
 
-        $hours = Setting::get('intervals')[$vocab->level];
+        $intervals = Setting::get('intervals');
+        $interval = $intervals[min($vocab->level, count($intervals) - 1)];
         $due = new DateTime('now');
-        $due->add(new DateInterval('PT' . $hours . 'H'));
+        $due->add(new DateInterval($interval));
         $vocab->due = $due->format('Y-m-d H:i:s');
 
         $vocab->save();

@@ -27,23 +27,23 @@
     </li>
     <li>
         Apprentice:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 2)->count(); ?>
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count(); ?>
     </li>
     <li>
         Guru:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 3, 4)->count(); ?>
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count(); ?>
     </li>
     <li>
         Master:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 5, 5)->count(); ?>
-    </li>
-    <li>
-        Enlightened:
         <?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?>
     </li>
     <li>
-        Burned:
+        Enlightened:
         <?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?>
+    </li>
+    <li>
+        Burned:
+        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?>
     </li>
 </ol>
 
