@@ -2,6 +2,10 @@
 
 <h2>Vocabulary: <?php echo $vocab->front; ?></h2>
 
+<p class="meta">
+    In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
+</p>
+
 <section class="back">
     <?php echo $vocab->get_back(); ?>
 </section>
