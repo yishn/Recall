@@ -32,6 +32,10 @@ class Set extends Model {
         return BASE_PATH . 'learn/' . $this->id;
     }
 
+    public function get_review_link() {
+        return BASE_PATH . 'review/' . $this->id;
+    }
+
     public function get_add_link() {
         return BASE_PATH . 'add-to/' . $this->id;
     }

@@ -16,7 +16,10 @@
 
 <ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
-        <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
+        <li<?php
+            if (!$vocab->is_active()): ?> class="inactive"<?php
+            elseif ($vocab->is_burned()): ?> class="burned"<?php
+            endif; ?>>
             <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a>
         </li>
     <?php endforeach; ?>

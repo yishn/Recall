@@ -6,16 +6,19 @@ class Vocabulary extends Model {
     }
 
     public function is_active() {
-        return $this->level >= 0;
+        return !$this->is_burned() && $this->level >= 0;
+    }
+
+    public function is_burned() {
+        return $this->level >= 8;
     }
 
     public function get_due_date() {
-        return strtotime($this->due);
+        return new DateTime($this->due);
     }
 
     public function get_human_due_date() {
-        // TODO
-        return $this->due;
+        return humanize_datetime($this->get_due_date());
     }
 
     public function get_human_level() {
@@ -46,7 +49,7 @@ class Vocabulary extends Model {
      */
 
     public static function active($orm) {
-        return $orm->where_gte('level', 0)->order_by_asc('due');
+        return $orm->where_gte('level', 0)->where_lt('level', 8)->order_by_asc('due');
     }
 
     public static function inactive($orm) {
