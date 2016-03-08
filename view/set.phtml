@@ -9,6 +9,8 @@
     <li><a href="#">Add Vocabulary</a></li>
 </ul>
 
+<?php if (count($vocabularies) != 0): ?>
+
 <ol>
     <?php foreach ($vocabularies as $vocab): ?>
         <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
@@ -16,5 +18,7 @@
         </li>
     <?php endforeach; ?>
 </ol>
+
+<?php endif; ?>
 
 <?php include 'footer.phtml'; ?>
