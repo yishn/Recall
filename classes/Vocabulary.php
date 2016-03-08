@@ -9,6 +9,10 @@ class Vocabulary extends Model {
         return $this->level >= 0;
     }
 
+    public function get_due_date() {
+        return strtotime($this->due);
+    }
+
     public function get_human_due_date() {
         // TODO
         return $this->due;

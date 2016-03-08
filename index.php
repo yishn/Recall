@@ -53,12 +53,38 @@ function serveStudyPage($args, $mode) {
 
     return response(phtml('view/study', [
         'title' => ucfirst($mode) . ': ' . $set->name,
-        'action' => BASE_PATH . $mode . '/' . $args['id'],
+        'action' => BASE_PATH . 'study',
         'mode' => $mode,
         'set' => $set,
         'vocabularies' => $vocabularies,
         'ids' => join(',', array_map(function($v) { return $v->id; }, $vocabularies))
     ]));
+}
+
+function actionStudy() {
+    $ids = explode(',', $_POST['ids']);
+
+    foreach ($ids as $id) {
+        $correct = $_POST['correct-' . $id] == 'on';
+        $vocab = Vocabulary::find_one($id);
+
+        if (!$vocab->is_active()) {
+            $correct = false;
+            $vocab->init_date = date('Y-m-d');
+        }
+
+        if (!$correct) $vocab->level = -1;
+        $vocab->level++;
+
+        $hours = Setting::get('intervals')[$vocab->level];
+        $due = new DateTime('now');
+        $due->add(new DateInterval('PT' . $hours . 'H'));
+        $vocab->due = $due->format('Y-m-d H:i:s');
+
+        $vocab->save();
+    }
+
+    return redirect(BASE_PATH);
 }
 
 route('GET', '/', serveDashboard);
@@ -70,6 +96,7 @@ route('GET', '/vocab/:id', serveVocabPage);
 
 route('GET', '/learn/:id', function($args) { return serveStudyPage($args, 'learn'); });
 route('GET', '/review/:id', function($args) { return serveStudyPage($args, 'review'); });
+route('POST', '/study', actionStudy);
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
