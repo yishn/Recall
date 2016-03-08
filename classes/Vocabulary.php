@@ -5,6 +5,11 @@ class Vocabulary extends Model {
         return $this->belongs_to('Set');
     }
 
+    public function get_human_due_date() {
+        // TODO
+        return $this->due;
+    }
+
     /**
      * Filters
      */
@@ -19,6 +24,11 @@ class Vocabulary extends Model {
 
     public static function level($orm, $min, $max) {
         return $orm->where_gte('level', $min)->where_lte('level', $max);
+    }
+
+    public static function in_set($orm, $set) {
+        if (!$set) return $orm;
+        return $orm->where('set_id', $set->id);
     }
 
     public static function due($orm) {
