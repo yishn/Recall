@@ -5,7 +5,7 @@
 <ol>
     <?php foreach ($vocabularies as $vocab): ?>
         <li<?php if (!$vocab->is_active()): ?> class="inactive"<?php endif; ?>>
-            <a href="#"><?php echo $vocab->front; ?></a>
+            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a>
         </li>
     <?php endforeach; ?>
 </ol>

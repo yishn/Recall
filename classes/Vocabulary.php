@@ -5,13 +5,27 @@ class Vocabulary extends Model {
         return $this->belongs_to('Set');
     }
 
+    public function is_active() {
+        return $this->level >= 0;
+    }
+
     public function get_human_due_date() {
         // TODO
         return $this->due;
     }
 
-    public function is_active() {
-        return $this->level >= 0;
+    public function get_permalink() {
+        return BASE_PATH . 'vocab/' . $this->id;
+    }
+
+    public function get_back() {
+        $pd = new Parsedown();
+        return $pd->text($this->back);
+    }
+
+    public function get_notes() {
+        $pd = new Parsedown();
+        return $pd->text($this->notes);
     }
 
     /**

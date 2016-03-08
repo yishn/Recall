@@ -1,0 +1,13 @@
+<?php include 'header.phtml'; ?>
+
+<h2>Vocabulary: <?php echo $vocab->front; ?></h2>
+
+<section class="back">
+    <?php echo $vocab->get_back(); ?>
+</section>
+
+<section class="notes">
+    <?php echo $vocab->get_notes(); ?>
+</section>
+
+<?php include 'footer.phtml'; ?>

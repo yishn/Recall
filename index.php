@@ -27,10 +27,24 @@ function serveSetPage($args) {
     ]));
 }
 
+function serveVocabPage($args) {
+    $vocab = Vocabulary::find_one($args['id']);
+
+    if (!$vocab) return redirect(BASE_PATH . 'error');
+
+    return response(phtml('view/vocab', [
+        'title' => $vocab->front,
+        'vocab' => $vocab,
+        'set' => $vocab->get_set()
+    ]));
+}
+
 route('GET', '/', serveDashboard);
 
 route('GET', '/set/:id', serveSetPage);
 route('GET', '/set/:id/:page', serveSetPage);
+
+route('GET', '/vocab/:id', serveVocabPage);
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 
