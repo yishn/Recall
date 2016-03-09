@@ -87,7 +87,9 @@ $(document).ready(function() {
             type: 'button'
         }).on('click', function() {
             for (var i = 0; i < 5; i++) {
-                $template.before($template.clone().css('display', 'block'))
+                var $clone = $template.clone()
+                $template.before($clone.css('display', 'block'))
+                autosize($clone.find('textarea'))
             }
 
             return false
