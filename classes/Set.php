@@ -44,4 +44,12 @@ class Set extends Model {
     public function get_add_link() {
         return BASE_PATH . 'add-to/' . $this->id;
     }
+
+    public function get_edit_link() {
+        return BASE_PATH . 'edit-set/' . $this->id;
+    }
+
+    public function get_delete_link() {
+        return BASE_PATH . 'delete-set/' . $this->id;
+    }
 }

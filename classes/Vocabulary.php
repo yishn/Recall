@@ -30,10 +30,6 @@ class Vocabulary extends Model {
         return 'Burned';
     }
 
-    public function get_permalink() {
-        return BASE_PATH . 'vocab/' . $this->id;
-    }
-
     public function get_back() {
         $pd = new Parsedown();
         return $pd->text($this->back);
@@ -43,6 +39,22 @@ class Vocabulary extends Model {
         $pd = new Parsedown();
         return $pd->text($this->notes);
     }
+
+    /**
+     * Links
+     */
+
+     public function get_permalink() {
+         return BASE_PATH . 'vocab/' . $this->id;
+     }
+
+     public function get_edit_link() {
+         return BASE_PATH . 'edit/' . $this->id;
+     }
+
+     public function get_delete_link() {
+         return BASE_PATH . 'delete/' . $this->id;
+     }
 
     /**
      * Filters
