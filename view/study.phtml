@@ -13,13 +13,13 @@
         <?php foreach ($vocabularies as $vocab): ?>
 
         <li>
-            <h3><?php echo htmlentities($vocab->front); ?></h3>
-
             <?php if ($vocab->is_active()): ?>
-            <p class="meta">
-                Level <?php echo $vocab->get_human_level(); ?>
-            </p>
+                <p class="meta">
+                    Level <?php echo $vocab->get_human_level(); ?>
+                </p>
             <?php endif; ?>
+
+            <h3><?php echo htmlentities($vocab->front); ?></h3>
 
             <section class="back">
                 <?php echo $vocab->get_back(); ?>
