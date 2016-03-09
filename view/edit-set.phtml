@@ -1,0 +1,17 @@
+<?php include 'header.phtml'; ?>
+
+<h2><?php echo $title; ?></h2>
+
+<form action="<?php echo $action; ?>" method="post">
+    <p>
+        <label>
+            Name:
+            <input type="text" name="name" value="<?php if ($set) echo $set->name; ?>" autofocus />
+        </label>
+    </p>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<?php include 'footer.phtml'; ?>

@@ -103,19 +103,64 @@ function action_study() {
     ]));
 }
 
-route('GET', '/', serve_dashboard);
+function action_edit_set($id) {
+    $name = trim($_POST['name']);
+    $set = Set::find_one($id);
 
+    if (!$set) $set = Set::create();
+    if ($name == '') return redirect(BASE_PATH . 'create');
+
+    $set->name = $name;
+    $set->save();
+
+    return redirect($set->get_permalink());
+}
+
+function action_delete_set($id) {
+    $set = Set::find_one($id);
+    if ($set) $set->delete();
+    return redirect(BASE_PATH);
+}
+
+route('GET', '/', serve_dashboard);
 route('GET', '/set/:id', serve_set_page);
 route('GET', '/set/:id/:page', serve_set_page);
-
 route('GET', '/vocab/:id', serve_vocab_page);
+
+/**
+ * Studying
+ */
 
 route('GET', '/learn/:id', function($args) { return serve_study_page($args, 'learn'); });
 route('GET', '/review/:id', function($args) { return serve_study_page($args, 'review'); });
 route('POST', '/study', action_study);
 
-route('GET', '/create', page('view/create_set', ['title' => 'Create Set']));
-route('POST', '/create', action_create_set);
+/**
+ * Set actions
+ */
+
+route('GET', '/create', page('view/edit-set', [
+    'title' => 'Create Set',
+    'action' => BASE_PATH . 'create'
+]));
+route('POST', '/create', function() { return action_edit_set(-1); });
+route('GET', '/edit-set/:id', function($args) {
+    $set = Set::find_one($args['id']);
+
+    if (!$set) redirect(BASE_PATH . 'error');
+
+    return response(phtml('view/edit-set', [
+        'title' => 'Edit Set',
+        'action' => BASE_PATH . 'edit-set/' . $set->id,
+        'set' => $set
+    ]));
+});
+route('POST', '/edit-set/:id', function($args) { return action_edit_set($args['id']); });
+route('POST', '/delete-set/:id', function($args) { return action_delete_set($args['id']); });
+
+/**
+ * Errors
+ */
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
