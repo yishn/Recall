@@ -208,14 +208,31 @@ label input[type="text"], label textarea {
         list-style: none;
     }
     #study h3 {
-        font-size: 1.5em;
+        margin: 2.5em 0;
+        font-size: 2.5em;
         font-weight: bold;
         letter-spacing: normal;
         text-align: center;
         text-transform: none;
     }
+    #study + p { text-align: center; }
+    #study .back, #study .notes,
+    #study + p .showagain, #study + p .nextcard,
+    #study + p .shownotes, #study.reveal.revealnotes + p .shownotes,
+    #study.reveal + p .reveal {
+        display: none;
+    }
+    #study.reveal .back, #study.revealnotes .notes {
+        display: block;
+    }
+    #study.reveal + p .shownotes,
+    #study.reveal + p .showagain,
+    #study.reveal + p .nextcard {
+        display: inline-block;
+}
 
 h2.vocabulary {
+        margin-bottom: 2.5em;
         font-family: inherit;
         font-size: 2.5em;
         font-weight: bold;
