@@ -1,0 +1,21 @@
+<?php include 'header.phtml'; ?>
+
+<h2>Score &mdash; <?php echo round(count($correct) * 100 / (count($incorrect) + count($correct))); ?>%</h2>
+
+<h3>Incorrect</h3>
+
+<ul>
+    <?php foreach ($incorrect as $vocab): ?>
+    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a></li>
+    <?php endforeach; ?>
+</ul>
+
+<h3>Correct</h3>
+
+<ul>
+    <?php foreach ($correct as $vocab): ?>
+    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a></li>
+    <?php endforeach; ?>
+</ul>
+
+<?php include 'footer.phtml'; ?>

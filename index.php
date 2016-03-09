@@ -63,6 +63,9 @@ function serveStudyPage($args, $mode) {
 
 function actionStudy() {
     $ids = explode(',', $_POST['ids']);
+    $mode = $_POST['mode'];
+    $correctlist = [];
+    $incorrectlist = [];
 
     foreach ($ids as $id) {
         $correct = $_POST['correct-' . $id] == 'on';
@@ -73,7 +76,13 @@ function actionStudy() {
             $vocab->init_date = date('Y-m-d');
         }
 
-        if (!$correct) $vocab->level = -1;
+        if (!$correct) {
+            $vocab->level = -1;
+            array_push($incorrectlist, $vocab);
+        } else {
+            array_push($correctlist, $vocab);
+        }
+
         $vocab->level++;
 
         $intervals = Setting::get('intervals');
@@ -85,7 +94,13 @@ function actionStudy() {
         $vocab->save();
     }
 
-    return redirect(BASE_PATH);
+    if ($mode == 'learn') return redirect(BASE_PATH);
+
+    return response(phtml('view/score', [
+        'title' => 'Score',
+        'incorrect' => $incorrectlist,
+        'correct' => $correctlist
+    ]));
 }
 
 route('GET', '/', serveDashboard);
