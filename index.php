@@ -2,7 +2,7 @@
 
 require_once('includes.php');
 
-function serveDashboard() {
+function serve_dashboard() {
     return response(phtml('view/dashboard', [
         'title' => 'Dashboard',
         'sets' => Set::order_by_asc('name')->find_many(),
@@ -11,7 +11,7 @@ function serveDashboard() {
     ]));
 }
 
-function serveSetPage($args) {
+function serve_set_page($args) {
     $set = Set::find_one($args['id']);
     $count = Setting::get('vocabs_per_page');
 
@@ -30,7 +30,7 @@ function serveSetPage($args) {
     ]));
 }
 
-function serveVocabPage($args) {
+function serve_vocab_page($args) {
     $vocab = Vocabulary::find_one($args['id']);
 
     if (!$vocab) return redirect(BASE_PATH . 'error');
@@ -42,7 +42,7 @@ function serveVocabPage($args) {
     ]));
 }
 
-function serveStudyPage($args, $mode) {
+function serve_study_page($args, $mode) {
     $set = Set::find_one($args['id']);
     $vocabularies = [];
 
@@ -61,7 +61,7 @@ function serveStudyPage($args, $mode) {
     ]));
 }
 
-function actionStudy() {
+function action_study() {
     $ids = explode(',', $_POST['ids']);
     $mode = $_POST['mode'];
     $correctlist = [];
@@ -103,16 +103,19 @@ function actionStudy() {
     ]));
 }
 
-route('GET', '/', serveDashboard);
+route('GET', '/', serve_dashboard);
 
-route('GET', '/set/:id', serveSetPage);
-route('GET', '/set/:id/:page', serveSetPage);
+route('GET', '/set/:id', serve_set_page);
+route('GET', '/set/:id/:page', serve_set_page);
 
-route('GET', '/vocab/:id', serveVocabPage);
+route('GET', '/vocab/:id', serve_vocab_page);
 
-route('GET', '/learn/:id', function($args) { return serveStudyPage($args, 'learn'); });
-route('GET', '/review/:id', function($args) { return serveStudyPage($args, 'review'); });
-route('POST', '/study', actionStudy);
+route('GET', '/learn/:id', function($args) { return serve_study_page($args, 'learn'); });
+route('GET', '/review/:id', function($args) { return serve_study_page($args, 'review'); });
+route('POST', '/study', action_study);
+
+route('GET', '/create', page('view/create_set', ['title' => 'Create Set']));
+route('POST', '/create', action_create_set);
 
 route('GET', '/error', page('view/error', ['title' => 'Error']));
 route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
