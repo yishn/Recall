@@ -94,10 +94,13 @@ $(document).ready(function() {
         }))
     }
 
-    // Add edit links
-    if ($('section.back, section.notes').length != 0) {
+    // Add edit links to vocabulary page
+    if ($('section.back + textarea[name="back"], section.notes + textarea[name="notes"]').length != 0) {
+        $('section.back').parents('form').find('button[type="submit"]')
+            .css('display', 'none')
+
         $('section.back, section.notes').each(function() {
-            if ($(this).children('.tasks').length != 0) return
+            if ($(this).find('.tasks').length != 0) return
 
             $(this).prepend($('<p/>', {
                 class: 'tasks'
@@ -107,6 +110,8 @@ $(document).ready(function() {
             }).on('click', function() {
                 $(this).parents('section').css('display', 'none')
                     .next('textarea').css('display', 'block').get(0).focus()
+                $(this).parents('form').find('button[type="submit"]')
+                    .css('display', 'inline-block')
 
                 return false
             })))

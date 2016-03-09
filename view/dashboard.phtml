@@ -2,30 +2,6 @@
 
 <h2>Dashboard</h2>
 
-<h3>Sets</h3>
-
-<ul class="sets">
-    <?php foreach ($sets as $set): ?>
-        <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
-            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
-
-            <?php
-
-            $count = count($set->get_new_vocabularies()->find_many()) + count($set->get_due_vocabularies()->find_many());
-
-            ?>
-            <?php if ($count != 0): ?>
-            <span>
-            <?php echo $count; ?>
-            </span>
-            <?php endif; ?>
-        </li>
-    <?php endforeach; ?>
-    <li>
-        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
-    </li>
-</ul>
-
 <h3>Statistics</h3>
 
 <ul class="stats">
@@ -72,5 +48,29 @@
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?></span>
     </li>
 </ol>
+
+<h3>Sets</h3>
+
+<ul class="sets">
+    <?php foreach ($sets as $set): ?>
+        <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
+
+            <?php
+
+            $count = count($set->get_new_vocabularies()->find_many()) + count($set->get_due_vocabularies()->find_many());
+
+            ?>
+            <?php if ($count != 0): ?>
+            <span>
+            <?php echo $count; ?>
+            </span>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+    <li>
+        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
+    </li>
+</ul>
 
 <?php include 'footer.phtml'; ?>

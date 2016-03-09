@@ -36,6 +36,8 @@ class Vocabulary extends Model {
     }
 
     public function get_notes() {
+        if (trim($this->notes) == '') return 'No notes';
+
         $pd = new Parsedown();
         return $pd->text($this->notes);
     }
