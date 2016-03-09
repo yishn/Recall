@@ -2,19 +2,27 @@
 
 <h2>Score &mdash; <?php echo round(count($correct) * 100 / (count($incorrect) + count($correct))); ?>%</h2>
 
-<h3>Incorrect</h3>
+<h3>Level Down</h3>
 
-<ul>
+<ul class="vocabularies">
     <?php foreach ($incorrect as $vocab): ?>
-    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a></li>
+    <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
+        <a href="<?php echo $vocab->get_permalink(); ?>">
+            <?php echo htmlentities($vocab->front); ?>
+        </a>
+    </li>
     <?php endforeach; ?>
 </ul>
 
-<h3>Correct</h3>
+<h3>Level Up</h3>
 
-<ul>
+<ul class="vocabularies">
     <?php foreach ($correct as $vocab): ?>
-    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a></li>
+    <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
+        <a href="<?php echo $vocab->get_permalink(); ?>">
+            <?php echo htmlentities($vocab->front); ?>
+        </a>
+    </li>
     <?php endforeach; ?>
 </ul>
 
