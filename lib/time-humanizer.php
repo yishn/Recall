@@ -31,11 +31,8 @@ function humanize_datetime($then) {
     if (count($message) == 0) {
         return 'just now';
     }
-    $output = array_shift($message);
 
-    if ($message) {
-        $output .= ' and '.array_shift($message);
-    }
+    $output = array_shift($message);
 
     if ($timespan->invert == 1) {
         $output .= ' ago';
