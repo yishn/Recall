@@ -77,7 +77,7 @@ function actionStudy() {
         }
 
         if (!$correct) {
-            $vocab->level = -1;
+            $vocab->level = max(0, $vocab->level - 2) - 1;
             array_push($incorrectlist, $vocab);
         } else {
             array_push($correctlist, $vocab);
