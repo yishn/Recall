@@ -83,6 +83,7 @@ input, textarea, button {
 
 textarea {
     width: 100%;
+    font-family: Consolas, monospace;
     resize: vertical;
 }
 
@@ -278,7 +279,17 @@ h2.vocabulary {
 
 section.back, section.notes,
 section.back + textarea, section.notes + textarea {
-    border: none;
-    border-top: 1px solid #eee;
-    padding: 20px;
+        border: none;
+        border-top: 1px solid #eee;
+        padding: 20px;
+    }
+    section.back .tasks, section.notes .tasks {
+        margin-top: -1.2em;
+        font-size: .8em;
+        letter-spacing: 1px;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    section.back .tasks a, section.notes .tasks a {
+        color: #aaa;
 }

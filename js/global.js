@@ -45,26 +45,30 @@ $(document).ready(function() {
 
         $('#study + p').append($('<button/>', {
                 text: 'Reveal',
-                class: 'reveal'
+                class: 'reveal',
+                type: 'button'
             }).on('click', function() {
                 $('#study').addClass('reveal')
                 return false
         })).append($('<button/>', {
                 text: 'Show Notes',
-                class: 'shownotes'
+                class: 'shownotes',
+                type: 'button'
             }).on('click', function() {
                 $('#study').addClass('revealnotes')
                 return false
         })).append($('<button/>', {
                 text: 'Show Again',
-                class: 'showagain'
+                class: 'showagain',
+                type: 'button'
             }).on('click', function() {
                 $('#study input[type="checkbox"]').eq(currentIndex).attr('checked', false)
                 nextCard()
                 return false
         })).append($('<button/>', {
                 text: 'Next Card',
-                class: 'nextcard'
+                class: 'nextcard',
+                type: 'button'
             }).on('click', function() {
                 correctOnce[currentIndex] = true
                 nextCard()
@@ -79,7 +83,8 @@ $(document).ready(function() {
         var $template = $('#addlist li:last-child').css('display', 'none')
 
         $('#addlist + p').prepend($('<button/>', {
-            text: 'Add Items'
+            text: 'Add Items',
+            type: 'button'
         }).on('click', function() {
             for (var i = 0; i < 5; i++) {
                 $template.before($template.clone().css('display', 'block'))
@@ -87,5 +92,26 @@ $(document).ready(function() {
 
             return false
         }))
+    }
+
+    // Add edit links
+    if ($('section.back, section.notes').length != 0) {
+        $('section.back, section.notes').each(function() {
+            if ($(this).children('.tasks').length != 0) return
+
+            $(this).prepend($('<p/>', {
+                class: 'tasks'
+            }).append($('<a/>', {
+                href: '#',
+                text: 'Edit'
+            }).on('click', function() {
+                $(this).parents('section').css('display', 'none')
+                    .next('textarea').css('display', 'block').get(0).focus()
+
+                return false
+            })))
+        })
+
+        $('section.back + textarea[name="back"], section.notes + textarea[name="notes"]').css('display', 'none')
     }
 })

@@ -22,10 +22,12 @@
             <h3><?php echo htmlentities($vocab->front); ?></h3>
 
             <section class="back">
+                <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
                 <?php echo $vocab->get_back(); ?>
             </section>
 
             <section class="notes">
+                <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
                 <?php echo $vocab->get_notes(); ?>
             </section>
 
