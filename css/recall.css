@@ -15,7 +15,7 @@
  */
 
 body {
-    font: 100%/1.5 'Segoe UI', sans-serif;
+    font: 100%/1.5 'Segoe UI', SimHei, sans-serif;
 }
 
 h2, h3, h4, h5, h6 {
@@ -76,8 +76,14 @@ main {
  */
 
 input, textarea, button {
+    box-sizing: border-box;
     padding: 1px 5px;
     font: inherit;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
 }
 
 label input[type="text"], label textarea {
@@ -171,6 +177,7 @@ label input[type="text"], label textarea {
 .vocabularies {
         list-style: none;
         text-align: center;
+        font-size: 1.3em;
     }
     .vocabularies li, .vocabularies li a {
         display: inline-block;
@@ -179,7 +186,7 @@ label input[type="text"], label textarea {
         box-sizing: border-box;
         padding: 1px 5px;
         min-width: 1.5em;
-        margin-bottom: 5px;
+        margin-bottom: .5em;
         background-color: #eee;
         color: black;
         text-align: center;
@@ -187,4 +194,31 @@ label input[type="text"], label textarea {
     }
     .vocabularies li a:hover, .vocabularies li a:focus {
         background-color: #ccc;
+}
+
+.meta {
+    opacity: .5;
+    text-align: right;
+}
+
+h2.vocabulary {
+        font-family: inherit;
+        font-size: 2.5em;
+        font-weight: bold;
     }
+    h2.vocabulary input {
+        border: none;
+        width: 100%;
+        font: inherit;
+        text-align: center;
+}
+
+section.back, section.notes,
+section.back + textarea, section.notes + textarea {
+    border: none;
+    border-top: 1px solid #eee;
+    padding: 20px;
+}
+
+section.back + textarea, section.notes + textarea {
+}
