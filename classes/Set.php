@@ -20,6 +20,11 @@ class Set extends Model {
         return $this->get_vocabularies()->filter('due');
     }
 
+    public function delete() {
+        Vocabulary::where('set_id', $this->id)->delete_many();
+        parent::delete();
+    }
+
     /**
      * Links
      */
