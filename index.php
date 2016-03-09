@@ -154,7 +154,7 @@ function action_edit_vocab($args) {
         $vocab->save();
     }
 
-    return redirect($vocab->get_set()->find_one()->get_permalink());
+    return redirect($vocab->get_permalink());
 }
 
 function action_add_vocab($args) {
