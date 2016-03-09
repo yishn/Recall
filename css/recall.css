@@ -215,7 +215,7 @@ label input[type="text"], label textarea {
         background: #F7803C;
     }
     #progress span {
-        background: rgba(0, 0, 0, .1);
+        background: rgba(0, 0, 0, .2);
         display: block;
         position: absolute;
         top: 0;
@@ -269,11 +269,11 @@ label input[type="text"], label textarea {
 }
 
 h2.vocabulary {
-        margin-bottom: 2.5em;
-        font-family: inherit;
-        font-size: 2.5em;
-        font-weight: bold;
-        text-align: center;
+    margin-bottom: 2.5em;
+    font-family: inherit;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
 }
 
 section.back, section.notes,
@@ -308,5 +308,10 @@ section.back + textarea, section.notes + textarea {
 
     .levels li {
         width: 16.66%;
+    }
+
+    h2.vocabulary {
+        margin: .5em 0 1em;
+        font-size: 4em;
     }
 }

@@ -11,11 +11,11 @@ $(document).ready(function() {
     // Prepare studying
     if ($('#study').length != 0) {
         var currentIndex = 0
-        var correctOnce = Object.keys(new Int8Array($('#study li').length)).map(function() { return false })
+        var correctOnce = Object.keys(new Int8Array($('#study > li').length)).map(function() { return false })
 
         var showCard = function(index) {
             $('#study').removeClass('reveal').removeClass('revealnotes')
-            $('#study li').css('display', 'none').eq(index).css('display', 'block')
+            $('#study > li').css('display', 'none').eq(index).css('display', 'block')
 
             currentIndex = index
 
