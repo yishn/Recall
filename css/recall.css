@@ -4,7 +4,7 @@
  * Color palette
  *
  * #F7803C
- * #DF4949
+ * #F54828
  * #45B29D
  * #334D5C
  * #222222
@@ -39,7 +39,7 @@ h3 {
     text-transform: uppercase;
 }
 
-a, .tasks button { color: #DF4949; }
+a, .tasks button { color: #F54828; }
 a:hover, a:focus,
 .tasks button:hover, .tasks button:focus { color: #334D5C; }
 
@@ -168,7 +168,7 @@ label input[type="text"], label textarea {
     .levels li:nth-child(n+2), .levels li:nth-child(n+2) span { color: white; }
     .levels li:nth-child(1) { border-radius: 5px 0 0 0; }
     .levels li:nth-child(2), .vocabularies li.apprentice a { background: #F7803C; }
-    .levels li:nth-child(3), .vocabularies li.guru a { background: #DF4949; }
+    .levels li:nth-child(3), .vocabularies li.guru a { background: #F54828; }
     .levels li:nth-child(4), .vocabularies li.master a { background: #45B29D; }
     .levels li:nth-child(5), .vocabularies li.enlightened a { background: #334D5C; }
 .levels li:nth-child(6), .vocabularies li.burned a { background: #222; }
