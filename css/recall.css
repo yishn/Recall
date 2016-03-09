@@ -5,7 +5,7 @@
  *
  * #7aac91
  * #D46E34
- * #FFEF9E
+ * #CC2A41
  * #3C4559
  * #222222
  */
@@ -165,13 +165,9 @@ label input[type="text"], label textarea {
     .levels li:nth-child(n+2), .levels li:nth-child(n+2) span { color: white; }
     .levels li:nth-child(1) { border-radius: 5px 0 0 0; }
     .levels li:nth-child(2), .vocabularies li.apprentice a { background: #7aac91; }
-    .levels li:nth-child(4), .vocabularies li.master a { background: #D46E34; }
+    .levels li:nth-child(3), .vocabularies li.guru a { background: #D46E34; }
     .levels li:nth-child(5), .vocabularies li.enlightened a { background: #3C4559; }
-    .levels li:nth-child(3), .vocabularies li.guru a {
-        background: #FFEF9E;
-        color: #333;
-    }
-    .levels li:nth-child(3) span { color: #333; }
+    .levels li:nth-child(4), .vocabularies li.master a { background: #CC2A41; }
 .levels li:nth-child(6), .vocabularies li.burned a { background: #222; }
 
 .vocabularies {
@@ -194,7 +190,8 @@ label input[type="text"], label textarea {
         text-decoration: none;
     }
     .vocabularies li.enlightened a, .vocabularies li.apprentice a,
-    .vocabularies li.master a, .vocabularies li.burned a { color: white; }
+    .vocabularies li.master a, .vocabularies li.burned a
+    .vocabularies li.guru a { color: white; }
     .vocabularies li a:hover, .vocabularies li a:focus {
         opacity: 1;
 }
@@ -225,7 +222,7 @@ label input[type="text"], label textarea {
         list-style: none;
     }
     #study h3 {
-        margin: 2.5em 0;
+        margin: 1.5em 0;
         font-size: 2.5em;
         font-weight: bold;
         letter-spacing: normal;
@@ -233,6 +230,7 @@ label input[type="text"], label textarea {
         text-transform: none;
     }
     #study + p { text-align: center; }
+    #study + p button { margin: 2px 2px; }
     #study .back, #study .notes,
     #study + p .showagain, #study + p .nextcard,
     #study + p .shownotes, #study.reveal.revealnotes + p .shownotes,
