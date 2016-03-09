@@ -24,9 +24,9 @@ function humanize_datetime($then) {
     if ($timespan->h)
         $message[] = $timespan->h.' '.pluralise($timespan->h, 'hour');
     if ($timespan->i)
-        $message[] = $timespan->i.' '.pluralise($timespan->i, 'minute');
+        $message[] = $timespan->i.' '.pluralise($timespan->i, 'min.', 'min.');
     if ($timespan->s)
-        $message[] = $timespan->s.' '.pluralise($timespan->s, 'second');
+        $message[] = $timespan->s.pluralise($timespan->s, 's', 's');
 
     if (count($message) == 0 || $timespan->invert == 1) {
         return 'now';

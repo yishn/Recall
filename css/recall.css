@@ -295,15 +295,17 @@ section.back + textarea, section.notes + textarea {
 }
 
 @media screen and (min-width: 700px) {
+    body {
+        font-size: 120%;
+    }
 
-.stats li, .levels li {
-    border-top: none !important;
-    border-left: 2px solid white !important;
-    border-right: 2px solid white !important;
-}
+    .stats li, .levels li {
+        border-top: none !important;
+        border-left: 2px solid white !important;
+        border-right: 2px solid white !important;
+    }
 
-.levels li {
-    width: 16.66%;
-}
-
+    .levels li {
+        width: 16.66%;
+    }
 }

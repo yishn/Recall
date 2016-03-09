@@ -6,7 +6,7 @@
 
 <ul class="stats">
     <li>
-        Next review in:
+        Next review in
 
         <?php if (!$next_review_vocab): ?>
             <span>None</span>
@@ -17,34 +17,34 @@
         <?php endif; ?>
     </li>
     <li>
-        Due tomorrow:
+        Due tomorrow
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?></span>
     </li>
 </ul>
 
 <ol class="stats levels">
     <li>
-        Inactive:
+        Inactive
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('inactive')->count(); ?></span>
     </li>
     <li>
-        Apprentice:
+        Apprentice
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count(); ?></span>
     </li>
     <li>
-        Guru:
+        Guru
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count(); ?></span>
     </li>
     <li>
-        Master:
+        Master
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?></span>
     </li>
     <li>
-        Enlightened:
+        Enlightened
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?></span>
     </li>
     <li>
-        Burned:
+        Burned
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?></span>
     </li>
 </ol>
