@@ -218,7 +218,7 @@ label input[type="text"], label textarea {
         left: 0;
         width: 0;
         height: 5px;
-        transition: width .2s;
+        transition: width .5s;
 }
 
 #study {
@@ -292,4 +292,18 @@ section.back + textarea, section.notes + textarea {
     }
     section.back .tasks a, section.notes .tasks a {
         color: #aaa;
+}
+
+@media screen and (min-width: 700px) {
+
+.stats li, .levels li {
+    border-top: none !important;
+    border-left: 2px solid white !important;
+    border-right: 2px solid white !important;
+}
+
+.levels li {
+    width: 16.66%;
+}
+
 }

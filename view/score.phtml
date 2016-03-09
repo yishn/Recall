@@ -2,6 +2,8 @@
 
 <h2>Score &mdash; <?php echo round(count($correct) * 100 / (count($incorrect) + count($correct))); ?>%</h2>
 
+<?php if (count($incorrect) != 0): ?>
+
 <h3>Level Down</h3>
 
 <ul class="vocabularies">
@@ -14,6 +16,10 @@
     <?php endforeach; ?>
 </ul>
 
+<?php endif; ?>
+
+<?php if (count($correct) != 0): ?>
+
 <h3>Level Up</h3>
 
 <ul class="vocabularies">
@@ -25,5 +31,7 @@
     </li>
     <?php endforeach; ?>
 </ul>
+
+<?php endif; ?>
 
 <?php include 'footer.phtml'; ?>
