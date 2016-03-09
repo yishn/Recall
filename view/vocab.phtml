@@ -2,7 +2,6 @@
 
 <form action="<?php echo $vocab->get_delete_link(); ?>" method="post">
     <ul class="tasks meta">
-        <li>In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a></li>
         <li>Level <?php echo $vocab->get_human_level(); ?></li>
         <li><button type="submit" class="delete">Delete</button></li>
     </ul>

@@ -15,6 +15,9 @@
 <body>
 
 <header>
+    <?php if (isset($backlink)): ?>
+    <a href="<?php echo $backlink; ?>">&larr; <?php echo $backtext; ?></a>
+    <?php endif; ?>
     <h1><a href="<?php echo BASE_PATH; ?>">Recall</a></h1>
 </header>
 

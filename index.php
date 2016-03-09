@@ -19,7 +19,9 @@ function serve_set_page($args) {
     if (!$args['page']) $args['page'] = 1;
 
     return response(phtml('view/set', [
-        'title' => 'Set: ' . $set->name,
+        'backlink' => BASE_PATH,
+        'backtext' => 'Dashboard',
+        'title' => 'Set: ' . htmlentities($set->name),
         'set' => $set,
         'vocabularies' => $set->get_vocabularies()
             ->order_by_asc('id')
@@ -38,7 +40,9 @@ function serve_vocab_page($args) {
     if (!$vocab) return redirect(BASE_PATH . 'error');
 
     return response(phtml('view/vocab', [
-        'title' => $vocab->front,
+        'backlink' => $vocab->get_set()->find_one()->get_permalink(),
+        'backtext' => htmlentities($vocab->get_set()->find_one()->name),
+        'title' => htmlentities($vocab->front),
         'vocab' => $vocab,
         'set' => $vocab->get_set()->find_one()
     ]));
@@ -55,11 +59,13 @@ function serve_study_page($args, $mode) {
     } else if ($mode == 'review') {
         $vocabularies = $set->get_due_vocabularies()->find_many();
     }
-    
+
     shuffle($vocabularies);
 
     return response(phtml('view/study', [
-        'title' => ucfirst($mode) . ': ' . $set->name,
+        'backlink' => $set->get_permalink(),
+        'backtext' => htmlentities($set->name),
+        'title' => ucfirst($mode) . ': ' . htmlentities($set->name),
         'action' => BASE_PATH . 'study',
         'mode' => $mode,
         'set' => $set,
@@ -74,6 +80,8 @@ function serve_add_vocab($args) {
     if (!$set) return redirect(BASE_PATH . 'error');
 
     return response(phtml('view/add-vocab', [
+        'backlink' => $set->get_permalink(),
+        'backtext' => htmlentities($set->name),
         'title' => 'Add Vocabularies',
         'set' => $set
     ]));
@@ -84,6 +92,7 @@ function action_study() {
     $mode = $_POST['mode'];
     $correctlist = [];
     $incorrectlist = [];
+    $vocab = null;
 
     foreach ($ids as $id) {
         $correct = $_POST['correct-' . $id] == 'on';
@@ -114,9 +123,11 @@ function action_study() {
         $vocab->save();
     }
 
-    if ($mode == 'learn') return redirect(BASE_PATH);
+    if (count($ids) == 0 || $mode == 'learn') return redirect(BASE_PATH);
 
     return response(phtml('view/score', [
+        'backlink' => $vocab->get_set()->find_one()->get_permalink(),
+        'backtext' => htmlentities($vocab->get_set()->find_one()->name),
         'title' => 'Score',
         'incorrect' => $incorrectlist,
         'correct' => $correctlist
@@ -205,6 +216,8 @@ route('POST', '/study', action_study);
  */
 
 route('GET', '/create', page('view/edit-set', [
+    'backlink' => BASE_PATH,
+    'backtext' => 'Dashboard',
     'title' => 'Create Set',
     'action' => BASE_PATH . 'create'
 ]));
@@ -215,6 +228,8 @@ route('GET', '/edit-set/:id', function($args) {
     if (!$set) redirect(BASE_PATH . 'error');
 
     return response(phtml('view/edit-set', [
+        'backlink' => $set->get_permalink(),
+        'backtext' => htmlentities($set->name),
         'title' => 'Edit Set',
         'action' => BASE_PATH . 'edit-set/' . $set->id,
         'set' => $set
