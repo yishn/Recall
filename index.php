@@ -61,6 +61,17 @@ function serve_study_page($args, $mode) {
     ]));
 }
 
+function serve_add_vocab($args) {
+    $set = Set::find_one($args['id']);
+
+    if (!$set) return redirect(BASE_PATH . 'error');
+
+    return response(phtml('view/add-vocab', [
+        'title' => 'Add Vocabularies',
+        'set' => $set
+    ]));
+}
+
 function action_study() {
     $ids = explode(',', $_POST['ids']);
     $mode = $_POST['mode'];
@@ -138,6 +149,25 @@ function action_edit_vocab($args) {
     return redirect($vocab->get_permalink());
 }
 
+function action_add_vocab($args) {
+    $set = Set::find_one($args['id']);
+
+    if (!$set) return redirect(BASE_PATH . 'error');
+
+    for ($i = 0; $i < count($_POST['front']); $i++) {
+        if (trim($_POST['front'][$i]) == '') continue;
+
+        $vocab = Vocabulary::create();
+        $vocab->set_id = $set->id;
+        $vocab->front = $_POST['front'][$i];
+        $vocab->back = $_POST['back'][$i];
+        $vocab->notes = $_POST['notes'][$i];
+        $vocab->save();
+    }
+
+    return redirect($set->get_permalink());
+}
+
 function action_delete_vocab($args) {
     $vocab = Vocabulary::find_one($args['id']);
 
@@ -188,6 +218,8 @@ route('POST', '/delete-set/:id', action_delete_set);
  * Vocabulary actions
  */
 
+route('GET', '/add-to/:id', serve_add_vocab);
+route('POST', '/add-to/:id', action_add_vocab);
 route('POST', '/delete/:id', action_delete_vocab);
 route('POST', '/edit/:id', action_edit_vocab);
 

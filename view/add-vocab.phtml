@@ -1,0 +1,38 @@
+<?php include 'header.phtml'; ?>
+
+<h2>Add Vocabularies</h2>
+
+<form action="<?php echo $set->get_add_link(); ?>" method="post">
+
+<ol>
+    <?php for ($i = 0; $i < 2; $i++): ?>
+    <li>
+        <p>
+            <label>
+                Front:
+                <input type="text" name="front[]" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Back:
+                <textarea name="back[]"></textarea>
+            </label>
+        </p>
+        <p>
+            <label>
+                Notes:
+                <textarea name="notes[]"></textarea>
+            </label>
+        </p>
+    </li>
+    <?php endfor; ?>
+</ol>
+
+<p>
+    <button type="submit">Add</button>
+</p>
+
+</form>
+
+<?php include 'footer.phtml'; ?>
