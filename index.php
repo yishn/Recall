@@ -103,9 +103,9 @@ function action_study() {
     ]));
 }
 
-function action_edit_set($id) {
+function action_edit_set($args) {
     $name = trim($_POST['name']);
-    $set = Set::find_one($id);
+    $set = Set::find_one($args['id']);
 
     if (!$set) $set = Set::create();
     if ($name == '') return redirect(BASE_PATH . 'create');
@@ -116,10 +116,36 @@ function action_edit_set($id) {
     return redirect($set->get_permalink());
 }
 
-function action_delete_set($id) {
-    $set = Set::find_one($id);
+function action_delete_set($args) {
+    $set = Set::find_one($args['id']);
     if ($set) $set->delete();
     return redirect(BASE_PATH);
+}
+
+function action_edit_vocab($args) {
+    $front = trim($_POST['front']);
+    $vocab = Vocabulary::find_one($args['id']);
+
+    if (!$vocab) return redirect(BASE_PATH . 'error');
+
+    if ($front != '') {
+        $vocab->front = $front;
+        $vocab->back = $_POST['back'];
+        $vocab->notes = $_POST['notes'];
+        $vocab->save();
+    }
+
+    return redirect($vocab->get_permalink());
+}
+
+function action_delete_vocab($args) {
+    $vocab = Vocabulary::find_one($args['id']);
+
+    if (!$vocab) return redirect(BASE_PATH);
+
+    $set = $vocab->get_set()->find_one();
+    $vocab->delete();
+    return redirect($set->get_permalink());
 }
 
 route('GET', '/', serve_dashboard);
@@ -143,7 +169,7 @@ route('GET', '/create', page('view/edit-set', [
     'title' => 'Create Set',
     'action' => BASE_PATH . 'create'
 ]));
-route('POST', '/create', function() { return action_edit_set(-1); });
+route('POST', '/create', action_edit_set);
 route('GET', '/edit-set/:id', function($args) {
     $set = Set::find_one($args['id']);
 
@@ -155,8 +181,15 @@ route('GET', '/edit-set/:id', function($args) {
         'set' => $set
     ]));
 });
-route('POST', '/edit-set/:id', function($args) { return action_edit_set($args['id']); });
-route('POST', '/delete-set/:id', function($args) { return action_delete_set($args['id']); });
+route('POST', '/edit-set/:id', action_edit_set);
+route('POST', '/delete-set/:id', action_delete_set);
+
+/**
+ * Vocabulary actions
+ */
+
+route('POST', '/delete/:id', action_delete_vocab);
+route('POST', '/edit/:id', action_edit_vocab);
 
 /**
  * Errors
