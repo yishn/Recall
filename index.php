@@ -49,9 +49,13 @@ function serve_study_page($args, $mode) {
     $vocabularies = [];
 
     if (!$set) return redirect(BASE_PATH . 'error');
-    if ($mode == 'learn') $vocabularies = $set->get_new_vocabularies()->find_many();
-    else if ($mode == 'review') $vocabularies = $set->get_due_vocabularies()->find_many();
-    shuffle($vocabularies);
+    
+    if ($mode == 'learn') {
+        $vocabularies = $set->get_new_vocabularies()->find_many();
+    } else if ($mode == 'review') {
+        $vocabularies = $set->get_due_vocabularies()->find_many();
+        shuffle($vocabularies);
+    }
 
     return response(phtml('view/study', [
         'title' => ucfirst($mode) . ': ' . $set->name,
