@@ -1,18 +1,38 @@
 <?php include 'header.phtml'; ?>
 
-<h2>Vocabulary: <?php echo $vocab->front; ?></h2>
+<h2>Vocabulary: <?php echo htmlentities($vocab->front); ?></h2>
 
 <p class="meta">
-    In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>,
+    In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>,
     Level <?php echo $vocab->get_human_level(); ?>
 </p>
 
-<section class="back">
-    <?php echo $vocab->get_back(); ?>
-</section>
+<form action="<?php echo $vocab->get_delete_link(); ?>" method="post">
+    <ul class="tasks">
+        <li><button type="submit">Delete</button></li>
+    </ul>
+</form>
 
-<section class="notes">
-    <?php echo $vocab->get_notes(); ?>
-</section>
+<form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
+    <h2><?php echo htmlentities($vocab->front); ?></h2>
+
+    <input type="text" name="front" value="<?php echo htmlentities($vocab->front); ?>" />
+
+    <section class="back">
+        <?php echo $vocab->get_back(); ?>
+    </section>
+
+    <textarea name="back"><?php echo htmlentities($vocab->back); ?></textarea>
+
+    <section class="notes">
+        <?php echo $vocab->get_notes(); ?>
+    </section>
+
+    <textarea name="notes"><?php echo htmlentities($vocab->notes); ?></textarea>
+
+    <p>
+        <button type="submit">Update</button>
+    </p>
+</form>
 
 <?php include 'footer.phtml'; ?>

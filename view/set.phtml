@@ -2,6 +2,8 @@
 
 <h2>Set: <?php echo $set->name; ?></h2>
 
+<form action="<?php echo $set->get_delete_link(); ?>" method="post">
+
 <ul class="tasks">
     <?php if (count($new_vocabs) != 0): ?>
         <li><a href="<?php echo $set->get_learn_link(); ?>">Learn</a> <?php echo count($new_vocabs); ?></li>
@@ -10,7 +12,11 @@
         <li><a href="<?php echo $set->get_review_link(); ?>">Review</a> <?php echo count($due_vocabs); ?></li>
     <?php endif; ?>
     <li><a href="<?php echo $set->get_add_link(); ?>">Add Vocabulary</a></li>
+    <li><a href="<?php echo $set->get_edit_link(); ?>">Edit</a></li>
+    <li><button type="submit">Delete</button></li>
 </ul>
+
+</form>
 
 <?php if (count($vocabularies) != 0): ?>
 
@@ -20,7 +26,7 @@
             if (!$vocab->is_active()): ?> class="inactive"<?php
             elseif ($vocab->is_burned()): ?> class="burned"<?php
             endif; ?>>
-            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a>
+            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
 </ol>

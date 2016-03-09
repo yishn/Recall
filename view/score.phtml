@@ -6,7 +6,7 @@
 
 <ul>
     <?php foreach ($incorrect as $vocab): ?>
-    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a></li>
+    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a></li>
     <?php endforeach; ?>
 </ul>
 
@@ -14,7 +14,7 @@
 
 <ul>
     <?php foreach ($correct as $vocab): ?>
-    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo $vocab->front; ?></a></li>
+    <li><a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a></li>
     <?php endforeach; ?>
 </ul>
 

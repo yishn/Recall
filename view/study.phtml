@@ -13,7 +13,7 @@
         <?php foreach ($vocabularies as $vocab): ?>
 
         <li>
-            <h3><?php echo $vocab->front; ?></h3>
+            <h3><?php echo htmlentities($vocab->front); ?></h3>
 
             <?php if ($vocab->is_active()): ?>
             <p class="meta">

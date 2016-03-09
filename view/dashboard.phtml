@@ -56,7 +56,7 @@
 <ul>
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
-            <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
+            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
             <?php echo $set->get_new_vocabularies()->count() + $set->get_due_vocabularies()->count(); ?>
         </li>
     <?php endforeach; ?>

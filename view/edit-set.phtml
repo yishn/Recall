@@ -6,7 +6,7 @@
     <p>
         <label>
             Name:
-            <input type="text" name="name" value="<?php if ($set) echo $set->name; ?>" autofocus />
+            <input type="text" name="name" value="<?php if ($set) echo htmlentities($set->name); ?>" autofocus />
         </label>
     </p>
     <p>
