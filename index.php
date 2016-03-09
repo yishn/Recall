@@ -95,7 +95,7 @@ function action_study() {
 
         if (!$correct) {
             $vocab->level = max(0, $vocab->level - 2) - 1;
-            $vocab->fail++;
+            if ($mode == 'review') $vocab->fail++;
             array_push($incorrectlist, $vocab);
         } else {
             $vocab->fail--;
