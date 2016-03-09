@@ -14,7 +14,7 @@
  * Typography
  */
 
-body, input, textarea {
+body {
     font: 100%/1.5 'Segoe UI', sans-serif;
 }
 
@@ -72,6 +72,20 @@ main {
 }
 
 /**
+ * Forms
+ */
+
+input, textarea, button {
+    padding: 1px 5px;
+    font: inherit;
+}
+
+label input[type="text"], label textarea {
+    display: block;
+    margin-top: 5px;
+}
+
+/**
  * Components
  */
 
@@ -126,7 +140,6 @@ main {
         padding: 0 !important;
         background: none;
         cursor: pointer;
-        font: inherit;
         text-decoration: underline;
     }
     .tasks button::-moz-focus-inner {
