@@ -55,6 +55,10 @@ header {
         color: white;
         padding: 20px;
     }
+    header .back {
+        float: left;
+        margin-right: 1em;
+    }
     header h1 {
         margin: 0;
         font-size: 1em;
