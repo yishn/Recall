@@ -44,10 +44,7 @@
 
 <ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
-        <li<?php
-            if (!$vocab->is_active()): ?> class="inactive"<?php
-            elseif ($vocab->is_burned()): ?> class="burned"<?php
-            endif; ?>>
+        <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
             <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
