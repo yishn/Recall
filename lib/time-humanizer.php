@@ -28,17 +28,10 @@ function humanize_datetime($then) {
     if ($timespan->s)
         $message[] = $timespan->s.' '.pluralise($timespan->s, 'second');
 
-    if (count($message) == 0) {
-        return 'just now';
+    if (count($message) == 0 || $timespan->invert == 1) {
+        return 'now';
     }
 
     $output = array_shift($message);
-
-    if ($timespan->invert == 1) {
-        $output .= ' ago';
-    } else {
-        $output = 'in ' . $output;
-    }
-
-    return $output;
+    return '~' . $output;
 }

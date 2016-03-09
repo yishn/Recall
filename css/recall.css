@@ -1,18 +1,175 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter:400,700');
+
+/**
+ * Color palette
+ *
+ * #7aac91
+ * #D46E34
+ * #FFEF9E
+ * #3C4559
+ * #222222
+ */
+
+/**
+ * Typography
+ */
+
+body, input, textarea {
+    font: 100%/1.5 'Segoe UI', sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #333;
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 1em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-family: Bitter, serif;
+}
+
+h3 {
+    margin-top: 2em;
+    font-size: 1em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+a, .tasks button { color: #D46E34; }
+a:hover, a:focus,
+.tasks button:hover, .tasks button:focus { color: #3C4559; }
+
 /**
  * Layout
  */
 
 * { margin: 0; padding: 0; }
 
+header {
+        background: #7aac91;
+        color: white;
+        padding: 20px;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 1em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    header a, header a:hover, header a:focus {
+        text-decoration: none;
+        color: white;
+}
+
+main {
+    padding: 1px 20px;
+}
+
 /**
- * Typography
+ * Components
  */
 
-body {
-    font: 100%/1.5 'Segoe UI', sans-serif;
+.stats {
+        list-style: none;
+        overflow: hidden;
+    }
+    .stats li {
+        box-sizing: border-box;
+        width: 50%;
+        border-left: 2px solid white;
+        padding: 20px;
+        float: left;
+        background: #eee;
+        color: #555;
+        font-size: .6em;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .stats li:nth-child(odd) {
+        border-left: none;
+        border-right: 2px solid white;
+    }
+    .stats li:nth-child(n+3) {
+        border-top: 4px solid white;
+    }
+    .stats li span {
+        display: block;
+        font-size: 2.3em;
+        color: black;
+        text-transform: lowercase;
+        letter-spacing: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: Bitter, serif;
+.sets, .tasks {
+        list-style: none;
+    }
+    .sets li span, .tasks li span {
+        padding: 0 5px;
+        margin-left: 5px;
+        background: #3C4559;
+        border-radius: 1.5em;
+        color: white;
+        font-size: .8em;
+        font-weight: bold;
 }
+
+.tasks button {
+        display: inline;
+        border: none;
+        padding: 0 !important;
+        background: none;
+        cursor: pointer;
+        font: inherit;
+        text-decoration: underline;
+    }
+    .tasks button::-moz-focus-inner {
+        border: none;
+        padding: 0;
+}
+
+.levels li:nth-child(1), .vocabularies li.inactive a {
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 0, 0, 0.05) 10px,
+            rgba(0, 0, 0, 0.05) 20px
+        );
+    }
+    .levels li:nth-child(n+2), .levels li:nth-child(n+2) span { color: white; }
+    .levels li:nth-child(1) { border-radius: 5px 0 0 0; }
+    .levels li:nth-child(2) { background: #7aac91; }
+    .levels li:nth-child(3) { background: #D46E34; }
+    .levels li:nth-child(4) { background: #3C4559; }
+    .levels li:nth-child(5) {
+        background: #FFEF9E;
+        color: #333;
+    }
+    .levels li:nth-child(5) span { color: #333; }
+.levels li:nth-child(6) { background: #222; }
+
+.vocabularies {
+        list-style: none;
+        text-align: center;
+    }
+    .vocabularies li, .vocabularies li a {
+        display: inline-block;
+    }
+    .vocabularies li a {
+        box-sizing: border-box;
+        padding: 1px 5px;
+        min-width: 1.5em;
+        margin-bottom: 5px;
+        background-color: #eee;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+    }
+    .vocabularies li a:hover, .vocabularies li a:focus {
+        background-color: #ccc;
+    }

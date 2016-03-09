@@ -2,11 +2,35 @@
 
 <h2>Dashboard</h2>
 
+<h3>Sets</h3>
+
+<ul class="sets">
+    <?php foreach ($sets as $set): ?>
+        <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
+
+            <?php
+
+            $count = count($set->get_new_vocabularies()->find_many()) + count($set->get_due_vocabularies()->find_many());
+
+            ?>
+            <?php if ($count != 0): ?>
+            <span>
+            <?php echo $count; ?>
+            </span>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+    <li>
+        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
+    </li>
+</ul>
+
 <h3>Statistics</h3>
 
-<ul>
+<ul class="stats">
     <li>
-        Next review:
+        Next review in:
 
         <?php if (!$next_review_vocab): ?>
             <span>None</span>
@@ -22,47 +46,31 @@
     </li>
 </ul>
 
-<h3>Levels</h3>
-
-<ol>
+<ol class="stats levels">
     <li>
         Inactive:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('inactive')->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('inactive')->count(); ?></span>
     </li>
     <li>
         Apprentice:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count(); ?></span>
     </li>
     <li>
         Guru:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count(); ?></span>
     </li>
     <li>
         Master:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?></span>
     </li>
     <li>
         Enlightened:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?></span>
     </li>
     <li>
         Burned:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?></span>
     </li>
 </ol>
-
-<h3>Sets</h3>
-
-<ul>
-    <?php foreach ($sets as $set): ?>
-        <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
-            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
-            <?php echo count($set->get_new_vocabularies()->find_many()) + count($set->get_due_vocabularies()->find_many()); ?>
-        </li>
-    <?php endforeach; ?>
-    <li>
-        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
-    </li>
-</ul>
 
 <?php include 'footer.phtml'; ?>

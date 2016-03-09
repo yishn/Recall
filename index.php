@@ -26,7 +26,8 @@ function serve_set_page($args) {
             ->offset(($args['page'] - 1) * $count)
             ->find_many(),
         'new_vocabs' => $set->get_new_vocabularies()->find_many(),
-        'due_vocabs' => $set->get_due_vocabularies()->find_many()
+        'due_vocabs' => $set->get_due_vocabularies()->find_many(),
+        'critical_vocabs' => $set->get_critical_vocabularies()->find_many()
     ]));
 }
 
@@ -116,7 +117,7 @@ function action_study() {
     ]));
 }
 
-function action_edit_set($args) {
+function action_edit_set($args = ['id' => -1]) {
     $name = trim($_POST['name']);
     $set = Set::find_one($args['id']);
 

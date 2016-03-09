@@ -6,10 +6,16 @@
 
 <ul class="tasks">
     <?php if (count($new_vocabs) != 0): ?>
-        <li><a href="<?php echo $set->get_learn_link(); ?>">Learn</a> <?php echo count($new_vocabs); ?></li>
+    <li>
+        <a href="<?php echo $set->get_learn_link(); ?>">Learn</a>
+        <span><?php echo count($new_vocabs); ?></span>
+    </li>
     <?php endif; ?>
     <?php if (count($due_vocabs) != 0): ?>
-        <li><a href="<?php echo $set->get_review_link(); ?>">Review</a> <?php echo count($due_vocabs); ?></li>
+    <li>
+        <a href="<?php echo $set->get_review_link(); ?>">Review</a>
+        <span><?php echo count($due_vocabs); ?></span>
+    </li>
     <?php endif; ?>
     <li><a href="<?php echo $set->get_add_link(); ?>">Add Vocabulary</a></li>
     <li><a href="<?php echo $set->get_edit_link(); ?>">Edit</a></li>
@@ -18,7 +24,23 @@
 
 </form>
 
+<?php if (count($critical_vocabs) != 0): ?>
+
+<h3>Critical Items</h3>
+
+<ol class="vocabularies">
+    <?php foreach ($critical_vocabs as $vocab): ?>
+        <li>
+            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
+        </li>
+    <?php endforeach; ?>
+</ol>
+
+<?php endif; ?>
+
 <?php if (count($vocabularies) != 0): ?>
+
+<h3>Vocabularies</h3>
 
 <ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
