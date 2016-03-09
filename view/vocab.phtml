@@ -3,7 +3,8 @@
 <h2>Vocabulary: <?php echo $vocab->front; ?></h2>
 
 <p class="meta">
-    In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>
+    In set <a href="<?php echo $set->get_permalink(); ?>"><?php echo $set->name; ?></a>,
+    Level <?php echo $vocab->get_human_level(); ?>
 </p>
 
 <section class="back">

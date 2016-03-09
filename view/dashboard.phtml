@@ -7,14 +7,18 @@
 <ul>
     <li>
         Next review:
-        <?php
-            if (!$next_review_vocab) echo 'None';
-            else echo $next_review_vocab->get_human_due_date();
-        ?>
+
+        <?php if (!$next_review_vocab): ?>
+            <span>None</span>
+        <?php else: ?>
+            <span title="<?php echo $next_review_vocab->get_due_date()->format('Y-m-d H:i:s'); ?>">
+            <?php echo $next_review_vocab->get_human_due_date(); ?>
+            </span>
+        <?php endif; ?>
     </li>
     <li>
         Due tomorrow:
-        <?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?>
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?></span>
     </li>
 </ul>
 
