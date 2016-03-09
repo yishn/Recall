@@ -22,6 +22,7 @@ function serve_set_page($args) {
         'title' => 'Set: ' . $set->name,
         'set' => $set,
         'vocabularies' => $set->get_vocabularies()
+            ->order_by_asc('id')
             ->limit($count)
             ->offset(($args['page'] - 1) * $count)
             ->find_many(),
