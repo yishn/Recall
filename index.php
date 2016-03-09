@@ -154,17 +154,13 @@ function action_delete_set($args) {
 }
 
 function action_edit_vocab($args) {
-    $front = trim($_POST['front']);
     $vocab = Vocabulary::find_one($args['id']);
 
     if (!$vocab) return redirect(BASE_PATH . 'error');
 
-    if ($front != '') {
-        $vocab->front = $front;
-        $vocab->back = $_POST['back'];
-        $vocab->notes = $_POST['notes'];
-        $vocab->save();
-    }
+    $vocab->back = $_POST['back'];
+    $vocab->notes = $_POST['notes'];
+    $vocab->save();
 
     return redirect($vocab->get_permalink());
 }

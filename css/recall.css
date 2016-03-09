@@ -269,11 +269,6 @@ h2.vocabulary {
         font-family: inherit;
         font-size: 2.5em;
         font-weight: bold;
-    }
-    h2.vocabulary input {
-        border: none;
-        width: 100%;
-        font: inherit;
         text-align: center;
 }
 

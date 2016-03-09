@@ -9,7 +9,7 @@
 
 <form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
     <h2 class="vocabulary">
-        <input type="text" name="front" value="<?php echo htmlentities($vocab->front); ?>" placeholder="Front" />
+        <?php echo htmlentities($vocab->front); ?>
     </h2>
 
     <section class="back">
