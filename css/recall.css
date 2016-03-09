@@ -3,10 +3,10 @@
 /**
  * Color palette
  *
- * #7aac91
- * #E57F45
- * #CC2A41
- * #3C4559
+ * #F7803C
+ * #DF4949
+ * #45B29D
+ * #334D5C
  * #222222
  */
 
@@ -39,9 +39,9 @@ h3 {
     text-transform: uppercase;
 }
 
-a, .tasks button { color: #E57F45; }
+a, .tasks button { color: #DF4949; }
 a:hover, a:focus,
-.tasks button:hover, .tasks button:focus { color: #3C4559; }
+.tasks button:hover, .tasks button:focus { color: #334D5C; }
 
 /**
  * Layout
@@ -51,7 +51,7 @@ a:hover, a:focus,
 
 header {
         display: block;
-        background: #7aac91;
+        background: #F7803C;
         color: white;
         padding: 20px;
     }
@@ -136,7 +136,7 @@ label input[type="text"], label textarea {
     .sets li span, .tasks li span {
         padding: 0 5px;
         margin-left: 5px;
-        background: #3C4559;
+        background: #334D5C;
         border-radius: 1.5em;
         color: white;
         font-size: .8em;
@@ -167,10 +167,10 @@ label input[type="text"], label textarea {
     }
     .levels li:nth-child(n+2), .levels li:nth-child(n+2) span { color: white; }
     .levels li:nth-child(1) { border-radius: 5px 0 0 0; }
-    .levels li:nth-child(2), .vocabularies li.apprentice a { background: #7aac91; }
-    .levels li:nth-child(3), .vocabularies li.guru a { background: #E57F45; }
-    .levels li:nth-child(4), .vocabularies li.master a { background: #CC2A41; }
-    .levels li:nth-child(5), .vocabularies li.enlightened a { background: #3C4559; }
+    .levels li:nth-child(2), .vocabularies li.apprentice a { background: #F7803C; }
+    .levels li:nth-child(3), .vocabularies li.guru a { background: #DF4949; }
+    .levels li:nth-child(4), .vocabularies li.master a { background: #45B29D; }
+    .levels li:nth-child(5), .vocabularies li.enlightened a { background: #334D5C; }
 .levels li:nth-child(6), .vocabularies li.burned a { background: #222; }
 
 .vocabularies {
@@ -208,10 +208,10 @@ label input[type="text"], label textarea {
         position: relative;
         height: 5px;
         margin-top: -5px;
-        background: #7aac91;
+        background: #F7803C;
     }
     #progress span {
-        background: #588a70;
+        background: rgba(0, 0, 0, .1);
         display: block;
         position: absolute;
         top: 0;
