@@ -283,6 +283,8 @@ section.back + textarea, section.notes + textarea {
         padding: 20px;
     }
     section.back .tasks, section.notes .tasks {
+        position: relative;
+        right: -20px;
         margin-top: -1.2em;
         font-size: .8em;
         letter-spacing: 1px;

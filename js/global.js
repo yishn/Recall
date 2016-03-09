@@ -98,8 +98,12 @@ $(document).ready(function() {
 
     // Add edit links to vocabulary page
     if ($('section.back + textarea[name="back"], section.notes + textarea[name="notes"]').length != 0) {
-        $('section.back').parents('form').find('button[type="submit"]')
-            .css('display', 'none')
+        $('section.back').parents('form').find('button').css('display', 'none')
+        $('section.back').parents('form').find('button[type="reset"]').on('click', function() {
+            $(this).parents('form').find('section.back, section.notes').css('display', 'block')
+                .next('textarea').css('display', 'none')
+            $(this).parents('form').find('button').css('display', 'none')
+        })
 
         $('section.back, section.notes').each(function() {
             if ($(this).find('.tasks').length != 0) return
@@ -112,7 +116,7 @@ $(document).ready(function() {
             }).on('click', function() {
                 $(this).parents('section').css('display', 'none')
                     .next('textarea').css('display', 'block').get(0).focus()
-                $(this).parents('form').find('button[type="submit"]')
+                $(this).parents('form').find('button')
                     .css('display', 'inline-block')
 
                 return false
