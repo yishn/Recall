@@ -10,7 +10,11 @@ $(document).ready(function() {
         var showCard = function(index) {
             $('#study li').css('display', 'none').eq(index).css('display', 'block')
             $('#study').removeClass('reveal').removeClass('revealnotes')
+
             currentIndex = index
+
+            var percent = Math.round(correctOnce.filter(function(x) { return x }).length * 100 / correctOnce.length)
+            $('#progress span').css('width', percent + '%')
         }
 
         var nextCard = function() {
@@ -31,6 +35,7 @@ $(document).ready(function() {
 
         $('#study input[type="checkbox"]').attr('checked', '')
         $('#study label, button[type="submit"]').css('display', 'none')
+        $('header').after($('<div/>', { id: 'progress' }).append($('<span/>')))
 
         $('#study + p').append($('<button/>', {
                 text: 'Reveal',

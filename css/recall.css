@@ -204,6 +204,23 @@ label input[type="text"], label textarea {
     text-align: right;
 }
 
+#progress {
+        position: relative;
+        height: 5px;
+        margin-top: -5px;
+        background: #7aac91;
+    }
+    #progress span {
+        background: #588a70;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 5px;
+        transition: width .2s;
+}
+
 #study {
         list-style: none;
     }
