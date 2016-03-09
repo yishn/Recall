@@ -73,4 +73,19 @@ $(document).ready(function() {
 
         showCard(0)
     }
+
+    // Infinite adding
+    if ($('#addlist').length != 0) {
+        var $template = $('#addlist li:last-child').css('display', 'none')
+
+        $('#addlist + p').prepend($('<button/>', {
+            text: 'Add Items'
+        }).on('click', function() {
+            for (var i = 0; i < 5; i++) {
+                $template.before($template.clone().css('display', 'block'))
+            }
+
+            return false
+        }))
+    }
 })

@@ -86,6 +86,8 @@ textarea {
     resize: vertical;
 }
 
+input[type="text"] { width: 66%; }
+
 label input[type="text"], label textarea {
     display: block;
     margin-top: 5px;
@@ -244,6 +246,21 @@ label input[type="text"], label textarea {
     #study.reveal + p .showagain,
     #study.reveal + p .nextcard {
         display: inline-block;
+}
+
+#addlist {
+        list-style: none;
+    }
+    #addlist li {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 2em;
+        margin-bottom: 2em;
+    }
+    #addlist li p {
+        margin: 5px 0;
+    }
+    #addlist + p button:first-child {
+        float: right;
 }
 
 h2.vocabulary {

@@ -12,7 +12,7 @@ class Set extends Model {
         if (count($sets) == 0 || !in_array($this->id, array_map(function($x) { return $x->set_id; }, $sets)))
             return Vocabulary::where_id_is(-1);
 
-        $limit = round($max / count($sets));
+        $limit = ceil($max / count($sets));
         return Set::get_vocabularies()->filter('inactive')->limit($limit);
     }
 

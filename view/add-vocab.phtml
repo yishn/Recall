@@ -4,7 +4,7 @@
 
 <form action="<?php echo $set->get_add_link(); ?>" method="post">
 
-<ol>
+<ol id="addlist">
     <?php for ($i = 0; $i < 2; $i++): ?>
     <li>
         <p>
@@ -30,7 +30,7 @@
 </ol>
 
 <p>
-    <button type="submit">Add</button>
+    <button type="submit">Submit</button>
 </p>
 
 </form>
