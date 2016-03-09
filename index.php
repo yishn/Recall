@@ -49,7 +49,7 @@ function serve_study_page($args, $mode) {
     $vocabularies = [];
 
     if (!$set) return redirect(BASE_PATH . 'error');
-    
+
     if ($mode == 'learn') {
         $vocabularies = $set->get_new_vocabularies()->find_many();
     } else if ($mode == 'review') {
@@ -154,7 +154,7 @@ function action_edit_vocab($args) {
         $vocab->save();
     }
 
-    return redirect($vocab->get_permalink());
+    return redirect($vocab->get_set()->find_one()->get_permalink());
 }
 
 function action_add_vocab($args) {
