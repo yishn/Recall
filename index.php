@@ -230,7 +230,7 @@ route('GET', '/edit-set/:id', function($args) {
     return response(phtml('view/edit-set', [
         'backlink' => $set->get_permalink(),
         'backtext' => htmlentities($set->name),
-        'title' => 'Edit Set',
+        'title' => 'Rename Set',
         'action' => BASE_PATH . 'edit-set/' . $set->id,
         'set' => $set
     ]));
