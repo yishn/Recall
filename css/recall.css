@@ -15,7 +15,7 @@
  */
 
 body {
-    font: 100%/1.5 'Segoe UI', SimHei, sans-serif;
+    font: 100%/1.5 'Segoe UI', 'Microsoft YaHei', SimHei, sans-serif;
 }
 
 h2, h3, h4, h5, h6 {
@@ -136,6 +136,9 @@ button {
         padding: .1em .5em;
         background: #45B29D;
         color: white;
+    }
+    button:disabled {
+        opacity: .5;
     }
     button:hover {
         background: #23907B;
@@ -313,7 +316,6 @@ button {
     #study > li > h3 {
         margin: 1.5em 0;
         font-size: 2.5em;
-        font-weight: bold;
         letter-spacing: normal;
         text-align: center;
         text-transform: none;
@@ -356,7 +358,6 @@ button {
     margin-bottom: 2.5em;
     font-family: inherit;
     font-size: 2.5em;
-    font-weight: bold;
     text-align: center;
 }
 
