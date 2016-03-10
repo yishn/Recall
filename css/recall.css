@@ -42,7 +42,7 @@ h3 {
 code {
     background: #eee;
     font: inherit;
-    font-family: 'Consolas', monospace;
+    font-family: Consolas, 'Microsoft YaHei', 'SimHei', monospace;
     padding: 1px 5px;
 }
 
@@ -119,7 +119,7 @@ input, textarea, button {
 
 textarea {
     width: 100%;
-    font-family: Consolas, monospace;
+    font-family: Consolas, 'Microsoft YaHei', 'SimHei', monospace;
     resize: vertical;
 }
 
