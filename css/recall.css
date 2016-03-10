@@ -234,6 +234,10 @@ label input[type="text"], label textarea {
 #study {
         list-style: none;
     }
+    #study textarea,
+    #study.edit section.back, #study.edit section.notes { display: none; }
+    #study.edit.reveal section.back + textarea,
+    #study.edit.revealnotes section.notes + textarea { display: block; }
     #study > li > h3 {
         margin: 1.5em 0;
         font-size: 2.5em;

@@ -26,14 +26,18 @@
                 <?php echo $vocab->get_back(); ?>
             </section>
 
-            <textarea name="back-<?php echo $vocab->id; ?>"><?php echo htmlentities($vocab->back); ?></textarea>
+            <textarea name="back-<?php echo $vocab->id; ?>" placeholder="Back"><?php
+                echo htmlentities($vocab->back);
+            ?></textarea>
 
             <section class="notes">
                 <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
                 <?php echo $vocab->get_notes(); ?>
             </section>
 
-            <textarea name="notes-<?php echo $vocab->id; ?>"><?php echo htmlentities($vocab->notes); ?></textarea>
+            <textarea name="notes-<?php echo $vocab->id; ?>" placeholder="Notes"><?php
+                echo htmlentities($vocab->notes);
+            ?></textarea>
 
             <p>
                 <label>

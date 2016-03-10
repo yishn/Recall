@@ -29,8 +29,8 @@ $(document).ready(function() {
                 return
             }
 
-            var i = currentIndex
-            while (i == currentIndex || correctOnce[i]) {
+            var i
+            while (i == null || correctOnce[i]) {
                 i = Math.floor(Math.random() * correctOnce.length)
             }
 
@@ -45,6 +45,12 @@ $(document).ready(function() {
         $('#study input[type="checkbox"]').attr('checked', '')
         $('#study label, button[type="submit"]').css('display', 'none')
         $('header').after($('<div/>', { id: 'progress' }).append($('<span/>')))
+
+        $('#study section .tasks a').on('click', function() {
+            $('#study').addClass('edit')
+            $(this).parents('section').next('textarea').get(0).focus()
+            return false
+        })
 
         $('#study + p').append($('<button/>', {
                 text: 'Reveal',
@@ -79,6 +85,8 @@ $(document).ready(function() {
         })).after($('<p/>').append($('<button/>', {
             text: 'Update',
             type: 'button'
+        }).on('click', function() {
+            $('#study').removeClass('edit')
         })))
 
         showCard(currentIndex)
@@ -102,8 +110,8 @@ $(document).ready(function() {
         }))
     }
 
-    // Edit section.back & section.notes
-    if ($('section.back + textarea, section.notes + textarea').length != 0) {
+    // Editing vocabularies
+    if ($('#study').length == 0 && $('section.back + textarea, section.notes + textarea').length != 0) {
         $('section.back + textarea, section.notes + textarea').css('display', 'none')
         var cancel = true
 

@@ -13,12 +13,12 @@ class Set extends Model {
         $getid = function($x) { return $x->set_id; };
         $sets = array_unique(array_merge(array_map($getid, $learnedsets), array_map($getid, $sets)));
 
-        if (count($sets) == 0 || !in_array($this->id, $sets))
+        if ($max - count($learnedsets) == 0 || count($sets) == 0 || !in_array($this->id, $sets))
             return Vocabulary::where_id_is(-1);
 
-        $limit = ceil($max / count($sets));
+        $limit = max(round($max / count($sets)), 1);
         $learned = array_filter($learnedsets, function($x) { return $x->set_id == $this->id; });
-        return Set::get_vocabularies()->filter('inactive')->limit($limit - count($learned));
+        return Set::get_vocabularies()->filter('inactive')->limit(max($limit - count($learned), 0));
     }
 
     public function get_due_vocabularies() {
