@@ -121,11 +121,17 @@ $(document).ready(function() {
             text: 'Add Items',
             type: 'button'
         }).on('click', function() {
+            var input = null
+
             for (var i = 0; i < 5; i++) {
                 var $clone = $template.clone()
                 $template.before($clone.css('display', 'block'))
                 autosize($clone.find('textarea'))
+
+                if (i == 0) input = $clone.find('input').get(0)
             }
+
+            input.focus()
 
             return false
         }))
