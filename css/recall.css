@@ -141,13 +141,16 @@ label input[type="text"], label textarea {
         margin-bottom: .5em;
     }
     .sets li span, .tasks li span {
+        display: inline-block;
         padding: 0 5px;
         margin-left: 5px;
+        min-width: 1em;
         background: #334D5C;
         border-radius: 1.5em;
         color: white;
         font-size: .8em;
         font-weight: bold;
+        text-align: center;
 }
 
 .tasks button {
