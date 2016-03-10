@@ -60,8 +60,6 @@ function serve_study_page($args, $mode) {
         $vocabularies = $set->get_due_vocabularies()->find_many();
     }
 
-    shuffle($vocabularies);
-
     return response(phtml('view/study', [
         'backlink' => $set->get_permalink(),
         'backtext' => htmlentities($set->name),

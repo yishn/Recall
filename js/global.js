@@ -10,8 +10,8 @@ $(document).ready(function() {
 
     // Prepare studying
     if ($('#study').length != 0) {
-        var currentIndex = 0
         var correctOnce = Object.keys(new Int8Array($('#study > li').length)).map(function() { return false })
+        var currentIndex = Math.floor(Math.random() * correctOnce.length)
 
         var showCard = function(index) {
             $('#study').removeClass('reveal').removeClass('revealnotes')
@@ -29,7 +29,10 @@ $(document).ready(function() {
                 return
             }
 
-            var i = (currentIndex + 1) % correctOnce.length
+            var i = currentIndex
+            while (i == currentIndex || correctOnce[i]) {
+                i = Math.floor(Math.random() * correctOnce.length)
+            }
 
             while (correctOnce[i]) {
                 if (i + 1 == correctOnce.length) i = -1
@@ -73,9 +76,12 @@ $(document).ready(function() {
                 correctOnce[currentIndex] = true
                 nextCard()
                 return false
-        }))
+        })).after($('<p/>').append($('<button/>', {
+            text: 'Update',
+            type: 'button'
+        })))
 
-        showCard(0)
+        showCard(currentIndex)
     }
 
     // Infinite adding
@@ -96,14 +102,10 @@ $(document).ready(function() {
         }))
     }
 
-    // Add edit links to vocabulary page
-    if ($('section.back + textarea[name="back"], section.notes + textarea[name="notes"]').length != 0) {
-        $('section.back').parents('form').find('button').css('display', 'none')
-        $('section.back').parents('form').find('button[type="reset"]').on('click', function() {
-            $(this).parents('form').find('section.back, section.notes').css('display', 'block')
-                .next('textarea').css('display', 'none')
-            $(this).parents('form').find('button').css('display', 'none')
-        })
+    // Edit section.back & section.notes
+    if ($('section.back + textarea, section.notes + textarea').length != 0) {
+        $('section.back + textarea, section.notes + textarea').css('display', 'none')
+        var cancel = true
 
         $('section.back, section.notes').each(function() {
             if ($(this).find('.tasks').length != 0) return
@@ -121,8 +123,17 @@ $(document).ready(function() {
 
                 return false
             })))
+
+            cancel = false
         })
 
-        $('section.back + textarea[name="back"], section.notes + textarea[name="notes"]').css('display', 'none')
+        if (!cancel) {
+            $('section.back').parents('form').find('button').css('display', 'none')
+            $('section.back').parents('form').find('button[type="reset"]').on('click', function() {
+                $(this).parents('form').find('section.back, section.notes').css('display', 'block')
+                    .next('textarea').css('display', 'none')
+                $(this).parents('form').find('button').css('display', 'none')
+            })
+        }
     }
 })

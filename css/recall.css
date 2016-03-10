@@ -242,7 +242,9 @@ label input[type="text"], label textarea {
         text-align: center;
         text-transform: none;
     }
-    #study + p { text-align: center; }
+    #study + p, #study + p + p { text-align: center; }
+    #study + p + p, #study.edit + p { display: none; }
+    #study.edit + p + p { display: block; }
     #study + p button { margin: 2px 2px; }
     #study .back, #study .notes,
     #study + p .showagain, #study + p .nextcard,
