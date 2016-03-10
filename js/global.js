@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var basepath = $('header h1 a').attr('href')
+
     // Autoresize textareas
     autosize($('textarea'))
 
@@ -86,7 +88,26 @@ $(document).ready(function() {
             text: 'Update',
             type: 'button'
         }).on('click', function() {
-            $('#study').removeClass('edit')
+            var $li = $('#study > li').eq(currentIndex)
+            var $button = $(this)
+            var id = $li.find('section.back + textarea').attr('name').replace('back-', '')
+
+            $button.attr('disabled', '')
+
+            $.post(basepath + 'edit/' + id, {
+                back: $li.find('section.back + textarea').val(),
+                notes: $li.find('section.notes + textarea').val(),
+            }, function(data) {
+                var $result = $(data)
+
+                $li.find('section.back .inner').html($result.find('section.back .inner').html())
+                $li.find('section.notes .inner').html($result.find('section.notes .inner').html())
+
+                $button.attr('disabled', false)
+                $('#study').removeClass('edit')
+            })
+
+            return false
         })))
 
         showCard(currentIndex)

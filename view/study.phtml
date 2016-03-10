@@ -23,7 +23,10 @@
 
             <section class="back">
                 <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
-                <?php echo $vocab->get_back(); ?>
+
+                <div class="inner">
+                    <?php echo $vocab->get_back(); ?>
+                </div>
             </section>
 
             <textarea name="back-<?php echo $vocab->id; ?>" placeholder="Back"><?php
@@ -32,7 +35,10 @@
 
             <section class="notes">
                 <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
-                <?php echo $vocab->get_notes(); ?>
+
+                <div class="inner">
+                    <?php echo $vocab->get_notes(); ?>
+                </div>
             </section>
 
             <textarea name="notes-<?php echo $vocab->id; ?>" placeholder="Notes"><?php

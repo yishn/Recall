@@ -13,13 +13,17 @@
     </h2>
 
     <section class="back">
-        <?php echo $vocab->get_back(); ?>
+        <div class="inner">
+            <?php echo $vocab->get_back(); ?>
+        </div>
     </section>
 
     <textarea name="back" placeholder="Back"><?php echo htmlentities($vocab->back); ?></textarea>
 
     <section class="notes">
-        <?php echo $vocab->get_notes(); ?>
+        <div class="inner">
+            <?php echo $vocab->get_notes(); ?>
+        </div>
     </section>
 
     <textarea name="notes" placeholder="Notes"><?php echo htmlentities($vocab->notes); ?></textarea>
