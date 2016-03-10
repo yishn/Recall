@@ -177,8 +177,8 @@ label input[type="text"], label textarea {
     }
     .levels li:nth-child(n+2), .levels li:nth-child(n+2) span { color: white; }
     .levels li:nth-child(1) { border-radius: 5px 0 0 0; }
-    .levels li:nth-child(2), .vocabularies li.apprentice a { background: #F7803C; }
-    .levels li:nth-child(3), .vocabularies li.guru a { background: #F54828; }
+    .levels li:nth-child(2), .vocabularies li.apprentice a { background: #F54828; }
+    .levels li:nth-child(3), .vocabularies li.guru a { background: #F7803C; }
     .levels li:nth-child(4), .vocabularies li.master a { background: #45B29D; }
     .levels li:nth-child(5), .vocabularies li.enlightened a { background: #334D5C; }
 .levels li:nth-child(6), .vocabularies li.burned a { background: #222; }
@@ -214,6 +214,20 @@ label input[type="text"], label textarea {
     text-align: right;
 }
 
+.nav {
+        list-style: none;
+        overflow: hidden;
+    }
+    .nav .prev a, .nav .next a {
+        text-decoration: none;
+    }
+    .nav .prev {
+        float: left;
+    }
+    .nav .next {
+        float: right;
+}
+
 #progress {
         position: relative;
         height: 5px;
@@ -229,6 +243,10 @@ label input[type="text"], label textarea {
         width: 0;
         height: 5px;
         transition: width .5s;
+}
+
+#vocab {
+    position: relative;
 }
 
 #study {
@@ -280,7 +298,7 @@ label input[type="text"], label textarea {
         float: right;
 }
 
-h2.vocabulary {
+#vocab h2 {
     margin-bottom: 2.5em;
     font-family: inherit;
     font-size: 2.5em;
@@ -322,8 +340,8 @@ section.back + textarea, section.notes + textarea {
         width: 16.66%;
     }
 
-    h2.vocabulary, #study > li > h3 {
+    #vocab h2, #study > li > h3 {
         margin: .5em 0 1em;
-        font-size: 4em;
+        font-size: 3.5em;
     }
 }

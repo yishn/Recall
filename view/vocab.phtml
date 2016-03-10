@@ -1,17 +1,38 @@
 <?php include 'header.phtml'; ?>
 
-<form action="<?php echo $vocab->get_delete_link(); ?>" method="post">
-    <ul class="tasks meta">
-        <li>Level <?php echo $vocab->get_human_level(); ?></li>
-        <li><button type="submit" class="delete">Delete</button></li>
-    </ul>
-</form>
+<section id="vocab">
+    <form action="<?php echo $vocab->get_delete_link(); ?>" method="post">
+        <ul class="tasks meta">
+            <li>Level <?php echo $vocab->get_human_level(); ?></li>
+            <li><button type="submit" class="delete">Delete</button></li>
+        </ul>
+    </form>
 
-<form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
-    <h2 class="vocabulary">
+    <h2>
         <?php echo htmlentities($vocab->front); ?>
     </h2>
 
+    <?php if ($nextvocab || $prevvocab): ?>
+    <ol class="nav">
+        <?php if ($prevvocab): ?>
+        <li class="prev">
+            <a href="<?php echo $prevvocab->get_permalink(); ?>">
+                &larr; <?php echo htmlentities($prevvocab->front); ?>
+            </a>
+        </li>
+        <?php endif; ?>
+        <?php if ($nextvocab): ?>
+        <li class="next">
+            <a href="<?php echo $nextvocab->get_permalink(); ?>">
+                <?php echo htmlentities($nextvocab->front); ?> &rarr;
+            </a>
+        </li>
+        <?php endif; ?>
+    </ol>
+        <?php endif; ?>
+</section>
+
+<form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
     <section class="back">
         <div class="inner">
             <?php echo $vocab->get_back(); ?>

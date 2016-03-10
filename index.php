@@ -44,6 +44,8 @@ function serve_vocab_page($args) {
         'backtext' => htmlentities($vocab->get_set()->find_one()->name),
         'title' => htmlentities($vocab->front),
         'vocab' => $vocab,
+        'nextvocab' => $vocab->get_next_vocab()->find_one(),
+        'prevvocab' => $vocab->get_previous_vocab()->find_one(),
         'set' => $vocab->get_set()->find_one()
     ]));
 }

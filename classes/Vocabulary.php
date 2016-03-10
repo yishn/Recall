@@ -42,6 +42,22 @@ class Vocabulary extends Model {
         return $pd->text($this->notes);
     }
 
+    public function get_next_vocab() {
+        return Model::factory('vocabulary')
+            ->where('set_id', $this->set_id)
+            ->where_gt('id', $this->id)
+            ->order_by_asc('id')
+            ->limit(1);
+    }
+
+    public function get_previous_vocab() {
+        return Model::factory('vocabulary')
+            ->where('set_id', $this->set_id)
+            ->where_lt('id', $this->id)
+            ->order_by_desc('id')
+            ->limit(1);
+    }
+
     /**
      * Links
      */
