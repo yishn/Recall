@@ -50,7 +50,11 @@ $(document).ready(function() {
 
         $('#study section .tasks a').on('click', function() {
             $('#study').addClass('edit')
-            $(this).parents('section').next('textarea').get(0).focus()
+
+            var $textarea = $(this).parents('section').next('textarea')
+            autosize.update($textarea)
+            $textarea.get(0).focus()
+
             return false
         })
 
