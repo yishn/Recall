@@ -52,6 +52,9 @@
 <h3>Sets</h3>
 
 <ul class="sets">
+    <li>
+        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
+    </li>
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
             <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
@@ -68,9 +71,6 @@
             <?php endif; ?>
         </li>
     <?php endforeach; ?>
-    <li>
-        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
-    </li>
 </ul>
 
 <?php include 'footer.phtml'; ?>

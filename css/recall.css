@@ -137,6 +137,9 @@ label input[type="text"], label textarea {
 .sets, .tasks {
         list-style: none;
     }
+    .sets li:first-child {
+        margin-bottom: .5em;
+    }
     .sets li span, .tasks li span {
         padding: 0 5px;
         margin-left: 5px;
