@@ -123,6 +123,20 @@ label input[type="text"], label textarea {
     margin-top: 5px;
 }
 
+button {
+        position: relative;
+        border: none;
+        padding: .1em .5em;
+        background: #45B29D;
+        color: white;
+    }
+    button:hover {
+        background: #23907B;
+    }
+    button:active {
+        top: 1px;
+}
+
 /**
  * Components
  */
@@ -180,8 +194,9 @@ label input[type="text"], label textarea {
 
 .tasks button {
         display: inline;
+        position: static;
         border: none;
-        padding: 0 !important;
+        padding: 0;
         background: none;
         cursor: pointer;
         text-decoration: underline;
