@@ -49,6 +49,8 @@ a:hover, a:focus,
 
 * { margin: 0; padding: 0; }
 
+html, body { height: 100%; }
+
 header {
         display: block;
         background: #F7803C;
@@ -70,9 +72,32 @@ header {
         color: white;
 }
 
+#wrapper {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 5em;
+}
+
 main {
     display: block;
     padding: 1px 20px;
+}
+
+footer {
+        box-sizing: border-box;
+        display: block;
+        height: 3.5em;
+        padding: 1em 2em;
+        margin-top: -3.5em;
+        background: #334D5C;
+        color: white;
+        text-align: right;
+    }
+    footer p {
+        margin: 0;
+    }
+    footer a, footer a:hover, footer a:focus {
+        color: white;
 }
 
 /**
@@ -337,6 +362,10 @@ section.back + textarea, section.notes + textarea {
         font-size: 120%;
     }
 
+    footer {
+        font-size: .8em;
+    }
+
     .stats li, .levels li {
         border-top: none !important;
         border-left: 2px solid white !important;
@@ -345,6 +374,11 @@ section.back + textarea, section.notes + textarea {
 
     .levels li {
         width: 16.66%;
+    }
+
+    .tasks li {
+        display: inline;
+        margin-right: 10px;
     }
 
     #vocab h2, #study > li > h3 {
