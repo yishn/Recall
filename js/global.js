@@ -131,6 +131,27 @@ $(document).ready(function() {
         }))
     }
 
+    // Infinite set pagination
+    if ($('.vocabularies li.more').length != 0) {
+        var wireLink = function($link) {
+            if ($link.length == 0) return
+
+            $link.on('click', function() {
+                if ($link.hasClass('disabled')) return false
+                $link.addClass('disabled')
+
+                $.get($link.attr('href'), function(data) {
+                    $link.parent().replaceWith($(data).find('.vocabularies').html())
+                })
+
+                wireLink($('.vocabularies li.more a'))
+                return false
+            })
+        }
+
+        wireLink($('.vocabularies li.more a'))
+    }
+
     // Editing vocabularies
     if ($('#study').length == 0 && $('section.back + textarea, section.notes + textarea').length != 0) {
         $('section.back + textarea, section.notes + textarea').css('display', 'none')

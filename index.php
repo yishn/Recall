@@ -18,16 +18,20 @@ function serve_set_page($args) {
     if (!$set) return redirect(BASE_PATH . 'error');
     if (!$args['page']) $args['page'] = 1;
 
+    $vocabularies = $set->get_vocabularies()
+        ->order_by_asc('id')
+        ->limit($count + 1)
+        ->offset(($args['page'] - 1) * $count)
+        ->find_many();
+
     return response(phtml('view/set', [
         'backlink' => BASE_PATH,
         'backtext' => 'Dashboard',
         'title' => 'Set: ' . htmlentities($set->name),
         'set' => $set,
-        'vocabularies' => $set->get_vocabularies()
-            ->order_by_asc('id')
-            ->limit($count)
-            ->offset(($args['page'] - 1) * $count)
-            ->find_many(),
+        'has_nextpage' => count($vocabularies) == $count + 1,
+        'nextpage_link' => $set->get_permalink() . '/' . ($args['page'] + 1),
+        'vocabularies' => array_slice($vocabularies, 0, $count),
         'new_vocabs' => $set->get_new_vocabularies()->find_many(),
         'due_vocabs' => $set->get_due_vocabularies()->find_many(),
         'critical_vocabs' => $set->get_critical_vocabularies()->find_many()

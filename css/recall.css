@@ -193,7 +193,7 @@ label input[type="text"], label textarea {
     }
     .vocabularies li a {
         box-sizing: border-box;
-        padding: 1px 5px;
+        padding: 1px .5em;
         min-width: 1.5em;
         margin-bottom: .5em;
         background-color: #eee;
@@ -205,8 +205,15 @@ label input[type="text"], label textarea {
     .vocabularies li.enlightened a, .vocabularies li.apprentice a,
     .vocabularies li.master a, .vocabularies li.burned a
     .vocabularies li.guru a { color: white; }
-    .vocabularies li a:hover, .vocabularies li a:focus {
-        opacity: 1;
+    .vocabularies li a:hover, .vocabularies li a:focus { opacity: 1; }
+    .vocabularies li.more a {
+        background: #222222;
+        color: white;
+        font-weight: bold;
+    }
+    .vocabularies li.more a.disabled {
+        opacity: .4;
+        cursor: default;
 }
 
 .meta {

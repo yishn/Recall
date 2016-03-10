@@ -48,6 +48,11 @@
             <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
+    <?php if ($has_nextpage): ?>
+        <li class="more">
+            <a href="<?php echo $nextpage_link; ?>" title="Load More">&hellip;</a>
+        </li>
+    <?php endif; ?>
 </ol>
 
 <?php endif; ?>
