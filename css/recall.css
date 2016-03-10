@@ -228,7 +228,7 @@ label input[type="text"], label textarea {
 #study {
         list-style: none;
     }
-    #study h3 {
+    #study > li > h3 {
         margin: 1.5em 0;
         font-size: 2.5em;
         font-weight: bold;
@@ -310,7 +310,7 @@ section.back + textarea, section.notes + textarea {
         width: 16.66%;
     }
 
-    h2.vocabulary {
+    h2.vocabulary, #study > li > h3 {
         margin: .5em 0 1em;
         font-size: 4em;
     }
