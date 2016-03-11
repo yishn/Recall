@@ -36,11 +36,6 @@ $(document).ready(function() {
                 i = Math.floor(Math.random() * correctOnce.length)
             }
 
-            while (correctOnce[i]) {
-                if (i + 1 == correctOnce.length) i = -1
-                i++
-            }
-
             showCard(i)
         }
 
@@ -53,7 +48,7 @@ $(document).ready(function() {
 
             var $textarea = $(this).parents('section').next('textarea')
             autosize.update($textarea)
-            $textarea.get(0).focus()
+            $textarea.focus()
 
             return false
         })
@@ -66,14 +61,7 @@ $(document).ready(function() {
                 $('#study').addClass('reveal')
                 return false
         })).append($('<button/>', {
-                text: 'Show Notes',
-                class: 'shownotes',
-                type: 'button'
-            }).on('click', function() {
-                $('#study').addClass('revealnotes')
-                return false
-        })).append($('<button/>', {
-                text: 'Show Again',
+                html: '&larr; Show Again',
                 class: 'showagain',
                 type: 'button'
             }).on('click', function() {
@@ -81,7 +69,14 @@ $(document).ready(function() {
                 nextCard()
                 return false
         })).append($('<button/>', {
-                text: 'Next Card',
+                text: 'Show Notes',
+                class: 'shownotes',
+                type: 'button'
+            }).on('click', function() {
+                $('#study').addClass('revealnotes')
+                return false
+        })).append($('<button/>', {
+                html: 'Next Card &rarr;',
                 class: 'nextcard',
                 type: 'button'
             }).on('click', function() {
@@ -113,6 +108,39 @@ $(document).ready(function() {
 
             return false
         })))
+
+        // Keyboard shortcuts
+
+        $(document).on('keypress', function(e) {
+            if (e.keyCode == 13 || e.charCode == 32) {
+                // Enter or spacebar
+
+                var $el = null
+                $('button').blur()
+
+                if (!$('#study').hasClass('reveal')) {
+                    $('button.reveal').click()
+                    $el = $('#study > li section.back').eq(currentIndex)
+                } else {
+                    $('button.shownotes').click()
+                    $el = $('#study > li section.notes').eq(currentIndex)
+                }
+
+                $('html').animate({ scrollTop: $el.offset().top })
+            } else if (e.keyCode == 37) {
+                // Left arrow
+
+                $('button.showagain').click()
+            } else if (e.keyCode == 39) {
+                // Right arrow
+
+                $('button.nextcard').click()
+            } else {
+                return true
+            }
+
+            return false
+        })
 
         showCard(currentIndex)
     }
@@ -177,7 +205,7 @@ $(document).ready(function() {
             }).on('click', function() {
                 $('section.back, section.notes').css('display', 'none')
                 $('section.back + textarea, section.notes + textarea')
-                    .css('display', 'block').get(0).focus()
+                    .css('display', 'block').eq(0).focus()
                 $(this).parents('form').find('button')
                     .css('display', 'inline-block')
 
