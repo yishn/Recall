@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
 
 h2 {
     font-size: 1.5em;
-    font-family: Bitter, serif;
+    font-family: Bitter, 'Microsoft YaHei', SimHei, serif;
 }
 
 h3 {
