@@ -50,6 +50,10 @@ a, .tasks button { color: #F54828; }
 a:hover, a:focus,
 .tasks button:hover, .tasks button:focus { color: #334D5C; }
 
+img {
+    max-width: 100%;
+}
+
 /**
  * Layout
  */
