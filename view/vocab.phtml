@@ -6,7 +6,7 @@
             <?php if ($vocab->is_active()): ?>
             <li>Active since <?php echo $vocab->get_init_date()->format('d F Y'); ?></li>
             <li>Level <?php echo $vocab->get_human_level(); ?></li>
-            <?php else if ($vocab->is_burned()): ?>
+            <?php elseif ($vocab->is_burned()): ?>
             <li>Burned</li>
             <li><a href="<?php echo $vocab->get_resurrect_link(); ?>">Resurrect</a></li>
             <?php else: ?>
