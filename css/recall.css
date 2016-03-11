@@ -413,3 +413,7 @@ section.back + textarea, section.notes + textarea {
         font-size: 3.5em;
     }
 }
+
+@-ms-viewport{
+    width: device-width;
+}
