@@ -91,6 +91,20 @@ function serve_add_vocab($args) {
     ]));
 }
 
+function serve_edit_set($args) {
+    $set = Set::find_one($args['id']);
+
+    if (!$set) redirect(BASE_PATH . 'error');
+
+    return response(phtml('view/edit-set', [
+        'backlink' => $set->get_permalink(),
+        'backtext' => htmlentities($set->name),
+        'title' => 'Rename Set',
+        'action' => BASE_PATH . 'edit-set/' . $set->id,
+        'set' => $set
+    ]));
+}
+
 function action_study() {
     $ids = explode(',', $_POST['ids']);
     $mode = $_POST['mode'];
@@ -211,63 +225,51 @@ function action_resurrect_vocab($args) {
     return redirect($vocab->get_permalink());
 }
 
-route('GET', '/', serve_dashboard);
-route('GET', '/set/:id', serve_set_page);
-route('GET', '/set/:id/:page', serve_set_page);
-route('GET', '/vocab/:id', serve_vocab_page);
+route('GET', '/' . trim(BASE_PATH, '/'), serve_dashboard);
+route('GET', BASE_PATH . 'set/:id', serve_set_page);
+route('GET', BASE_PATH . 'set/:id/:page', serve_set_page);
+route('GET', BASE_PATH . 'vocab/:id', serve_vocab_page);
 
 /**
  * Studying
  */
 
-route('GET', '/learn/:id', function($args) { return serve_study_page($args, 'learn'); });
-route('GET', '/review/:id', function($args) { return serve_study_page($args, 'review'); });
-route('POST', '/study', action_study);
+route('GET', BASE_PATH . 'learn/:id', function($args) { return serve_study_page($args, 'learn'); });
+route('GET', BASE_PATH . 'review/:id', function($args) { return serve_study_page($args, 'review'); });
+route('POST', BASE_PATH . 'study', action_study);
 
 /**
  * Set actions
  */
 
-route('GET', '/create', page('view/edit-set', [
+route('GET', BASE_PATH . 'create', page('view/edit-set', [
     'backlink' => BASE_PATH,
     'backtext' => 'Dashboard',
     'title' => 'Create Set',
     'action' => BASE_PATH . 'create'
 ]));
-route('POST', '/create', action_edit_set);
-route('GET', '/edit-set/:id', function($args) {
-    $set = Set::find_one($args['id']);
-
-    if (!$set) redirect(BASE_PATH . 'error');
-
-    return response(phtml('view/edit-set', [
-        'backlink' => $set->get_permalink(),
-        'backtext' => htmlentities($set->name),
-        'title' => 'Rename Set',
-        'action' => BASE_PATH . 'edit-set/' . $set->id,
-        'set' => $set
-    ]));
-});
-route('POST', '/edit-set/:id', action_edit_set);
-route('POST', '/delete-set/:id', action_delete_set);
+route('POST', BASE_PATH . 'create', action_edit_set);
+route('GET', BASE_PATH . 'edit-set/:id', serve_edit_set);
+route('POST', BASE_PATH . 'edit-set/:id', action_edit_set);
+route('POST', BASE_PATH . 'delete-set/:id', action_delete_set);
 
 /**
  * Vocabulary actions
  */
 
-route('GET', '/add-to/:id', serve_add_vocab);
-route('POST', '/add-to/:id', action_add_vocab);
-route('POST', '/delete/:id', action_delete_vocab);
-route('POST', '/resurrect/:id', action_resurrect_vocab);
-route('POST', '/edit/:id', action_edit_vocab);
+route('GET', BASE_PATH . 'add-to/:id', serve_add_vocab);
+route('POST', BASE_PATH . 'add-to/:id', action_add_vocab);
+route('POST', BASE_PATH . 'delete/:id', action_delete_vocab);
+route('POST', BASE_PATH . 'resurrect/:id', action_resurrect_vocab);
+route('POST', BASE_PATH . 'edit/:id', action_edit_vocab);
 
 /**
  * Errors
  */
 
-route('GET', '/error', page('view/error', ['title' => 'Error']));
-route('GET', '/:x', function() { return redirect(BASE_PATH . 'error'); });
-route('GET', '/:x/:y', function() { return redirect(BASE_PATH . 'error'); });
+route('GET', BASE_PATH.'error', page('view/error', ['title' => 'Error']));
+route('GET', BASE_PATH.':x', function() { return redirect(BASE_PATH . 'error'); });
+route('GET', BASE_PATH.':x/:y', function() { return redirect(BASE_PATH . 'error'); });
 
 dispatch();
 

@@ -31,17 +31,7 @@ function dispatch(...$args) {
 # creates an action and puts it into the routes stack
 function route($verb, $path, callable $func) {
   $context = &context();
-  array_push($context, action($verb, join_paths(BASE_PATH, $path), $func));
-}
-
-function join_paths() {
-  $paths = array();
-
-  foreach (func_get_args() as $arg) {
-    if ($arg !== '') { $paths[] = $arg; }
-  }
-
-  return '/'.trim(preg_replace('#/+#','/',join('/', $paths)), '/');
+  array_push($context, action($verb, $path, $func));
 }
 
 # creates a route handler
@@ -60,7 +50,7 @@ function action($verb, $path, callable $func) {
 
 # performs a lookup against actions for verb + path
 function match(array $actions, $verb, $path) {
-
+    
   $cverb = strtoupper(trim($verb));
   $cpath = '/'.trim(rawurldecode(parse_url($path, PHP_URL_PATH)), '/');
 
