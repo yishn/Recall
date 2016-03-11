@@ -198,6 +198,19 @@ function action_delete_vocab($args) {
     return redirect($set->get_permalink());
 }
 
+function action_resurrect_vocab($args) {
+    $vocab = Vocabulary::find_one($args['id']);
+
+    if (!$vocab) return redirect(BASE_PATH);
+
+    $vocab->level = 0;
+    $due = new DateTime('now');
+    $due->add(new DateTimeInterval(Setting::get('intervals')[$vocab->level]));
+    $vocab->due = $due->format('Y-m-d H:i:s');
+
+    return redirect($vocab->get_permalink());
+}
+
 route('GET', '/', serve_dashboard);
 route('GET', '/set/:id', serve_set_page);
 route('GET', '/set/:id/:page', serve_set_page);
@@ -245,6 +258,7 @@ route('POST', '/delete-set/:id', action_delete_set);
 route('GET', '/add-to/:id', serve_add_vocab);
 route('POST', '/add-to/:id', action_add_vocab);
 route('POST', '/delete/:id', action_delete_vocab);
+route('POST', '/resurrect/:id', action_resurrect_vocab);
 route('POST', '/edit/:id', action_edit_vocab);
 
 /**

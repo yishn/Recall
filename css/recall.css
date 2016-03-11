@@ -412,6 +412,10 @@ section.back + textarea, section.notes + textarea {
         margin: .5em 0 1em;
         font-size: 3.5em;
     }
+
+    #vocab .tasks li:first-child {
+        float: left;
+    }
 }
 
 @-ms-viewport{

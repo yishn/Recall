@@ -17,6 +17,10 @@ class Vocabulary extends Model {
         return new DateTime($this->due);
     }
 
+    public function get_init_date() {
+        return new DateTime($this->init_date);
+    }
+
     public function get_human_due_date() {
         return humanize_datetime($this->get_due_date());
     }
@@ -72,6 +76,10 @@ class Vocabulary extends Model {
 
      public function get_delete_link() {
          return BASE_PATH . 'delete/' . $this->id;
+     }
+
+     public function get_resurrect_link() {
+         return BASE_PATH . 'resurrect/' . $this->id;
      }
 
     /**
