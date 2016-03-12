@@ -15,7 +15,7 @@
  */
 
 body {
-    font: 100%/1.5 'Segoe UI', DengXian, sans-serif;
+    font: 100%/1.5 'Segoe UI', 'Microsoft YaHei', DengXian, sans-serif;
 }
 
 h2, h3, h4, h5, h6 {
@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
 
 h2 {
     font-size: 1.5em;
-    font-family: Bitter, DengXian, serif;
+    font-family: Bitter, 'Microsoft YaHei', DengXian, serif;
 }
 
 h3 {
@@ -46,7 +46,7 @@ ul {
 code {
     background: #eee;
     font: inherit;
-    font-family: Consolas, DengXian, monospace;
+    font-family: Consolas, 'Microsoft YaHei', DengXian, monospace;
     padding: 1px 5px;
 }
 
@@ -131,7 +131,7 @@ input, textarea, button {
 
 textarea {
     width: 100%;
-    font-family: Consolas, DengXian, monospace;
+    font-family: Consolas, 'Microsoft YaHei', DengXian, monospace;
     resize: vertical;
 }
 
