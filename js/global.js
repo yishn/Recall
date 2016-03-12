@@ -201,7 +201,7 @@ $(document).ready(function() {
                 $.get($link.attr('href'), function(data) {
                     $link
                         .parent().removeClass('more').addClass('separator').text($('.separator').length + 1)
-                        .after($(data).find('.vocabularies').html())
+                        .after($(data).find('.vocabularies').eq(-1).html())
 
                     wireLink($('.vocabularies li.more a'))
                 })
