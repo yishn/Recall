@@ -182,9 +182,9 @@ $(document).ready(function() {
 
                 $.get($link.attr('href'), function(data) {
                     $link.parent().replaceWith($(data).find('.vocabularies').html())
+                    wireLink($('.vocabularies li.more a'))
                 })
 
-                wireLink($('.vocabularies li.more a'))
                 return false
             })
         }
