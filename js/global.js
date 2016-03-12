@@ -181,7 +181,10 @@ $(document).ready(function() {
                 $link.addClass('disabled')
 
                 $.get($link.attr('href'), function(data) {
-                    $link.parent().replaceWith($(data).find('.vocabularies').html())
+                    $link
+                        .parent().removeClass('more').addClass('separator').text($('.separator').length + 1)
+                        .after($(data).find('.vocabularies').html())
+
                     wireLink($('.vocabularies li.more a'))
                 })
 

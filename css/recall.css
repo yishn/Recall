@@ -260,6 +260,11 @@ button {
     .vocabularies li.master a, .vocabularies li.burned a
     .vocabularies li.guru a { color: white; }
     .vocabularies li a:hover, .vocabularies li a:focus { opacity: 1; }
+    .vocabularies li.separator {
+        background: #222222;
+        color: white;
+        width: 1.5em;
+    }
     .vocabularies li.more a {
         background: #222222;
         color: white;
