@@ -41,6 +41,6 @@ function humanize_datetime($then) {
         $numbers[0]++;
     }
 
-    $output = '~' . $numbers[0] . ' ' . pluralize($numbers[0], $classifiers[0]);
+    $output = $numbers[0] . ' ' . pluralize($numbers[0], $classifiers[0]);
     return $output;
 }

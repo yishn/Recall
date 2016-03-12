@@ -50,6 +50,10 @@ code {
     padding: 1px 5px;
 }
 
+time {
+    cursor: help;
+}
+
 a, .tasks button { color: #F54828; }
 a:hover, a:focus,
 .tasks button:hover, .tasks button:focus { color: #334D5C; }
@@ -189,9 +193,6 @@ button {
         color: black;
         text-transform: lowercase;
         letter-spacing: normal;
-    }
-    .stats li time {
-        cursor: help;
 }
 
 .sets, .tasks {

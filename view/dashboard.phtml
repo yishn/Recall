@@ -14,7 +14,7 @@
             <time
                 datetime="<?php echo $next_review_vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
                 title="<?php echo $next_review_vocab->get_due_date()->format('r'); ?>"
-            ><?php echo $next_review_vocab->get_human_due_date(); ?></time>
+            >~<?php echo $next_review_vocab->get_human_due_date(); ?></time>
         <?php endif; ?>
     </li>
     <li>

@@ -37,7 +37,7 @@
         </li>
         <?php endif; ?>
     </ol>
-        <?php endif; ?>
+    <?php endif; ?>
 </section>
 
 <form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
@@ -62,5 +62,24 @@
         <button type="reset">Cancel</button>
     </p>
 </form>
+
+<?php if ($vocab->is_active()): ?>
+
+<h3>Progress</h3>
+
+<ol class="progress">
+    <li class="correct" title="Answer Correct">Answer Correct: <span><?php echo $progress['correct']; ?></span></li>
+    <li title="Answer Incorrect">Answer Incorrect: <span><?php echo $progress['incorrect']; ?></span></li>
+</ol>
+
+<p>
+    Next review in
+    <time
+        datetime="<?php echo $vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
+        title="<?php echo $vocab->get_due_date()->format('r'); ?>"
+    ><?php echo humanize_datetime($vocab->get_due_date()); ?></time>.
+</p>
+
+<?php endif; ?>
 
 <?php include 'footer.phtml'; ?>

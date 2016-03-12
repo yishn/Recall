@@ -49,6 +49,7 @@ function serve_vocab_page($args) {
         'backtext' => htmlentities($vocab->get_set()->find_one()->name),
         'title' => htmlentities($vocab->front),
         'vocab' => $vocab,
+        'progress' => $vocab->get_progress(),
         'nextvocab' => $vocab->get_next_vocab()->find_one(),
         'prevvocab' => $vocab->get_previous_vocab()->find_one(),
         'set' => $vocab->get_set()->find_one()
@@ -133,14 +134,20 @@ function action_study() {
 
         if (!$correct) {
             $vocab->level = max(0, $vocab->level - 2) - 1;
-            if ($mode == 'review') $vocab->fail++;
             array_push($incorrectlist, $vocab);
         } else {
-            $vocab->fail--;
             array_push($correctlist, $vocab);
         }
 
         $vocab->level++;
+
+        if ($vocab->is_active()) {
+            $correctcount = $vocab->get_progress()['correct'];
+            $vocab->total++;
+            if ($correct) $correctcount++;
+
+            $vocab->correct = $correctcount / $vocab->total;
+        }
 
         $intervals = Setting::get('intervals');
         $interval = $intervals[min($vocab->level, count($intervals) - 1)];

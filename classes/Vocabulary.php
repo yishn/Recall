@@ -46,6 +46,15 @@ class Vocabulary extends Model {
         return $pd->text($this->notes);
     }
 
+    public function get_progress() {
+        $correctcount = round($this->correct * $this->total);
+
+        return [
+            'correct' => $correctcount,
+            'incorrect' => $this->total - $correctcount
+        ];
+    }
+
     public function get_next_vocab() {
         return Model::factory('vocabulary')
             ->where('set_id', $this->set_id)
@@ -95,7 +104,10 @@ class Vocabulary extends Model {
     }
 
     public static function critical($orm) {
-        return $orm->filter('level', 0, 3)->where_gt('fail', 0)->order_by_desc('fail');
+        return $orm->filter('level', 0, 3)
+            ->where_gt('total', 0)
+            ->where_lt('correct', 0.75)
+            ->order_by_asc('correct');
     }
 
     public static function burned($orm) {
