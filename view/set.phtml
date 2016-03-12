@@ -47,7 +47,7 @@
 
 <ol class="vocabularies">
     <?php foreach ($critical_vocabs as $vocab): ?>
-        <li>
+        <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
             <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
