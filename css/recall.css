@@ -280,7 +280,7 @@ button {
         text-decoration: none;
     }
     .vocabularies li.enlightened a, .vocabularies li.apprentice a,
-    .vocabularies li.master a, .vocabularies li.burned a
+    .vocabularies li.master a, .vocabularies li.burned a,
     .vocabularies li.guru a { color: white; }
     .vocabularies li a:hover, .vocabularies li a:focus { opacity: 1; }
     .vocabularies li.separator {

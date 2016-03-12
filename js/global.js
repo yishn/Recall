@@ -14,6 +14,7 @@ $(document).ready(function() {
     if ($('#study').length != 0) {
         var correctOnce = Object.keys(new Int8Array($('#study > li').length)).map(function() { return false })
         var currentIndex = Math.floor(Math.random() * correctOnce.length)
+        var identity = function(x) { return x }
 
         var showCard = function(index) {
             $('#study').removeClass('reveal').removeClass('revealnotes')
@@ -21,18 +22,20 @@ $(document).ready(function() {
 
             currentIndex = index
 
-            var percent = Math.round(correctOnce.filter(function(x) { return x }).length * 100 / correctOnce.length)
+            var percent = Math.round(correctOnce.filter(identity).length * 100 / correctOnce.length)
             $('#progress span').css('width', percent + '%')
         }
 
         var nextCard = function() {
-            if (correctOnce.every(function(x) { return x })) {
+            var doneCount = correctOnce.filter(identity).length
+
+            if (doneCount == correctOnce.length) {
                 $('form').get(0).submit()
                 return
             }
 
             var i
-            while (i == null || correctOnce[i]) {
+            while (i == null || correctOnce[i] || doneCount >= 2 && i == currentIndex) {
                 i = Math.floor(Math.random() * correctOnce.length)
             }
 
