@@ -6,19 +6,9 @@ class Set extends Model {
     }
 
     public function get_new_vocabularies() {
-        $max = Setting::get('new_vocabs_per_day');
-        $learnedsets = Vocabulary::filter('learned_today')->select('set_id')->find_many();
-        $sets = Vocabulary::filter('inactive')->select('set_id')->limit($max)->distinct()->find_many();
-
-        $getid = function($x) { return $x->set_id; };
-        $sets = array_unique(array_merge(array_map($getid, $learnedsets), array_map($getid, $sets)));
-
-        if ($max - count($learnedsets) == 0 || count($sets) == 0 || !in_array($this->id, $sets))
-            return Vocabulary::where_id_is(-1);
-
-        $limit = max(round($max / count($sets)), 1);
-        $learned = array_filter($learnedsets, function($x) { return $x->set_id == $this->id; });
-        return Set::get_vocabularies()->filter('inactive')->limit(max($limit - count($learned), 0));
+        $limit = $this->new_per_day;
+        $learned = Set::get_vocabularies()->filter('learned_today')->count();
+        return Set::get_vocabularies()->filter('inactive')->limit(max($limit - $learned, 0));
     }
 
     public function get_due_vocabularies() {

@@ -108,7 +108,7 @@ function serve_edit_set($args) {
     return response(phtml('view/edit-set', [
         'backlink' => $set->get_permalink(),
         'backtext' => htmlentities($set->name),
-        'title' => 'Rename Set',
+        'title' => 'Edit Set',
         'action' => BASE_PATH . 'edit-set/' . $set->id,
         'set' => $set
     ]));
@@ -169,6 +169,7 @@ function action_edit_set($args = ['id' => -1]) {
     if ($name == '') return redirect(BASE_PATH . 'create');
 
     $set->name = $name;
+    $set->new_per_day = intval($_POST['new_per_day']);
     $set->save();
 
     return redirect($set->get_permalink());

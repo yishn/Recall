@@ -10,6 +10,17 @@
         </label>
     </p>
     <p>
+        <label>
+            New Items Per Day:
+            <input
+                type="number"
+                name="new_per_day"
+                min="0"
+                value="<?php if ($set): echo $set->new_per_day; else: ?>10<?php endif; ?>"
+            />
+        </label>
+    </p>
+    <p>
         <button type="submit">Update</button>
     </p>
 </form>

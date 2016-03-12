@@ -129,7 +129,7 @@ textarea {
 
 input[type="text"] { width: 66%; }
 
-label input[type="text"], label textarea {
+label input, label textarea {
     display: block;
     margin-top: 5px;
 }

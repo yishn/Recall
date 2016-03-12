@@ -48,5 +48,6 @@ ORM::get_db()->exec("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "vocabulary` (
 CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "set` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
+  `new_per_day` int(11) NOT NULL DEFAULT '10',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
