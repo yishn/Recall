@@ -39,6 +39,10 @@ h3 {
     text-transform: uppercase;
 }
 
+ul {
+    list-style: square;
+}
+
 code {
     background: #eee;
     font: inherit;
