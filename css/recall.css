@@ -183,12 +183,15 @@ button {
     .stats li:nth-child(n+3) {
         border-top: 4px solid white;
     }
-    .stats li span {
+    .stats li span, .stats li time {
         display: block;
         font-size: 2.3em;
         color: black;
         text-transform: lowercase;
         letter-spacing: normal;
+    }
+    .stats li time {
+        cursor: help;
 }
 
 .sets, .tasks {

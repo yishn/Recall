@@ -11,9 +11,10 @@
         <?php if (!$next_review_vocab): ?>
             <span>None</span>
         <?php else: ?>
-            <span title="<?php echo $next_review_vocab->get_due_date()->format('Y-m-d H:i:s'); ?>">
-            <?php echo $next_review_vocab->get_human_due_date(); ?>
-            </span>
+            <time
+                datetime="<?php echo $next_review_vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
+                title="<?php echo $next_review_vocab->get_due_date()->format('r'); ?>"
+            ><?php echo $next_review_vocab->get_human_due_date(); ?></time>
         <?php endif; ?>
     </li>
     <li>
