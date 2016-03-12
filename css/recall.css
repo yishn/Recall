@@ -250,13 +250,12 @@ button {
         list-style: none;
     }
     .progress.render {
-        background: #eee;
+        background: linear-gradient(#ddd, #ddd 1px, #eee 2px);
     }
     .progress.render .active,
     .progress.render .correct { background: #45B29D; }
     .progress.render li {
         width: 0;
-        background: #eee;
         float: left;
         text-indent: -9999em;
 }
