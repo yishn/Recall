@@ -235,7 +235,23 @@ button {
     .levels li:nth-child(3), .vocabularies li.guru a { background: #F7803C; }
     .levels li:nth-child(4), .vocabularies li.master a { background: #45B29D; }
     .levels li:nth-child(5), .vocabularies li.enlightened a { background: #334D5C; }
-.levels li:nth-child(6), .vocabularies li.burned a { background: #222; }
+.levels li:nth-child(6), .vocabularies li.burned a, .progress .burned { background: #222222; }
+
+.progress {
+        overflow: hidden;
+        list-style: none;
+    }
+    .progress.render {
+        background: #eee;
+    }
+    .progress.render .active,
+    .progress.render .correct { background: #45B29D; }
+    .progress.render li {
+        width: 0;
+        background: #eee;
+        float: left;
+        text-indent: -9999em;
+}
 
 .vocabularies {
         list-style: none;

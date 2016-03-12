@@ -29,6 +29,7 @@ function serve_set_page($args) {
         'backtext' => 'Dashboard',
         'title' => 'Set: ' . htmlentities($set->name),
         'set' => $set,
+        'stats' => $set->get_stats(),
         'has_nextpage' => count($vocabularies) == $count + 1,
         'nextpage_link' => $set->get_permalink() . '/' . ($args['page'] + 1),
         'vocabularies' => array_slice($vocabularies, 0, $count),

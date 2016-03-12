@@ -98,6 +98,10 @@ class Vocabulary extends Model {
         return $orm->filter('level', 0, 3)->where_gt('fail', 0)->order_by_desc('fail');
     }
 
+    public static function burned($orm) {
+        return $orm->filter('level', 8, 8)->order_by_asc('id');
+    }
+
     public static function level($orm, $min, $max) {
         return $orm->where_gte('level', $min)->where_lte('level', $max);
     }

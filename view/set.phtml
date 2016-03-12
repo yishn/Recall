@@ -24,6 +24,23 @@
 
 </form>
 
+<h3>Progress</h3>
+
+<ol class="progress">
+    <li class="burned" title="Burned">
+        Burned:
+        <span><?php echo $stats['burned']; ?></span>
+    </li>
+    <li class="active" title="Active">
+        Active:
+        <span><?php echo $stats['active']; ?></span>
+    </li>
+    <li title="Inactive">
+        Inactive:
+        <span><?php echo $stats['inactive']; ?></span>
+    </li>
+</ol>
+
 <?php if (count($critical_vocabs) != 0): ?>
 
 <h3>Critical Items</h3>

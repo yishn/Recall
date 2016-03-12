@@ -132,11 +132,13 @@ $(document).ready(function() {
             } else if (e.keyCode == 37) {
                 // Left arrow
 
-                $('button.showagain').click()
+                if ($('#study').hasClass('reveal')) $('button.showagain').click()
+                else $('button.reveal').click()
             } else if (e.keyCode == 39) {
                 // Right arrow
 
-                $('button.nextcard').click()
+                if ($('#study').hasClass('reveal')) $('button.nextcard').click()
+                else $('button.reveal').click()
             } else {
                 return true
             }
@@ -146,6 +148,22 @@ $(document).ready(function() {
 
         showCard(currentIndex)
     }
+
+    // Render progress
+    $('.progress').each(function() {
+        var $progress = $(this).addClass('render')
+        var total = $progress.find('li span').get()
+            .map(function(span) { return parseFloat($(span).text()) })
+            .reduce(function(x, y) { return x + y }, 0)
+
+        $progress.children('li').each(function() {
+            var $li = $(this)
+            var percent = parseFloat($li.children('span').text()) * 100 / total
+
+            $li.animate({ width: percent + '%' }, 500)
+                .attr('title', $li.attr('title') + ' ' + Math.round(percent) + '%')
+        })
+    })
 
     // Infinite adding
     if ($('#addlist').length != 0) {

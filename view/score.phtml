@@ -1,6 +1,11 @@
 <?php include 'header.phtml'; ?>
 
-<h2>Score &mdash; <?php echo round(count($correct) * 100 / (count($incorrect) + count($correct))); ?>%</h2>
+<h2>Score</h2>
+
+<ol class="progress">
+    <li class="correct" title="Correct">Correct: <span><?php echo count($correct); ?></span></li>
+    <li title="Incorrect">Incorrect: <span><?php echo count($incorrect); ?></span></li>
+</ol>
 
 <?php if (count($incorrect) != 0): ?>
 

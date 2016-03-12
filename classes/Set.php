@@ -19,6 +19,19 @@ class Set extends Model {
         return $this->get_vocabularies()->filter('critical');
     }
 
+    public function get_stats() {
+        $inactive = $this->get_vocabularies()->filter('inactive')->count();
+        $active = $this->get_vocabularies()->filter('active')->count();
+        $burned = $this->get_vocabularies()->filter('burned')->count();
+
+        return [
+            'inactive' => $inactive,
+            'active' => $active,
+            'burned' => $burned,
+            'total' => $inactive + $active + $burned
+        ];
+    }
+
     public function delete() {
         Vocabulary::where('set_id', $this->id)->delete_many();
         parent::delete();
