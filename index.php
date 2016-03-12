@@ -131,23 +131,20 @@ function action_study() {
         if (!$vocab->is_active()) {
             $correct = false;
             $vocab->init_date = date('Y-m-d');
-        }
-
-        if (!$correct) {
-            $vocab->level = max(0, $vocab->level - 2) - 1;
-            array_push($incorrectlist, $vocab);
         } else {
-            array_push($correctlist, $vocab);
-        }
-
-        $vocab->level++;
-
-        if ($vocab->is_active()) {
             $correctcount = $vocab->get_progress()['correct'];
             $vocab->total++;
             if ($correct) $correctcount++;
 
             $vocab->correct = $correctcount / $vocab->total;
+        }
+
+        if (!$correct) {
+            $vocab->level = max(0, $vocab->level - 2);
+            array_push($incorrectlist, $vocab);
+        } else {
+            $vocab->level++;
+            array_push($correctlist, $vocab);
         }
 
         $intervals = Setting::get('intervals');
