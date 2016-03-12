@@ -73,11 +73,11 @@
 </ol>
 
 <p>
-    Next review in
+    Next review
     <time
         datetime="<?php echo $vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
         title="<?php echo $vocab->get_due_date()->format('r'); ?>"
-    ><?php echo humanize_datetime($vocab->get_due_date()); ?></time>.
+    ><?php if ($nextreview != 'now') echo 'in ' . $nextreview; else echo 'right now' ?></time>.
 </p>
 
 <?php endif; ?>

@@ -52,7 +52,8 @@ function serve_vocab_page($args) {
         'progress' => $vocab->get_progress(),
         'nextvocab' => $vocab->get_next_vocab()->find_one(),
         'prevvocab' => $vocab->get_previous_vocab()->find_one(),
-        'set' => $vocab->get_set()->find_one()
+        'set' => $vocab->get_set()->find_one(),
+        'nextreview' => humanize_datetime($vocab->get_due_date())
     ]));
 }
 
