@@ -133,6 +133,12 @@ class Vocabulary extends Model {
         return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'));
     }
 
+    public static function due_next_hour($orm) {
+        $datetime = new DateTime();
+        $datetime->add(new DateInterval('PT1H'));
+        return $orm->filter('active')->where_lte('due', $datetime->format('Y-m-d H:i:s'));
+    }
+
     public static function learned_today($orm) {
         return $orm->filter('active')->where('init_date', date('Y-m-d'));
     }

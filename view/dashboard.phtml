@@ -18,6 +18,10 @@
         <?php endif; ?>
     </li>
     <li>
+        Due next hour
+        <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_next_hour')->count(); ?></span>
+    </li>
+    <li>
         Due tomorrow
         <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?></span>
     </li>

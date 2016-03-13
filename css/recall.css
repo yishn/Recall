@@ -426,10 +426,8 @@ section.back + textarea, section.notes + textarea {
         border-left: 2px solid white !important;
         border-right: 2px solid white !important;
     }
-
-    .levels li {
-        width: 16.66%;
-    }
+    .stats li { width: 33.33%; }
+    .levels li { width: 16.66%; }
 
     .tasks li {
         display: inline;
