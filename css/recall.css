@@ -247,18 +247,44 @@ button {
 .levels li:nth-child(6), .vocabularies li.burned a, .progress .burned { background: #222222; }
 
 .progress {
-        overflow: hidden;
+        margin-top: 1.9em;
         list-style: none;
     }
     .progress.render {
         background: linear-gradient(#ddd, #ddd 1px, #eee 2px);
     }
+    .progress.render:after {
+        content: '';
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
     .progress.render .active,
     .progress.render .correct { background: #45B29D; }
     .progress.render li {
+        position: relative;
         width: 0;
         float: left;
         text-indent: -9999em;
+    }
+    .progress.render li span {
+        position: absolute;
+        right: 0;
+        top: -1.6em;
+        padding: 1px 5px;
+        background: black;
+        color: white;
+        font-size: .8em;
+        text-indent: 0;
+        opacity: 0;
+        transition: opacity .2s, top .2s;
+        pointer-events: none;
+    }
+    .progress.render li:hover span {
+        top: -1.8em;
+        opacity: .7;
+        pointer-events: auto;
 }
 
 .vocabularies {
