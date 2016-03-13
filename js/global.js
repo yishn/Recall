@@ -35,8 +35,12 @@ $(document).ready(function() {
             }
 
             var i
-            while (i == null || correctOnce[i] || doneCount >= 2 && i == currentIndex) {
-                i = Math.floor(Math.random() * correctOnce.length)
+            if (doneCount == correctOnce.length - 1) {
+                i = correctOnce.indexOf(false)
+            } else {
+                while (i == null || correctOnce[i] || i == currentIndex) {
+                    i = Math.floor(Math.random() * correctOnce.length)
+                }
             }
 
             showCard(i)
@@ -62,6 +66,8 @@ $(document).ready(function() {
                 type: 'button'
             }).on('click', function() {
                 $('#study').addClass('reveal')
+                $el = $('#study > li section.back').eq(currentIndex)
+                $('html').animate({ scrollTop: $el.offset().top })
                 return false
         })).append($('<button/>', {
                 html: '&larr; Show Again',
@@ -77,6 +83,8 @@ $(document).ready(function() {
                 type: 'button'
             }).on('click', function() {
                 $('#study').addClass('revealnotes')
+                $el = $('#study > li section.notes').eq(currentIndex)
+                $('html').animate({ scrollTop: $el.offset().top })
                 return false
         })).append($('<button/>', {
                 html: 'Next Card &rarr;',
@@ -125,13 +133,9 @@ $(document).ready(function() {
 
                 if (!$('#study').hasClass('reveal')) {
                     $('button.reveal').click()
-                    $el = $('#study > li section.back').eq(currentIndex)
                 } else {
                     $('button.shownotes').click()
-                    $el = $('#study > li section.notes').eq(currentIndex)
                 }
-
-                $('html').animate({ scrollTop: $el.offset().top })
             } else if (e.keyCode == 37) {
                 // Left arrow
 
