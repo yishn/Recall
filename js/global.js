@@ -34,11 +34,12 @@ $(document).ready(function() {
                 return
             }
 
-            var i
+            var i = currentIndex
+
             if (doneCount == correctOnce.length - 1) {
                 i = correctOnce.indexOf(false)
             } else {
-                while (i == null || correctOnce[i] || i == currentIndex) {
+                while (correctOnce[i] || i == currentIndex) {
                     i = Math.floor(Math.random() * correctOnce.length)
                 }
             }
