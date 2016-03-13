@@ -424,11 +424,11 @@ section.back, section.notes,
 section.back + textarea, section.notes + textarea {
         border: none;
         border-top: 1px solid #eee;
-        padding: 20px;
+        padding: 20px 0;
     }
     section.back .tasks, section.notes .tasks {
         position: relative;
-        right: -20px;
+        right: 0;
         margin-top: -1.2em;
         font-size: .8em;
         letter-spacing: 1px;
@@ -437,6 +437,10 @@ section.back + textarea, section.notes + textarea {
     }
     section.back .tasks a, section.notes .tasks a {
         color: #aaa;
+    }
+    section.back ul, section.back ol,
+    section.front ul, section.front ol {
+        margin-left: 1.5em;
 }
 
 @media screen and (min-width: 700px) {
