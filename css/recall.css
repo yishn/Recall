@@ -195,6 +195,15 @@ button {
         letter-spacing: normal;
 }
 
+h3#sets {
+        margin-top: 1em;
+        margin-right: 1em;
+        float: left;
+    }
+    h3#sets + .tasks {
+        margin-top: 2em;
+}
+
 .sets, .tasks {
         list-style: none;
     }
