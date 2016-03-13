@@ -7,7 +7,6 @@
 <ul class="stats">
     <li>
         Next review in
-
         <?php if (!$next_review_vocab): ?>
             <span>None</span>
         <?php else: ?>
@@ -54,12 +53,15 @@
     </li>
 </ol>
 
-<h3>Sets</h3>
+<h3 id="sets">Sets</h3>
 
-<ul class="sets">
+<ul class="tasks">
     <li>
         <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
     </li>
+</ul>
+
+<ul class="sets">
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
             <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>

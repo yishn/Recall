@@ -198,9 +198,6 @@ button {
 .sets, .tasks {
         list-style: none;
     }
-    .sets li:first-child {
-        margin-bottom: .5em;
-    }
     .sets li span, .tasks li span {
         display: inline-block;
         padding: 0 5px;
