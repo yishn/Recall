@@ -445,7 +445,7 @@ section.back + textarea, section.notes + textarea {
         color: #aaa;
     }
     section.back ul, section.back ol,
-    section.front ul, section.front ol {
+    section.notes ul, section.notes ol {
         margin-left: 1.5em;
 }
 
