@@ -149,11 +149,13 @@ function action_study() {
 
         $intervals = Setting::get('intervals');
         $interval = $intervals[min($vocab->level, count($intervals) - 1)];
+
+        $saving = $vocab->is_due();
         $due = new DateTime('now');
         $due->add(new DateInterval($interval));
         $vocab->due = $due->format('Y-m-d H:i:s');
 
-        $vocab->save();
+        if ($saving) $vocab->save();
     }
 
     if (count($ids) == 0 || $mode == 'learn') return redirect(BASE_PATH);

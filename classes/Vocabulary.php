@@ -13,6 +13,12 @@ class Vocabulary extends Model {
         return $this->level >= 8;
     }
 
+    public function is_due() {
+        $now = new DateTime('now');
+        $timespan = $now->diff($this->get_due_date());
+        return $timespan->invert == 1;
+    }
+
     public function get_due_date() {
         return new DateTime($this->due);
     }
