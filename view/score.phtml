@@ -3,8 +3,8 @@
 <h2>Score</h2>
 
 <ol class="progress">
-    <li class="correct" title="Correct">Correct: <span><?php echo count($correct); ?></span></li>
-    <li title="Incorrect">Incorrect: <span><?php echo count($incorrect); ?></span></li>
+    <li class="correct" title="Correct">Correct: <span><?php p(count($correct)); ?></span></li>
+    <li title="Incorrect">Incorrect: <span><?php p(count($incorrect)); ?></span></li>
 </ol>
 
 <?php if (count($incorrect) != 0): ?>
@@ -13,9 +13,9 @@
 
 <ul class="vocabularies">
     <?php foreach ($incorrect as $vocab): ?>
-    <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
-        <a href="<?php echo $vocab->get_permalink(); ?>">
-            <?php echo htmlentities($vocab->front); ?>
+    <li class="<?php p(strtolower($vocab->get_human_level())); ?>">
+        <a href="<?php p($vocab->get_permalink()); ?>">
+            <?php p($vocab->front); ?>
         </a>
     </li>
     <?php endforeach; ?>
@@ -29,9 +29,9 @@
 
 <ul class="vocabularies">
     <?php foreach ($correct as $vocab): ?>
-    <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
-        <a href="<?php echo $vocab->get_permalink(); ?>">
-            <?php echo htmlentities($vocab->front); ?>
+    <li class="<?php p(strtolower($vocab->get_human_level())); ?>">
+        <a href="<?php p($vocab->get_permalink()); ?>">
+            <?php p($vocab->front); ?>
         </a>
     </li>
     <?php endforeach; ?>

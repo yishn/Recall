@@ -1,12 +1,12 @@
 <?php include 'header.phtml'; ?>
 
-<h2><?php echo $title; ?></h2>
+<h2><?php p($title); ?></h2>
 
-<form action="<?php echo $action; ?>" method="post">
+<form action="<?php p($action); ?>" method="post">
     <p>
         <label>
             Name:
-            <input type="text" name="name" value="<?php if ($set) echo htmlentities($set->name); ?>" autofocus />
+            <input type="text" name="name" value="<?php if ($set) p($set->name); ?>" autofocus />
         </label>
     </p>
     <p>
@@ -16,7 +16,7 @@
                 type="number"
                 name="new_per_day"
                 min="0"
-                value="<?php if ($set): echo $set->new_per_day; else: ?>10<?php endif; ?>"
+                value="<?php if ($set): p($set->new_per_day); else: ?>10<?php endif; ?>"
             />
         </label>
     </p>

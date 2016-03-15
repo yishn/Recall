@@ -1,14 +1,14 @@
 <?php include 'header.phtml'; ?>
 
 <section id="vocab">
-    <form action="<?php echo $vocab->get_delete_link(); ?>" method="post">
+    <form action="<?php p($vocab->get_delete_link()); ?>" method="post">
         <ul class="tasks meta">
             <?php if ($vocab->is_active()): ?>
-                <li>Active since <?php echo $vocab->get_init_date()->format('d F Y'); ?></li>
-                <li>Level <?php echo $vocab->get_human_level(); ?></li>
+                <li>Active since <?php p($vocab->get_init_date()->format('d F Y')); ?></li>
+                <li>Level <?php p($vocab->get_human_level()); ?></li>
             <?php elseif ($vocab->is_burned()): ?>
                 <li>Burned</li>
-                <li><a href="<?php echo $vocab->get_resurrect_link(); ?>">Resurrect</a></li>
+                <li><a href="<?php p($vocab->get_resurrect_link()); ?>">Resurrect</a></li>
             <?php else: ?>
                 <li>Inactive</li>
             <?php endif; ?>
@@ -17,22 +17,22 @@
     </form>
 
     <h2>
-        <?php echo htmlentities($vocab->front); ?>
+        <?php p($vocab->front); ?>
     </h2>
 
     <?php if ($nextvocab || $prevvocab): ?>
     <ol class="nav">
         <?php if ($prevvocab): ?>
         <li class="prev">
-            <a href="<?php echo $prevvocab->get_permalink(); ?>">
-                &larr; <?php echo htmlentities($prevvocab->front); ?>
+            <a href="<?php p($prevvocab->get_permalink()); ?>">
+                &larr; <?php p($prevvocab->front); ?>
             </a>
         </li>
         <?php endif; ?>
         <?php if ($nextvocab): ?>
         <li class="next">
-            <a href="<?php echo $nextvocab->get_permalink(); ?>">
-                <?php echo htmlentities($nextvocab->front); ?> &rarr;
+            <a href="<?php p($nextvocab->get_permalink()); ?>">
+                <?php p($nextvocab->front); ?> &rarr;
             </a>
         </li>
         <?php endif; ?>
@@ -40,14 +40,14 @@
     <?php endif; ?>
 </section>
 
-<form action="<?php echo $vocab->get_edit_link(); ?>" method="post">
+<form action="<?php p($vocab->get_edit_link()); ?>" method="post">
     <section class="back">
         <div class="inner">
             <?php echo $vocab->get_back(); ?>
         </div>
     </section>
 
-    <textarea name="back" placeholder="Back"><?php echo htmlentities($vocab->back); ?></textarea>
+    <textarea name="back" placeholder="Back"><?php p($vocab->back); ?></textarea>
 
     <h3>Notes</h3>
 
@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <textarea name="notes" placeholder="Notes"><?php echo htmlentities($vocab->notes); ?></textarea>
+    <textarea name="notes" placeholder="Notes"><?php p($vocab->notes); ?></textarea>
 
     <p>
         <button type="submit">Update</button>
@@ -70,16 +70,16 @@
 <h3>Progress</h3>
 
 <ol class="progress">
-    <li class="correct" title="Answer Correct">Answer Correct: <span><?php echo $progress['correct']; ?></span></li>
-    <li title="Answer Incorrect">Answer Incorrect: <span><?php echo $progress['incorrect']; ?></span></li>
+    <li class="correct" title="Answer Correct">Answer Correct: <span><?php p($progress['correct']); ?></span></li>
+    <li title="Answer Incorrect">Answer Incorrect: <span><?php p($progress['incorrect']); ?></span></li>
 </ol>
 
 <p>
     Next review
     <time
-        datetime="<?php echo $vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
-        title="<?php echo $vocab->get_due_date()->format('r'); ?>"
-    ><?php if ($nextreview != 'now') echo 'in ' . $nextreview; else echo 'right now' ?></time>.
+        datetime="<?php p($vocab->get_due_date()->format('Y-m-d H:i:s')); ?>"
+        title="<?php p($vocab->get_due_date()->format('r')); ?>"
+    ><?php if ($nextreview != 'now') p('in ' . $nextreview); else p('right now') ?></time>.
 </p>
 
 <?php endif; ?>

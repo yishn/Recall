@@ -11,45 +11,45 @@
             <span>None</span>
         <?php else: ?>
             <time
-                datetime="<?php echo $next_review_vocab->get_due_date()->format('Y-m-d H:i:s'); ?>"
-                title="<?php echo $next_review_vocab->get_due_date()->format('r'); ?>"
-            >~<?php echo $next_review_vocab->get_human_due_date(); ?></time>
+                datetime="<?php p($next_review_vocab->get_due_date()->format('Y-m-d H:i:s')); ?>"
+                title="<?php p($next_review_vocab->get_due_date()->format('r')); ?>"
+            >~<?php p($next_review_vocab->get_human_due_date()); ?></time>
         <?php endif; ?>
     </li>
     <li>
         Due next hour
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_next_hour')->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_next_hour')->count()); ?></span>
     </li>
     <li>
         Due tomorrow
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count()); ?></span>
     </li>
 </ul>
 
 <ol class="stats levels">
     <li>
         Inactive
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('inactive')->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('inactive')->count()); ?></span>
     </li>
     <li>
         Apprentice
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count()); ?></span>
     </li>
     <li>
         Guru
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count()); ?></span>
     </li>
     <li>
         Master
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count()); ?></span>
     </li>
     <li>
         Enlightened
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count()); ?></span>
     </li>
     <li>
         Burned
-        <span><?php echo Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count(); ?></span>
+        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count()); ?></span>
     </li>
 </ol>
 
@@ -57,14 +57,14 @@
 
 <ul class="tasks">
     <li>
-        <a href="<?php echo BASE_PATH; ?>create">Create Set</a>
+        <a href="<?php p(BASE_PATH); ?>create">Create Set</a>
     </li>
 </ul>
 
 <ul class="sets">
     <?php foreach ($sets as $set): ?>
         <li<?php if ($set->id == $set->id): ?> class="active"<?php endif; ?>>
-            <a href="<?php echo $set->get_permalink(); ?>"><?php echo htmlentities($set->name); ?></a>
+            <a href="<?php p($set->get_permalink()); ?>"><?php p($set->name); ?></a>
 
             <?php
 
@@ -73,7 +73,7 @@
             ?>
             <?php if ($count != 0): ?>
             <span>
-            <?php echo $count; ?>
+            <?php p($count); ?>
             </span>
             <?php endif; ?>
         </li>

@@ -1,6 +1,6 @@
 <?php include 'header.phtml'; ?>
 
-<h2><?php echo $title; ?></h2>
+<h2><?php p($title); ?></h2>
 
 <?php if (count($vocabularies) == 0): ?>
 
@@ -8,29 +8,29 @@
 
 <?php else: ?>
 
-<form action="<?php echo $action; ?>" method="post">
+<form action="<?php p($action); ?>" method="post">
     <ol id="study">
         <?php foreach ($vocabularies as $vocab): ?>
 
         <li>
             <?php if ($vocab->is_active()): ?>
                 <p class="meta">
-                    Level <?php echo $vocab->get_human_level(); ?>
+                    Level <?php p($vocab->get_human_level()); ?>
                 </p>
             <?php endif; ?>
 
-            <h3><?php echo htmlentities($vocab->front); ?></h3>
+            <h3><?php p($vocab->front); ?></h3>
 
             <section class="back">
-                <p class="tasks"><a href="<?php echo $vocab->get_permalink(); ?>">Edit</a></p>
+                <p class="tasks"><a href="<?php p($vocab->get_permalink()); ?>">Edit</a></p>
 
                 <div class="inner">
                     <?php echo $vocab->get_back(); ?>
                 </div>
             </section>
 
-            <textarea name="back-<?php echo $vocab->id; ?>" placeholder="Back"><?php
-                echo htmlentities($vocab->back);
+            <textarea name="back-<?php p($vocab->id); ?>" placeholder="Back"><?php
+                p($vocab->back);
             ?></textarea>
 
             <section class="notes">
@@ -39,13 +39,13 @@
                 </div>
             </section>
 
-            <textarea name="notes-<?php echo $vocab->id; ?>" placeholder="Notes"><?php
-                echo htmlentities($vocab->notes);
+            <textarea name="notes-<?php p($vocab->id); ?>" placeholder="Notes"><?php
+                p($vocab->notes);
             ?></textarea>
 
             <p>
                 <label>
-                    <input type="checkbox" name="correct-<?php echo $vocab->id; ?>" />
+                    <input type="checkbox" name="correct-<?php p($vocab->id); ?>" />
                     Correct
                 </label>
             </p>
@@ -55,8 +55,8 @@
     </ol>
 
     <p>
-        <input type="hidden" name="ids" value="<?php echo $ids; ?>">
-        <input type="hidden" name="mode" value="<?php echo $mode; ?>">
+        <input type="hidden" name="ids" value="<?php p($ids); ?>">
+        <input type="hidden" name="mode" value="<?php p($mode); ?>">
         <button type="submit">Submit</button>
     </p>
 </form>

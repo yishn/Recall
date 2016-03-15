@@ -1,24 +1,24 @@
 <?php include 'header.phtml'; ?>
 
-<h2>Set: <?php echo $set->name; ?></h2>
+<h2>Set: <?php p($set->name); ?></h2>
 
-<form action="<?php echo $set->get_delete_link(); ?>" method="post">
+<form action="<?php p($set->get_delete_link()); ?>" method="post">
 
 <ul class="tasks">
     <?php if (count($new_vocabs) != 0): ?>
     <li>
-        <a href="<?php echo $set->get_learn_link(); ?>">Learn</a>
-        <span><?php echo count($new_vocabs); ?></span>
+        <a href="<?php p($set->get_learn_link()); ?>">Learn</a>
+        <span><?php p(count($new_vocabs)); ?></span>
     </li>
     <?php endif; ?>
     <?php if (count($due_vocabs) != 0): ?>
     <li>
-        <a href="<?php echo $set->get_review_link(); ?>">Review</a>
-        <span><?php echo count($due_vocabs); ?></span>
+        <a href="<?php p($set->get_review_link()); ?>">Review</a>
+        <span><?php p(count($due_vocabs)); ?></span>
     </li>
     <?php endif; ?>
-    <li><a href="<?php echo $set->get_add_link(); ?>">Add</a></li>
-    <li><a href="<?php echo $set->get_edit_link(); ?>">Edit</a></li>
+    <li><a href="<?php p($set->get_add_link()); ?>">Add</a></li>
+    <li><a href="<?php p($set->get_edit_link()); ?>">Edit</a></li>
     <li><button type="submit" class="delete">Delete</button></li>
 </ul>
 
@@ -29,15 +29,15 @@
 <ol class="progress">
     <li class="burned" title="Burned">
         Burned:
-        <span><?php echo $stats['burned']; ?></span>
+        <span><?php p($stats['burned']); ?></span>
     </li>
     <li class="active" title="Active">
         Active:
-        <span><?php echo $stats['active']; ?></span>
+        <span><?php p($stats['active']); ?></span>
     </li>
     <li title="Inactive">
         Inactive:
-        <span><?php echo $stats['inactive']; ?></span>
+        <span><?php p($stats['inactive']); ?></span>
     </li>
 </ol>
 
@@ -47,8 +47,8 @@
 
 <ol class="vocabularies">
     <?php foreach ($critical_vocabs as $vocab): ?>
-        <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
-            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
+        <li class="<?php p(strtolower($vocab->get_human_level())); ?>">
+            <a href="<?php p($vocab->get_permalink()); ?>"><?php p($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
 </ol>
@@ -61,13 +61,13 @@
 
 <ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
-        <li class="<?php echo strtolower($vocab->get_human_level()); ?>">
-            <a href="<?php echo $vocab->get_permalink(); ?>"><?php echo htmlentities($vocab->front); ?></a>
+        <li class="<?php p(strtolower($vocab->get_human_level())); ?>">
+            <a href="<?php p($vocab->get_permalink()); ?>"><?php p($vocab->front); ?></a>
         </li>
     <?php endforeach; ?>
     <?php if ($has_nextpage): ?>
         <li class="more">
-            <a href="<?php echo $nextpage_link; ?>" title="Load More">&hellip;</a>
+            <a href="<?php p($nextpage_link); ?>" title="Load More">&hellip;</a>
         </li>
     <?php endif; ?>
 </ol>
