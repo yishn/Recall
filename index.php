@@ -2,11 +2,22 @@
 
 require_once('includes.php');
 
+function confirm_set_id(&$args) {
+    $set = Set::find_one($args['id']);
+    if (!$set) redirect(BASE_PATH . 'error');
+    $args['set'] = $set;
+}
+
+function confirm_vocab_id(&$args) {
+    $vocab = Vocabulary::find_one($args['id']);
+    if (!$vocab) redirect(BASE_PATH . 'error');
+    $args['vocabulary'] = $vocab;
+}
+
 function serve_dashboard() {
     render('view/dashboard.phtml', [
         'title' => 'Dashboard',
         'sets' => Set::order_by_asc('name')->find_many(),
-        'set' => null,
         'next_review_vocab' => Vocabulary::filter('in_set', $set)->filter('active')->find_one()
     ]);
 }
@@ -16,10 +27,9 @@ function serve_error_page() {
 }
 
 function serve_set_page($args) {
-    $set = Set::find_one($args['id']);
+    $set = $args['set'];
     $count = Setting::get('vocabs_per_page');
 
-    if (!$set) redirect(BASE_PATH . 'error');
     if (!$args['page']) $args['page'] = 1;
 
     $vocabularies = $set->get_vocabularies()
@@ -31,7 +41,7 @@ function serve_set_page($args) {
     render('view/set.phtml', [
         'backlink' => BASE_PATH,
         'backtext' => 'Dashboard',
-        'title' => 'Set: ' . htmlentities($set->name),
+        'title' => 'Set: ' . $set->name,
         'set' => $set,
         'stats' => $set->get_stats(),
         'has_nextpage' => count($vocabularies) == $count + 1,
@@ -44,14 +54,12 @@ function serve_set_page($args) {
 }
 
 function serve_vocab_page($args) {
-    $vocab = Vocabulary::find_one($args['id']);
-
-    if (!$vocab) redirect(BASE_PATH . 'error');
+    $vocab = $args['vocabulary'];
 
     render('view/vocab.phtml', [
         'backlink' => $vocab->get_set()->find_one()->get_permalink(),
-        'backtext' => htmlentities($vocab->get_set()->find_one()->name),
-        'title' => htmlentities($vocab->front),
+        'backtext' => $vocab->get_set()->find_one()->name,
+        'title' => $vocab->front,
         'vocab' => $vocab,
         'progress' => $vocab->get_progress(),
         'nextvocab' => $vocab->get_next_vocab()->find_one(),
@@ -62,10 +70,8 @@ function serve_vocab_page($args) {
 }
 
 function serve_study_page($args) {
-    $set = Set::find_one($args['id']);
+    $set = $args['set'];
     $vocabularies = [];
-
-    if (!$set) redirect(BASE_PATH . 'error');
 
     if ($args['mode'] == 'learn') {
         $vocabularies = $set->get_new_vocabularies()->find_many();
@@ -75,8 +81,8 @@ function serve_study_page($args) {
 
     render('view/study.phtml', [
         'backlink' => $set->get_permalink(),
-        'backtext' => htmlentities($set->name),
-        'title' => ucfirst($args['mode']) . ': ' . htmlentities($set->name),
+        'backtext' => $set->name,
+        'title' => ucfirst($args['mode']) . ': ' . $set->name,
         'action' => BASE_PATH . 'study',
         'mode' => $args['mode'],
         'set' => $set,
@@ -86,13 +92,11 @@ function serve_study_page($args) {
 }
 
 function serve_add_vocab($args) {
-    $set = Set::find_one($args['id']);
-
-    if (!$set) redirect(BASE_PATH . 'error');
+    $set = $args['set'];
 
     render('view/add-vocab.phtml', [
         'backlink' => $set->get_permalink(),
-        'backtext' => htmlentities($set->name),
+        'backtext' => $set->name,
         'title' => 'Add Vocabularies',
         'set' => $set
     ]);
@@ -108,13 +112,11 @@ function serve_create_set() {
 }
 
 function serve_edit_set($args) {
-    $set = Set::find_one($args['id']);
-
-    if (!$set) redirect(BASE_PATH . 'error');
+    $set = $args['set'];
 
     render('view/edit-set.phtml', [
         'backlink' => $set->get_permalink(),
-        'backtext' => htmlentities($set->name),
+        'backtext' => $set->name,
         'title' => 'Edit Set',
         'action' => BASE_PATH . 'edit-set/' . $set->id,
         'set' => $set
@@ -166,15 +168,17 @@ function action_study() {
 
     render('view/score.phtml', [
         'backlink' => $vocab->get_set()->find_one()->get_permalink(),
-        'backtext' => htmlentities($vocab->get_set()->find_one()->name),
+        'backtext' => $vocab->get_set()->find_one()->name,
         'title' => 'Score',
         'incorrect' => $incorrectlist,
         'correct' => $correctlist
     ]);
 }
 
-function action_edit_set($args = ['id' => -1]) {
+function action_edit_set($args) {
     $name = trim($_POST['name']);
+
+    if(!isset($args['id'])) $args['id'] = -1;
     $set = Set::find_one($args['id']);
 
     if (!$set) $set = Set::create();
@@ -188,16 +192,13 @@ function action_edit_set($args = ['id' => -1]) {
 }
 
 function action_delete_set($args) {
-    $set = Set::find_one($args['id']);
-    if ($set) $set->delete();
+    $set = $args['set'];
+    $set->delete();
     redirect(BASE_PATH);
 }
 
 function action_edit_vocab($args) {
-    $vocab = Vocabulary::find_one($args['id']);
-
-    if (!$vocab) redirect(BASE_PATH . 'error');
-
+    $vocab = $args['vocabulary'];
     $vocab->back = $_POST['back'];
     $vocab->notes = $_POST['notes'];
     $vocab->save();
@@ -206,9 +207,7 @@ function action_edit_vocab($args) {
 }
 
 function action_add_vocab($args) {
-    $set = Set::find_one($args['id']);
-
-    if (!$set) redirect(BASE_PATH . 'error');
+    $set = args['id'];
 
     for ($i = 0; $i < count($_POST['front']); $i++) {
         if (trim($_POST['front'][$i]) == '') continue;
@@ -225,20 +224,14 @@ function action_add_vocab($args) {
 }
 
 function action_delete_vocab($args) {
-    $vocab = Vocabulary::find_one($args['id']);
-
-    if (!$vocab) redirect(BASE_PATH);
-
+    $vocab = $args['vocabulary'];
     $set = $vocab->get_set()->find_one();
     $vocab->delete();
     redirect($set->get_permalink());
 }
 
 function action_resurrect_vocab($args) {
-    $vocab = Vocabulary::find_one($args['id']);
-
-    if (!$vocab) redirect(BASE_PATH);
-
+    $vocab = $args['vocabulary'];
     $vocab->level = 0;
     $due = new DateTime('now');
     $due->add(new DateTimeInterval(Setting::get('intervals')[$vocab->level]));
@@ -247,20 +240,26 @@ function action_resurrect_vocab($args) {
     redirect($vocab->get_permalink());
 }
 
-function recall_route($method, $path, $func) {
-    if ($path != '*') $path = trim(BASE_PATH, '/') . rtrim($path, '/');
-    return route($method, $path, $func);
+function recall_route($method, $path, $funcs) {
+    if (!is_array($path)) $path = [$path];
+
+    $path = array_map(function($x) {
+        if ($x != '*') return trim(BASE_PATH, '/') . rtrim($x, '/');
+        return $x;
+    }, $path);
+
+    return route($method, $path, $funcs);
 }
 
 recall_route('GET', '/', serve_dashboard);
-recall_route('GET', '/set/:id@\d+(/:page@\d+)', serve_set_page);
-recall_route('GET', '/vocab/:id@\d+', serve_vocab_page);
+recall_route('GET', '/set/:id@\d+(/:page@\d+)', [confirm_set_id, serve_set_page]);
+recall_route('GET', '/vocab/:id@\d+', [confirm_vocab_id, serve_vocab_page]);
 
 /**
  * Studying
  */
 
-recall_route('GET', '/:mode@learn|review/:id@\d+', serve_study_page);
+recall_route('GET', '/:mode@learn|review/:id@\d+', [confirm_set_id, serve_study_page]);
 recall_route('POST', '/study', action_study);
 
 /**
@@ -268,19 +267,19 @@ recall_route('POST', '/study', action_study);
  */
 
 recall_route('GET', '/create', serve_create_set);
-recall_route('GET', '/edit-set/:id@\d+', serve_edit_set);
+recall_route('GET', '/edit-set/:id@\d+', [confirm_set_id, serve_edit_set]);
 recall_route('POST', ['/create', '/edit-set/:id@\d+'], action_edit_set);
-recall_route('POST', '/delete-set/:id@\d+', action_delete_set);
+recall_route('POST', '/delete-set/:id@\d+', [confirm_set_id, action_delete_set]);
 
 /**
  * Vocabulary actions
  */
 
-recall_route('GET', '/add-to/:id@\d+', serve_add_vocab);
-recall_route('POST', '/add-to/:id@\d+', action_add_vocab);
-recall_route('POST', '/delete/:id@\d+', action_delete_vocab);
-recall_route('POST', '/resurrect/:id@\d+', action_resurrect_vocab);
-recall_route('POST', '/edit/:id@\d+', action_edit_vocab);
+recall_route('GET', '/add-to/:id@\d+', [confirm_set_id, serve_add_vocab]);
+recall_route('POST', '/add-to/:id@\d+', [confirm_set_id, action_add_vocab]);
+recall_route('POST', '/delete/:id@\d+', [confirm_vocab_id, action_delete_vocab]);
+recall_route('POST', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
+recall_route('POST', '/edit/:id@\d+', [confirm_vocab_id, action_edit_vocab]);
 
 /**
  * Errors
