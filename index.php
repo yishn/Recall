@@ -207,7 +207,7 @@ function action_edit_vocab($args) {
 }
 
 function action_add_vocab($args) {
-    $set = args['id'];
+    $set = $args['set'];
 
     for ($i = 0; $i < count($_POST['front']); $i++) {
         if (trim($_POST['front'][$i]) == '') continue;
