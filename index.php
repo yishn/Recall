@@ -177,9 +177,7 @@ function action_study() {
 
 function action_edit_set($args) {
     $name = trim($_POST['name']);
-
-    if(!isset($args['id'])) $args['id'] = -1;
-    $set = Set::find_one($args['id']);
+    $set = $args['set'];
 
     if (!$set) $set = Set::create();
     if ($name == '') redirect(BASE_PATH . 'create');
@@ -268,7 +266,8 @@ recall_route('POST', '/study', action_study);
 
 recall_route('GET', '/create', serve_create_set);
 recall_route('GET', '/edit-set/:id@\d+', [confirm_set_id, serve_edit_set]);
-recall_route('POST', ['/create', '/edit-set/:id@\d+'], action_edit_set);
+recall_route('POST', '/create', action_edit_set);
+recall_route('POST', '/edit-set/:id@\d+', [confirm_set_id, action_edit_set]);
 recall_route('POST', '/delete-set/:id@\d+', [confirm_set_id, action_delete_set]);
 
 /**
