@@ -1,6 +1,6 @@
 # Recall
 
-A simple spaced repetition system software. [Download the latest release](https://github.com/yishn/Recall/releases/latest) of Recall.
+A simple spaced repetition system software. [Download the latest release](https://github.com/yishn/Recall/releases) of Recall.
 
 <img src="screenshot1.png" alt="Dashboard" width="180" /> <img src="screenshot2.png" alt="Vocabulary page" width="180" />
 
@@ -16,7 +16,7 @@ A simple spaced repetition system software. [Download the latest release](https:
 
 To run Recall, you need a web server with PHP 5.6 or later and a MySQL-Database.
 
-1. [Download the latest release](https://github.com/yishn/Recall/releases/latest) of Recall.
+1. [Download the latest release](https://github.com/yishn/Recall/releases) of Recall.
 2. Open `config-demo.php`, follow the instructions and save the file under `config.php`.
 3. Configure URL rewrite rules of your web server. A `.htaccess` file is provided for Apache.
 4. Open Recall in your browser and you're good to go.
