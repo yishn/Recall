@@ -7,7 +7,7 @@ A simple spaced repetition system software. [Download the latest release](https:
 ## Third Party Libraries
 
 * [Idiorm](https://github.com/j4mie/idiorm) & [Paris](https://github.com/j4mie/paris) (BSD License)
-* [dispatch](https://github.com/noodlehaus/dispatch) ([MIT License](http://noodlehaus.mit-license.org/))
+* [dispatcher](https://github.com/yishn/dispatcher) ([MIT License](https://github.com/yishn/dispatcher/blob/master/LICENSE))
 * [Parsedown](http://parsedown.org/) ([MIT License](https://github.com/erusev/parsedown/blob/master/LICENSE.txt))
 * [jQuery](http://jquery.com/) ([MIT License](https://jquery.org/license/))
 * [autosize](https://github.com/jackmoore/autosize) ([MIT License](https://github.com/jackmoore/autosize/blob/master/LICENSE.md))
