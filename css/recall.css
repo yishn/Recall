@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bitter:400,700');
+@import url('https://fonts.googleapis.com/css?family=Bitter:700');
 
 /**
  * Color palette
@@ -18,7 +18,7 @@ body {
     font: 100%/1.5 'Segoe UI', 'Microsoft YaHei', DengXian, sans-serif;
 }
 
-h2, h3, h4, h5, h6 {
+h3, h4, h5, h6 {
     color: #333;
     font-weight: normal;
 }
@@ -423,6 +423,7 @@ h3#sets {
     margin-bottom: 2.5em;
     font-family: inherit;
     font-size: 2.5em;
+    font-weight: normal;
     text-align: center;
 }
 
