@@ -2,21 +2,25 @@
 
 class Set extends Model {
     public function get_vocabularies() {
-        return $this->has_many('Vocabulary')->order_by_asc('id');
+        return $this->has_many('Vocabulary');
     }
 
     public function get_new_vocabularies() {
         $limit = $this->new_per_day;
         $learned = Set::get_vocabularies()->filter('learned_today')->count();
-        return Set::get_vocabularies()->filter('inactive')->limit(max($limit - $learned, 0));
+
+        return Set::get_vocabularies()
+            ->filter('inactive')
+            ->limit(max($limit - $learned, 0))
+            ->order_by_asc('id');
     }
 
     public function get_due_vocabularies() {
-        return $this->get_vocabularies()->filter('due');
+        return $this->get_vocabularies()->filter('due')->order_by_asc('id');
     }
 
     public function get_critical_vocabularies() {
-        return $this->get_vocabularies()->filter('critical');
+        return $this->get_vocabularies()->filter('critical')->order_by_asc('correct');
     }
 
     public function get_stats() {

@@ -102,22 +102,21 @@ class Vocabulary extends Model {
      */
 
     public static function active($orm) {
-        return $orm->where_gte('level', 0)->where_lt('level', 8)->order_by_asc('due');
+        return $orm->where_gte('level', 0)->where_lt('level', 8);
     }
 
     public static function inactive($orm) {
-        return $orm->where_lt('level', 0)->order_by_asc('id');
+        return $orm->where_lt('level', 0);
     }
 
     public static function critical($orm) {
         return $orm->filter('level', 0, 3)
             ->where_gt('total', 0)
-            ->where_lt('correct', 0.75)
-            ->order_by_asc('correct');
+            ->where_lt('correct', 0.75);
     }
 
     public static function burned($orm) {
-        return $orm->filter('level', 8, 8)->order_by_asc('id');
+        return $orm->filter('level', 8, 8);
     }
 
     public static function level($orm, $min, $max) {

@@ -18,7 +18,7 @@ function serve_dashboard() {
     render('view/dashboard.phtml', [
         'title' => 'Dashboard',
         'sets' => Set::order_by_asc('name')->find_many(),
-        'next_review_vocab' => Vocabulary::filter('in_set', $set)->filter('active')->find_one()
+        'next_review_vocab' => Vocabulary::filter('in_set', $set)->filter('active')->order_by_asc('due')->find_one()
     ]);
 }
 
