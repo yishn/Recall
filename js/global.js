@@ -169,8 +169,8 @@ $(document).ready(function() {
             var percent = parseFloat($li.children('span').text()) * 100 / total
 
             $li.animate({ width: percent + '%' }, 500)
+                .attr('title', $li.attr('title') + ' ' + $li.find('span').text())
                 .find('span').text(Math.round(percent) + '%')
-                // .attr('title', $li.attr('title') + ' ' + Math.round(percent) + '%')
         })
     })
 
