@@ -68,7 +68,7 @@ $(document).ready(function() {
             }).on('click', function() {
                 $('#study').addClass('reveal')
                 $el = $('#study > li section.back').eq(currentIndex)
-                $('html').animate({ scrollTop: $el.offset().top })
+                $('html, body').animate({ scrollTop: $el.offset().top })
                 return false
         })).append($('<button/>', {
                 html: '&larr; Show Again',
@@ -85,7 +85,7 @@ $(document).ready(function() {
             }).on('click', function() {
                 $('#study').addClass('revealnotes')
                 $el = $('#study > li section.notes').eq(currentIndex)
-                $('html').animate({ scrollTop: $el.offset().top })
+                $('html, body').animate({ scrollTop: $el.offset().top })
                 return false
         })).append($('<button/>', {
                 html: 'Next Card &rarr;',
