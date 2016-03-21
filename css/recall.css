@@ -10,6 +10,12 @@
  * #222222
  */
 
+* { 
+    margin: 0;
+    padding: 0;
+    touch-action: manipulation;
+}
+
 /**
  * Typography
  */
@@ -65,8 +71,6 @@ img {
 /**
  * Layout
  */
-
-* { margin: 0; padding: 0; }
 
 html, body { height: 100%; }
 
