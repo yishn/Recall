@@ -216,7 +216,9 @@ function action_add_vocab($args) {
         $vocab->back = $_POST['back'][$i];
         $vocab->notes = $_POST['notes'][$i];
 
-        if (Setting::get('add_duplicates') || !Vocabulary::where('front', $vocab->front)->find_one()) {
+        if (Setting::get('add_duplicates')
+        || !Vocabulary::where('front', $vocab->front)
+        ->where('set_id', $set->id)->find_one()) {
             $vocab->save();
         }
     }
