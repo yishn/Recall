@@ -212,10 +212,13 @@ function action_add_vocab($args) {
 
         $vocab = Vocabulary::create();
         $vocab->set_id = $set->id;
-        $vocab->front = $_POST['front'][$i];
+        $vocab->front = trim($_POST['front'][$i]);
         $vocab->back = $_POST['back'][$i];
         $vocab->notes = $_POST['notes'][$i];
-        $vocab->save();
+
+        if (Setting::get('add_duplicates') || !Vocabulary::where('front', $vocab->front)->find_one()) {
+            $vocab->save();
+        }
     }
 
     redirect($set->get_permalink());
