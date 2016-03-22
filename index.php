@@ -31,12 +31,14 @@ function serve_set_page($args) {
     $count = Setting::get('vocabs_per_page');
 
     if (!$args['page']) $args['page'] = 1;
+    if (!$args['order']) $args['order'] = 'id';
 
     $vocabularies = $set->get_vocabularies()
-        ->order_by_asc('id')
+        ->order_by_asc($args['order'])
         ->limit($count + 1)
-        ->offset(($args['page'] - 1) * $count)
-        ->find_many();
+        ->offset(($args['page'] - 1) * $count);
+
+    $vocabularies = $vocabularies->find_many();
 
     render('view/set.phtml', [
         'backlink' => BASE_PATH,
@@ -45,7 +47,7 @@ function serve_set_page($args) {
         'set' => $set,
         'stats' => $set->get_stats(),
         'has_nextpage' => count($vocabularies) == $count + 1,
-        'nextpage_link' => $set->get_permalink() . '/' . ($args['page'] + 1),
+        'nextpage_link' => $set->get_permalink() . '/' . ($args['page'] + 1) . '/order-by/' . $args['order'],
         'vocabularies' => array_slice($vocabularies, 0, $count),
         'new_vocabs' => $set->get_new_vocabularies()->find_many(),
         'due_vocabs' => $set->get_due_vocabularies()->find_many(),
@@ -255,7 +257,7 @@ function recall_route($method, $path, $funcs) {
 }
 
 recall_route('GET', '/', serve_dashboard);
-recall_route('GET', '/set/:id@\d+(/:page@\d+)', [confirm_set_id, serve_set_page]);
+recall_route('GET', '/set/:id@\d+(/:page@\d+)(/order-by/:order@id|correct|level|front)', [confirm_set_id, serve_set_page]);
 recall_route('GET', '/vocab/:id@\d+', [confirm_vocab_id, serve_vocab_page]);
 
 /**

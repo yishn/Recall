@@ -57,7 +57,15 @@
 
 <?php if (count($vocabularies) != 0): ?>
 
-<h3>Vocabulary</h3>
+<h3 class="hastasks">Vocabulary</h3>
+
+<ul class="tasks">
+    <li>Sorting</li>
+    <li><a href="<?php p($set->get_permalink()) ?>/order-by/id">ID</a></li>
+    <li><a href="<?php p($set->get_permalink()) ?>/order-by/front">Alphabetical</a></li>
+    <li><a href="<?php p($set->get_permalink()) ?>/order-by/level">Level</a></li>
+    <li><a href="<?php p($set->get_permalink()) ?>/order-by/correct">Correctness</a></li>
+</ul>
 
 <ol class="vocabularies">
     <?php foreach ($vocabularies as $vocab): ?>
