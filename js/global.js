@@ -49,7 +49,7 @@ $(document).ready(function() {
 
         $('#study input[type="checkbox"]').attr('checked', '')
         $('#study label, button[type="submit"]').css('display', 'none')
-        $('header').after($('<div/>', { id: 'progress' }).append($('<span/>')))
+        $('header').append($('<div/>', { id: 'progress' }).append($('<span/>')))
 
         $('#study section .tasks a').on('click', function() {
             $('#study').addClass('edit')

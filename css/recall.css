@@ -103,7 +103,7 @@ header {
 #wrapper {
     box-sizing: border-box;
     min-height: 100%;
-    padding-bottom: 5em;
+    padding: 1px 0 5em;
 }
 
 main {
@@ -354,9 +354,11 @@ button {
 }
 
 #progress {
-        position: relative;
+        position: absolute;;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         height: 5px;
-        margin-top: -5px;
         background: #F7803C;
     }
     #progress span {
