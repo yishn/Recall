@@ -139,6 +139,7 @@ function action_study() {
         if (!$vocab->is_active()) {
             $correct = false;
             $vocab->init_date = date('Y-m-d');
+            $vocab->correct = 0;
         } else {
             $correctcount = $vocab->get_progress()['correct'];
             $vocab->total++;
