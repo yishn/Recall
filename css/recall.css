@@ -199,19 +199,6 @@ button {
         letter-spacing: normal;
 }
 
-h3.hastasks {
-        margin-top: 1em;
-        margin-right: 1em;
-        float: left;
-    }
-    h3.hastasks + .tasks {
-        margin-top: 2em;
-    }
-    h3.hastasks + .tasks li {
-        display: inline;
-        margin-right: 10px;
-}
-
 .sets, .tasks {
         list-style: none;
     }
@@ -304,7 +291,6 @@ h3.hastasks {
 .vocabularies {
         list-style: none;
         text-align: center;
-        font-size: 1.3em;
     }
     .vocabularies li, .vocabularies li a {
         display: inline-block;
@@ -316,6 +302,7 @@ h3.hastasks {
         margin-bottom: .5em;
         background-color: #eee;
         color: black;
+        font-size: 1.3em;
         opacity: .8;
         text-align: center;
         text-decoration: none;
@@ -487,6 +474,19 @@ section.back + textarea, section.notes + textarea {
 
     #vocab .tasks li:first-child {
         float: left;
+    }
+
+    h3.hastasks {
+            margin-top: 1em;
+            margin-right: 1em;
+            float: left;
+        }
+        h3.hastasks + .tasks {
+            margin-top: 2em;
+        }
+        h3.hastasks + .tasks li {
+            display: inline;
+            margin-right: 10px;
     }
 }
 
