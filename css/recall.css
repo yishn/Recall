@@ -177,7 +177,7 @@ button {
         border-left: 2px solid white;
         padding: 20px;
         float: left;
-        background: #eee;
+        background: #eee linear-gradient(#ddd, #ddd 1px, #eee 2px);
         color: #555;
         font-size: .6em;
         text-align: center;
