@@ -292,6 +292,9 @@ button {
         list-style: none;
         text-align: center;
     }
+    .vocabularies li {
+        font-size: 1.3em;
+    }
     .vocabularies li, .vocabularies li a {
         display: inline-block;
     }
@@ -302,7 +305,6 @@ button {
         margin-bottom: .5em;
         background-color: #eee;
         color: black;
-        font-size: 1.3em;
         opacity: .8;
         text-align: center;
         text-decoration: none;
