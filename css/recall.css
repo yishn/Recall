@@ -10,7 +10,7 @@
  * #222222
  */
 
-* { 
+* {
     margin: 0;
     padding: 0;
     touch-action: manipulation;
@@ -199,13 +199,17 @@ button {
         letter-spacing: normal;
 }
 
-h3#sets {
+h3.hastasks {
         margin-top: 1em;
         margin-right: 1em;
         float: left;
     }
-    h3#sets + .tasks {
+    h3.hastasks + .tasks {
         margin-top: 2em;
+    }
+    h3.hastasks + .tasks li {
+        display: inline;
+        margin-right: 10px;
 }
 
 .sets, .tasks {
