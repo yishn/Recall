@@ -172,7 +172,7 @@ function action_study() {
     render('view/score.phtml', [
         'backlink' => $vocab->get_set()->find_one()->get_permalink(),
         'backtext' => $vocab->get_set()->find_one()->name,
-        'title' => 'Score ' . round(count($correctlist) * 100 / (count($correctlist) + count($incorrectlist))),
+        'title' => 'Score ' . round(count($correctlist) * 100 / (count($correctlist) + count($incorrectlist))) . '%',
         'incorrect' => $incorrectlist,
         'correct' => $correctlist
     ]);
