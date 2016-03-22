@@ -75,10 +75,15 @@ img {
 html, body { height: 100%; }
 
 header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         display: block;
         background: #F7803C;
         color: white;
         padding: 20px;
+        z-index: 100;
     }
     header .back {
         float: left;
@@ -103,6 +108,7 @@ header {
 
 main {
     display: block;
+    margin-top: 3.65em;
     padding: 1px 20px;
 }
 
