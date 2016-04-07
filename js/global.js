@@ -123,7 +123,7 @@ $(document).ready(function() {
 
         // Keyboard shortcuts
 
-        $(document).on('keypress', function(e) {
+        $(document).on('keyup', function(e) {
             if ($('#study').hasClass('edit')) return true
 
             if (e.keyCode == 13 || e.charCode == 32) {
