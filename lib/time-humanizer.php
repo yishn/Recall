@@ -16,6 +16,10 @@ function humanize_datetime($then) {
         return $plural;
     }
 
+    if ($timespan->m) {
+        $numbers[] = $timespan->m;
+        $classifiers[] = 'month';
+    }
     if ($timespan->d) {
         $numbers[] = $timespan->d;
         $classifiers[] = 'day';
