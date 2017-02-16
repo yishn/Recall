@@ -65,7 +65,6 @@
     </p>
 </form>
 
-<?php if ($vocab->is_active()): ?>
 
 <h3>Progress</h3>
 
@@ -74,6 +73,8 @@
     <li title="Answer Incorrect">Answer Incorrect: <span><?php p($progress['incorrect']); ?></span></li>
 </ol>
 
+<?php if ($vocab->is_active()): ?>
+    
 <p>
     Next review
     <time

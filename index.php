@@ -233,6 +233,7 @@ function action_delete_vocab($args) {
     $vocab = $args['vocabulary'];
     $set = $vocab->get_set()->find_one();
     $vocab->delete();
+
     redirect($set->get_permalink());
 }
 
@@ -240,8 +241,9 @@ function action_resurrect_vocab($args) {
     $vocab = $args['vocabulary'];
     $vocab->level = 0;
     $due = new DateTime('now');
-    $due->add(new DateTimeInterval(Setting::get('intervals')[$vocab->level]));
+    $due->add(new DateInterval(Setting::get('intervals')[$vocab->level]));
     $vocab->due = $due->format('Y-m-d H:i:s');
+    $vocab->save();
 
     redirect($vocab->get_permalink());
 }
@@ -283,9 +285,9 @@ recall_route('POST', '/delete-set/:id@\d+', [confirm_set_id, action_delete_set])
  */
 
 recall_route('GET', '/add-to/:id@\d+', [confirm_set_id, serve_add_vocab]);
+recall_route('GET', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
 recall_route('POST', '/add-to/:id@\d+', [confirm_set_id, action_add_vocab]);
 recall_route('POST', '/delete/:id@\d+', [confirm_vocab_id, action_delete_vocab]);
-recall_route('POST', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
 recall_route('POST', '/edit/:id@\d+', [confirm_vocab_id, action_edit_vocab]);
 
 /**
