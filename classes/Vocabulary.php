@@ -16,7 +16,8 @@ class Vocabulary extends Model {
     public function is_due() {
         $now = new DateTime('now');
         $timespan = $now->diff($this->get_due_date());
-        return $timespan->invert == 1;
+
+        return $this->is_active() && $timespan->invert == 1;
     }
 
     public function get_due_date() {
