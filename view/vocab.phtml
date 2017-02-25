@@ -1,20 +1,26 @@
 <?php include 'header.phtml'; ?>
 
 <section id="vocab">
-    <form action="<?php p($vocab->get_delete_link()); ?>" method="post">
-        <ul class="tasks meta">
-            <?php if ($vocab->is_active()): ?>
-                <li>Active since <?php p($vocab->get_init_date()->format('d F Y')); ?></li>
-                <li>Level <?php p($vocab->get_human_level()); ?></li>
-            <?php elseif ($vocab->is_burned()): ?>
-                <li>Burned</li>
-                <li><a href="<?php p($vocab->get_resurrect_link()); ?>">Resurrect</a></li>
-            <?php else: ?>
-                <li>Inactive</li>
-            <?php endif; ?>
-            <li><button type="submit" class="delete">Delete</button></li>
-        </ul>
-    </form>
+    <ul class="tasks meta">
+        <?php if ($vocab->is_active()): ?>
+            <li>Active since <?php p($vocab->get_init_date()->format('d F Y')); ?></li>
+            <li>Level <?php p($vocab->get_human_level()); ?></li>
+        <?php elseif ($vocab->is_burned()): ?>
+            <li>Burned</li>
+            <li>
+                <form action="<?php p($vocab->get_resurrect_link()); ?>" method="post">
+                    <button type="submit">Resurrect</button>
+                </form>
+            </li>
+        <?php else: ?>
+            <li>Inactive</li>
+        <?php endif; ?>
+        <li>
+            <form action="<?php p($vocab->get_delete_link()); ?>" method="post">
+                <button type="submit" class="delete">Delete</button>
+            </form>
+        </li>
+    </ul>
 
     <h2>
         <?php p($vocab->front); ?>
@@ -74,7 +80,7 @@
 </ol>
 
 <?php if ($vocab->is_active()): ?>
-    
+
 <p>
     Next review
     <time

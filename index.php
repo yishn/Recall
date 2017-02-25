@@ -285,10 +285,10 @@ recall_route('POST', '/delete-set/:id@\d+', [confirm_set_id, action_delete_set])
  */
 
 recall_route('GET', '/add-to/:id@\d+', [confirm_set_id, serve_add_vocab]);
-recall_route('GET', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
 recall_route('POST', '/add-to/:id@\d+', [confirm_set_id, action_add_vocab]);
 recall_route('POST', '/delete/:id@\d+', [confirm_vocab_id, action_delete_vocab]);
 recall_route('POST', '/edit/:id@\d+', [confirm_vocab_id, action_edit_vocab]);
+recall_route('POST', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
 
 /**
  * Errors

@@ -471,11 +471,7 @@ section.back + textarea, section.notes + textarea {
     }
     .stats li { width: 33.33%; }
     .levels li { width: 16.66%; }
-
-    .tasks li {
-        display: inline;
-        margin-right: 10px;
-    }
+    .tasks li { display: inline; }
 
     #vocab h2, #study > li > h3 {
         margin: .5em 0 1em;
