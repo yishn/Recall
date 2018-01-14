@@ -6,7 +6,7 @@
     <p>
         <label>
             Name:
-            <input type="text" name="name" value="<?php if ($set) p($set->name); ?>" autofocus />
+            <input type="text" name="name" value="<?php isset($set) ? p($set->name) : ''; ?>" autofocus placeholder="Enter Set Name"/>
         </label>
     </p>
     <p>
@@ -16,7 +16,7 @@
                 type="number"
                 name="new_per_day"
                 min="0"
-                value="<?php if ($set): p($set->new_per_day); else: ?>10<?php endif; ?>"
+                value="<?php isset($set) ? p($set->new_per_day) : p('10'); ?>"
             />
         </label>
     </p>
