@@ -80,7 +80,7 @@ function match($verb, $path, $route = null) {
             $psegment = $pattern_segments[$i];
             $segment = $path_segments[$i];
 
-            if ($psegment[0] !== ':') {
+            if (!is_array($psegment) || $psegment[0] !== ':') {
                 if ($psegment !== $segment) break;
             } else {
                 $name = substr($psegment, 1);
