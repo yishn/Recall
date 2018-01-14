@@ -18,38 +18,71 @@
     </li>
     <li>
         Due next hour
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_next_hour')->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>None</span>
+        <?php else: ?>
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_next_hour')->count()); ?></span>
+        <?php endif; ?>
+
     </li>
     <li>
         Due tomorrow
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>None</span>
+        <?php else: ?>
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('due_tomorrow')->count()); ?></span>
+         <?php endif; ?>   
     </li>
 </ul>
 
 <ol class="stats levels">
     <li>
         Inactive
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>
         <span><?php p(Vocabulary::filter('in_set', $set)->filter('inactive')->count()); ?></span>
+        <?php endif; ?> 
     </li>
     <li>
         Apprentice
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 0, 3)->count()); ?></span>
+        <?php endif; ?> 
     </li>
     <li>
         Guru
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>            
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 4, 5)->count()); ?></span>
+        <?php endif; ?> 
     </li>
     <li>
         Master
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>            
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 6, 6)->count()); ?></span>
+        <?php endif; ?> 
     </li>
     <li>
         Enlightened
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>            
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 7, 7)->count()); ?></span>
+        <?php endif; ?> 
     </li>
     <li>
         Burned
-        <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count()); ?></span>
+        <?php if(!isset($set)): ?>
+            <span>0</span>
+        <?php else: ?>            
+            <span><?php p(Vocabulary::filter('in_set', $set)->filter('level', 8, 8)->count()); ?></span>
+        <?php endif; ?> 
     </li>
 </ol>
 

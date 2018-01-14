@@ -15,10 +15,16 @@ function confirm_vocab_id(&$args) {
 }
 
 function serve_dashboard() {
+    $next_due = null;
+    
+    if(isset($set)) {
+        $next_due = Vocabulary::filter('in_set', $set)->filter('active')->order_by_asc('due')->find_one();
+    }
+
     render('view/dashboard.phtml', [
         'title' => 'Dashboard',
         'sets' => Set::order_by_asc('name')->find_many(),
-        'next_review_vocab' => Vocabulary::filter('in_set', $set)->filter('active')->order_by_asc('due')->find_one()
+        'next_review_vocab' => $next_due
     ]);
 }
 
@@ -259,42 +265,42 @@ function recall_route($method, $path, $funcs) {
     return route($method, $path, $funcs);
 }
 
-recall_route('GET', '/', serve_dashboard);
-recall_route('GET', '/set/:id@\d+(/:page@\d+)(/order-by/:order@id|correct|level|front)', [confirm_set_id, serve_set_page]);
-recall_route('GET', '/vocab/:id@\d+', [confirm_vocab_id, serve_vocab_page]);
+recall_route('GET', '/', 'serve_dashboard');
+recall_route('GET', '/set/:id@\d+(/:page@\d+)(/order-by/:order@id|correct|level|front)', ['confirm_set_id', 'serve_set_page']);
+recall_route('GET', '/vocab/:id@\d+', ['confirm_vocab_id', 'serve_vocab_page']);
 
 /**
  * Studying
  */
 
-recall_route('GET', '/:mode@learn|review/:id@\d+', [confirm_set_id, serve_study_page]);
-recall_route('POST', '/study', action_study);
+recall_route('GET', '/:mode@learn|review/:id@\d+', ['confirm_set_id', 'serve_study_page']);
+recall_route('POST', '/study', 'action_study');
 
 /**
  * Set actions
  */
 
-recall_route('GET', '/create', serve_create_set);
-recall_route('GET', '/edit-set/:id@\d+', [confirm_set_id, serve_edit_set]);
-recall_route('POST', '/create', action_edit_set);
-recall_route('POST', '/edit-set/:id@\d+', [confirm_set_id, action_edit_set]);
-recall_route('POST', '/delete-set/:id@\d+', [confirm_set_id, action_delete_set]);
+recall_route('GET', '/create', 'serve_create_set');
+recall_route('GET', '/edit-set/:id@\d+', ['confirm_set_id', 'serve_edit_set']);
+recall_route('POST', '/create', 'action_edit_set');
+recall_route('POST', '/edit-set/:id@\d+', ['confirm_set_id', 'action_edit_set']);
+recall_route('POST', '/delete-set/:id@\d+', ['confirm_set_id', 'action_delete_set']);
 
 /**
  * Vocabulary actions
  */
 
-recall_route('GET', '/add-to/:id@\d+', [confirm_set_id, serve_add_vocab]);
-recall_route('POST', '/add-to/:id@\d+', [confirm_set_id, action_add_vocab]);
-recall_route('POST', '/delete/:id@\d+', [confirm_vocab_id, action_delete_vocab]);
-recall_route('POST', '/edit/:id@\d+', [confirm_vocab_id, action_edit_vocab]);
-recall_route('POST', '/resurrect/:id@\d+', [confirm_vocab_id, action_resurrect_vocab]);
+recall_route('GET', '/add-to/:id@\d+', ['confirm_set_id', 'serve_add_vocab']);
+recall_route('POST', '/add-to/:id@\d+', ['confirm_set_id', 'action_add_vocab']);
+recall_route('POST', '/delete/:id@\d+', ['confirm_vocab_id', 'action_delete_vocab']);
+recall_route('POST', '/edit/:id@\d+', ['confirm_vocab_id', 'action_edit_vocab']);
+recall_route('POST', '/resurrect/:id@\d+', ['confirm_vocab_id', 'action_resurrect_vocab']);
 
 /**
  * Errors
  */
 
-recall_route('*', '*', serve_error_page);
+recall_route('*', '*', 'serve_error_page');
 
 dispatch();
 
